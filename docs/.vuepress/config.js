@@ -47,7 +47,7 @@ module.exports = {
       sidebarDepth: 2,
       activeHeaderLinks: true,
       displayAllHeaders: false,
-      repo: 'https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar',
+      repo: 'https://github.com/liyao52033/vuepress-default',
       repoLink: 'Github',
       lastUpdated: '上次更新'
     }
