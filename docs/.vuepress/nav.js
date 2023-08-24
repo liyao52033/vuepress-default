@@ -3,12 +3,12 @@ module.exports = [
     "text": "前端",
     "items": [
       {
-        "text": "React",
-        "link": "/前端/react/"
-      },
-      {
         "text": "Typescript",
         "link": "/前端/typescript/"
+      },
+      {
+        "text": "React",
+        "link": "/前端/react/"
       },
       {
         "text": "Vue2",
