@@ -14,7 +14,7 @@ module.exports = {
     '@vuepress/last-updated' ,
     '@vuepress/back-to-top',
     ["vuepress-plugin-auto-sidebar",{
-      sidebarDepth: 1,
+      sidebarDepth: 2,
       collapse: {
         open: true,
       },

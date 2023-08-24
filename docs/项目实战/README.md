@@ -2,6 +2,8 @@
 title: 侧边栏测试
 date: 2023-8-22
 author: 华总
+autoSort: 1000
+autoIgnore: true
 tags: 
    - vue3
    - swagger
@@ -48,7 +50,7 @@ plugins: [
     sidebarLinkSelector: '.sidebar-link',
     headerAnchorSelector: '.header-anchor',
   }]
-],
+]
 ```
 
 ## 三. 二级标题
