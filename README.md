@@ -4,6 +4,8 @@
 
 ```bash
 git clone https://github.com/liyao52033/vuepress-default.git
+
+yarn install
 ```
 
 
