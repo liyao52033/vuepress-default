@@ -1,0 +1,32 @@
+diff --git a/node_modules/vuepress-plugin-nuggets-style-copy/copy.vue b/node_modules/vuepress-plugin-nuggets-style-copy/copy.vue
+index 16458b2..a5b70dd 100644
+--- a/node_modules/vuepress-plugin-nuggets-style-copy/copy.vue
++++ b/node_modules/vuepress-plugin-nuggets-style-copy/copy.vue
+@@ -24,9 +24,9 @@ export default {
+       };
+       if (visibleTip) {
+         this.$message({
+-          time,
+-          content,
+-          title
++          time: time,
++          content: content,
++          title: title
+         });
+       }
+ 
+diff --git a/node_modules/vuepress-plugin-nuggets-style-copy/index.js b/node_modules/vuepress-plugin-nuggets-style-copy/index.js
+index abe5b5d..047c8b3 100644
+--- a/node_modules/vuepress-plugin-nuggets-style-copy/index.js
++++ b/node_modules/vuepress-plugin-nuggets-style-copy/index.js
+@@ -6,8 +6,8 @@ module.exports = (options = {}) => ({
+   define() {
+     const {
+       selector = 'div[class*="language-"] pre',
+-      copyText = 'Copy code',
+-      tip: { time = 3000, content = 'copy success', title = 'Tips' } = {},
++      copyText = '复制代码',
++      tip: { time = 3000, content = '复制成功', title = '提示' } = {},
+       change,
+       visibleTip = true,
+     } = options;

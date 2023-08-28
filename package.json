@@ -8,21 +8,25 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "docs:nav": "vuepress nav docs -f" ,
+    "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
-    "push": "./docs/push.sh"
+    "push": "./docs/push.sh",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "moment": "^2.29.4",
-    "sass": "^1.66.1",
-    "vuepress": "^1.9.10"
+    "clipboard": "^2.0.11",
+    "node-sass": "6.0.1",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-nuggets-style-copy": "^1.0.3"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "^1.9.10",
     "@vuepress/plugin-back-to-top": "^1.9.10",
-    "@vuepress/theme-blog": "^2.3.3",
     "sass-loader": "^13.3.2",
     "vuepress-plugin-auto-sidebar": "^2.3.2",
+    "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-container": "^2.1.5"
   }
 }

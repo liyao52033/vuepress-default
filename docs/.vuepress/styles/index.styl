@@ -18,6 +18,85 @@
     border: 1px solid #3eaf7c !important;
 }
 
-//.sidebar-sub-headers {
-//  display: none !important;
-//}
+::v-deep .vsys{
+    display:none !important;
+}
+
+#valine-vuepress-comment{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#veditor {
+    //background-image: url(https://cdn.jsdelivr.net/gh/drew233/cdn/20200409110727.webp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: vertical;
+}
+
+
+.vheader{
+    display: flex;
+    flex-grow: 1;
+}
+
+
+#valine-vuepress-comment .vheader .vnick {
+    border: 2px solid #dedede;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: #66b1ff !important;
+    font-size : 17px;
+}
+
+#valine-vuepress-comment .vheader .vmail {
+    border: 2px solid #dedede;
+    margin-left: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    font-size : 17px;
+    color: #66b1ff !important;
+}
+
+#valine-vuepress-comment .vheader .vlink {
+    border: 2px solid #dedede;
+    margin-left: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    font-size : 15px;
+    color: #66b1ff !important;
+}
+
+#valine-vuepress-comment .vcards .vcard {
+    padding: 15px 20px 0 20px;
+    margin-bottom: 15px;
+    transition: all .3s;
+    color: #2F0822;
+}
+
+#valine-vuepress-comment .vcards .vcard:hover {
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, .12)
+}
+
+#valine-vuepress-comment .vcards .vcard .vh .vcard {
+    border: none;
+    box-shadow: none;
+}
+
+img.vimg {
+    transition: all 1s   /* 旋转时间为 1s */
+}
+
+img.vimg:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+}
+
