@@ -1,82 +1,266 @@
 ---
-title: 侧边栏测试
-date: 2023-8-22
+title: npm 和 yarn 换源
 author: 华总
 autoSort: 1000
-autoIgnore: true
-tags: 
-   - vue3
-   - swagger
 ---
 
 
 
-## 一. 二级标题
+作为前端开发者我们经常会使用npm或yarn，我们都知道npm和yarn默认镜像在国外，国内访问这些镜像速度会比较慢，下面介绍修改npm和yarn源的方法
 
-      ###     三级标题
+## 一. npm和yarn源的简单修改（以淘宝镜像为例）
 
-```
-plugins: [
-  '@vuepress/last-updated' ,
-  '@vuepress/back-to-top',
-  ["vuepress-plugin-auto-sidebar",{
-    sidebarDepth: 2,
-    collapse: {
-      open: true,
-    },
-  }],
-  ['@vuepress/active-header-links', {
-    sidebarLinkSelector: '.sidebar-link',
-    headerAnchorSelector: '.header-anchor',
-  }]
-],
+### npm
+
+###### 1. 临时修改（只生效一次）
+
+```bash
+npm install 包的名字 --registry https://registry.npm.taobao.org
 ```
 
-## 二. 二级标题
+###### 2. 设置npm的配置项（全局配置）
 
-###     三级标题
+查看npm源的当前地址
 
-```js
-plugins: [
-  '@vuepress/last-updated' ,
-  '@vuepress/back-to-top',
-  ["vuepress-plugin-auto-sidebar",{
-    sidebarDepth: 2,
-    collapse: {
-      open: true,
-    },
-  }],
-  ['@vuepress/active-header-links', {
-    sidebarLinkSelector: '.sidebar-link',
-    headerAnchorSelector: '.header-anchor',
-  }]
-]
+```bash
+npm config get registry
 ```
 
-## 三. 二级标题
+设置淘宝镜像
 
-###    三级标题
+```bash
+npm config set registry https://registry.npm.taobao.org
+```
 
-```js
-plugins: {
-    "vuepress-plugin-auto-sidebar": {
-      collapse: {
-        open: true
-      }
-    }
-  }
+设置npm官方镜像
+
+```bash
+npm config set registry https://registry.npmjs.org/
 ```
 
 
 
-## 四. 二级标题
+### yarn
 
-###    三级标题
+###### 1. 临时修改（只生效一次）
 
-## 五. 二级标题
+```bash
+yarn save 包的名字 --registry https://registry.npm.taobao.org/
+```
 
-###    三级标题
+###### 2. 设置yarn的配置项（全局配置）
 
-## 六. 二级标题
+查看yarn源的当前地址
 
-###    三级标题
+```bash
+yarn config get registry
+```
+
+设置淘宝镜像
+
+```bash
+yarn config set registry https://registry.npm.taobao.org/
+```
+
+设置yarn官方镜像
+
+```bash
+yarn config set registry https://registry.yarnpkg.com
+```
+
+## 二. 使用第三方软件快速修改、切换 npm和yarn的源（以淘宝镜像为例）
+
+### （1）分别修改npm和yarn源（经实际测试，这种方法修改一个源另一个源也会同时修改）
+
+#### npm
+
+nrm 是一个 NPM 源管理器，允许你快速地在如下 NPM 源间切换
+
+###### 安装
+
+```bash
+npm install -g nrm
+```
+
+###### 列出可选的源
+
+```bash
+nrm ls
+
+* npm ---- https://registry.npmjs.org/
+  cnpm --- http://r.cnpmjs.org/
+  taobao - https://registry.npm.taobao.org/
+  nj ----- https://registry.nodejitsu.com/
+  rednpm - http://registry.mirror.cqupt.edu.cn/
+  npmMirror  https://skimdb.npmjs.com/registry/
+  edunpm - http://registry.enpmjs.org/
+```
+
+带 * 的是当前使用的源
+
+###### 切换
+
+切换到taobao镜像源
+
+```bash
+nrm use taobao
+
+   Registry has been set to: https://registry.npm.taobao.org/
+```
+
+###### 测试源的响应时间
+
+测试所有源的响应时间：
+
+```jsx
+nrm test
+
+  npm ---- 2930ms
+  cnpm --- 300ms
+* taobao - 292ms
+  nj ----- Fetch Error
+  rednpm - Fetch Error
+  npmMirror  1626ms
+  edunpm - Fetch Error
+```
+
+可以多次测量来得到更精确的结果
+更多nrm使用方法访问nrm的gitHub仓库
+[https://github.com/Pana/nrm](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FPana%2Fnrm)
+
+
+
+#### yarn
+
+yrm 是一个 yarn源管理器，允许你快速地在yarn源间切换
+
+###### 安装
+
+```bash
+npm install -g yrm
+```
+
+###### 列出可选的源
+
+```cpp
+yrm ls
+
+  npm ---- https://registry.npmjs.org/
+  cnpm --- http://r.cnpmjs.org/
+* taobao - https://registry.npm.taobao.org/
+  nj ----- https://registry.nodejitsu.com/
+  rednpm - http://registry.mirror.cqupt.edu.cn/
+  npmMirror  https://skimdb.npmjs.com/registry/
+  edunpm - http://registry.enpmjs.org/
+  yarn --- https://registry.yarnpkg.com
+```
+
+带 * 的是当前使用的源
+
+###### 切换
+
+切换到taobao镜像源
+
+```cpp
+yrm use taobao
+
+   YARN Registry has been set to: https://registry.npm.taobao.org/
+```
+
+###### 测试源的响应时间
+
+测试所有源的响应时间：
+
+```jsx
+yrm test
+
+  npm ---- 784ms
+  cnpm --- 290ms
+* taobao - 297ms
+  nj ----- Fetch Error
+  rednpm - Fetch Error
+  npmMirror  1353ms
+  edunpm - Fetch Error
+  yarn --- Fetch Error
+```
+
+可以多次测量来得到更精确的结果
+更多yrm使用方法访问yrm的gitHub仓库
+[https://github.com/i5ting/yrm](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fi5ting%2Fyrm)
+
+
+
+### （2）使用双源管理工具cgr 
+
+###### 安装
+
+```bash
+npm install -g cgr
+```
+
+使用方法和前两种差别不大，下边附上使用方法网址[https://www.npmjs.com/package/cgr](https://www.npmjs.com/package/cgr)
+
+::: tip 【参考文章】
+
+[https://www.jianshu.com/p/309645729b2e](https://www.jianshu.com/p/309645729b2e)
+
+[https://www.jianshu.com/p/309645729b2e](https://www.jianshu.com/p/309645729b2e)
+
+[https://laravel-china.org/articles/15976/yarn-accelerate-and-modify-mirror-source-in-china](https://laravel-china.org/articles/15976/yarn-accelerate-and-modify-mirror-source-in-china)
+
+[https://www.npmjs.com/package/cgr](https://www.npmjs.com/package/cgr)
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="float: right;font-size: .9em;line-height: 30px;">
+  <div>
+     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
+     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
+  </div>
+</div>

@@ -9,7 +9,7 @@ autoSort: 992
 
 Elasticsearch 可以作为服务安装在后台运行，或者在启动时自动启动，无需任何用户交互。`elasticsearch-service.bat`这可以通过文件夹中的脚本实现，`bin\`该脚本允许从命令行安装、删除、管理或配置服务并可能启动和停止服务。
 
-```cmd
+```bash
 D:\elasticsearch-7.17.9\bin>elasticsearch-service.bat
 
 Usage: elasticsearch-service.bat install|remove|start|stop|manager [SERVICE_ID]
@@ -150,8 +150,6 @@ public class MyController {
 
 
 <div style="float: right;font-size: .9em;line-height: 30px;">
-  <span style="font-weight: 500;color: #4e6e8e;">上次更新: </span> 
-  <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.date }}   </span>
   <div>
      <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
      <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>

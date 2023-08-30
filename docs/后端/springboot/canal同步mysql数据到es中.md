@@ -25,7 +25,7 @@ maven依赖
 
 vi /etc/my.cnf
 
-```
+```bash
 [mysqld]
 log-bin=mysql-bin # 开启 binlog
 binlog-format=ROW # 选择 ROW 模式
@@ -321,7 +321,7 @@ canal:
 
 `vim canal_local.properties`
 
-```
+```properties
 # register ip
 canal.register.ip = 192.168.111.129
  
@@ -363,8 +363,6 @@ cd /usr/local/canal-server/bin/
 
 
  <div style="float: right;font-size: .9em;line-height: 30px;">
-  <span style="font-weight: 500;color: #4e6e8e;">上次更新: </span> 
-  <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.date }}   </span>
   <div>
      <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
      <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>

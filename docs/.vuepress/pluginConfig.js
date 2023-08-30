@@ -34,7 +34,7 @@ const secureConf = require("../../comment/secureinfo")
           path: '<%- window.location.pathname %>',
           enable: true,
           enableQQ: true,
-          pageSize: 8,
+          pageSize: 5,
           visitor: true,
           placeholder: '同道中人，文明留言...',  // 评论框占位提示符
           lang: 'zh-cn', // 支持中文

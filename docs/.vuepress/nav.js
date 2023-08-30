@@ -1,3 +1,5 @@
+const navbar = require("./gitnav.js")
+
 module.exports = [
   {
     "text": "前端",
@@ -17,6 +19,10 @@ module.exports = [
       {
         "text": "Vue3",
         "link": "/前端/vue3/注意事项"
+      },
+      {
+        "text": "知识点",
+        "link": "/前端/"
       }
     ]
   },
@@ -46,6 +52,7 @@ module.exports = [
         "link": "/工具类/常用网址"
       }
     ]
-  }
-]
+  },
 
+  navbar
+];

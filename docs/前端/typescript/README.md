@@ -3,6 +3,7 @@ title: 侧边栏测试
 date: 2023-8-22
 author: 华总
 autoSort: 1000
+search: false
 autoIgnore: true
 tags: 
    - vue3
