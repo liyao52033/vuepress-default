@@ -1,0 +1,65 @@
+---
+title: TortosseGit的ssh配置
+author: 华总
+autoSort: 880
+---
+
+## **GIT的ssh配置**
+
+git生成密钥最好通过ssh-gen命令直接生成，因为会自动保存到 home/.ssh目录下。而且是openssh格式。
+使用命令
+
+```bash
+ssh-keygen -t rsa -C ‘example@qq.com’
+```
+
+一路回车，将id_rsa.pub拷贝到github或其他服务器，就可以使用ssh登陆了。
+
+
+
+## TortoiseGit 设置ssh方式
+
+TortoiseGit使用扩展名为ppk的密钥，而不是ssh-keygen生成的rsa密钥。
+
+也就是说使用 ssh-keygen -t rsa -C "576953565@qq.com"产生的密钥，TortoiseGit中不能用。
+
+所以我们需要用到TortoiseGit中的的putty key generator工具来生成密钥
+
+### **1，首先打开PuTTY Key工具**，点击“Generate”按钮
+
+<img src="./assets/1693456242496.png" alt="1693456242496" style="zoom: 67%;" />
+
+### 2，生成完成后点击 “Save private key”，输入文件名private.ppk然后保存
+
+### **3，打开Pageant工具**，点击add key 添加刚刚保存的.ppk 密钥文件**, 添加成功后点击close关闭
+
+<img src="./assets/1693456308535.png" alt="1693456308535" style="zoom:67%;" />
+
+### **4.在去git 设置中添加一下第3步中的 ssh key**
+
+### 5. 去TortoiseGit 软件中设置ssh key与private.ppk
+
+#### 设置ssh key
+
+![1693453893154](./assets/1693453893154.png)
+
+![1693453931590](./assets/1693453931590.png)
+
+添加一下第3步中的 ssh key到signingkey
+
+#### 设置private.ppk
+
+![1693454118932](./assets/1693454118932.png)
+
+之后点击应用，确定,然后就大功告成，之后可以就可以使用TortoiseGit可视化提交工具进行代码拉取提交等一系列操作了
+
+
+
+
+
+<div style="float: right;font-size: .9em;line-height: 30px;">
+  <div>
+     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
+     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
+  </div>
+</div>
