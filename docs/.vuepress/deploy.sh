@@ -37,6 +37,9 @@ git branch -M main
 
 git push -f git@github.com:liyao52033/liyao52033.github.io.git main
 
+# 切换回18版本
+nvm use 18
+
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
