@@ -1,10 +1,13 @@
 #!/usr/bin/env sh
 
+# 确保脚本抛出遇到的错误
+set -e
+
 # 指定要使用的Node.js版本
 nvm use 16.20.1
 
-# 确保脚本抛出遇到的错误
-set -e
+## 代码推送到github
+yarn run push
 
 #生成新的sitemap.xml
 yarn run sitemap
@@ -21,14 +24,11 @@ cp ../../../docs/README.md .
 ## 复制sitemap.xml
 cp ../../../docs/sitemap.xml .
 
-## 代码推送到github
-yarn run push
-
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
 git init
-git add .
+git add -A
 git commit -m 'deploy'
 git branch -M main
 
