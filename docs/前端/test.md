@@ -19,14 +19,20 @@ author:
 
 ## test
 
-::: tab-container
-::: tab Tab 1
-Content for Tab 1
+:::: el-tabs
+
+::: el-tab-pane label=yarn
+``` bash
+yarn add vuepress-plugin-element-ui -D
+```
 :::
-::: tab Tab 2
-Content for Tab 2
+::: el-tab-pane label=npm
+``` bash
+npm i vuepress-plugin-element-ui -D
+```
 :::
-:::
+::::
+
 
 
 
