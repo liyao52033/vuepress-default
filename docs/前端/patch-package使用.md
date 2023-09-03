@@ -1,10 +1,26 @@
 ---
 title: patch-package使用
-author: 华总
+tags: 
+  - patch-package
+  - node_module
 autoSort: 900
+permalink: /pages/596d77/
+categories: 
+  - 前端
+titleTag: 原创
+date: 2023-08-31 11:30:19
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
+::: tip 
+
 使用 `patch-package` 修改第三方模块，及时解决第三方依赖包的 bug
+
+:::
+
+<!-- more -->
 
 ## 安装
 
@@ -81,10 +97,5 @@ npx patch-package @my/package/@my/other-package
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
 

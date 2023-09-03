@@ -1,11 +1,18 @@
 ---
 title: vue-element-ui使用
-date: 2023/8/25 11:13:21
-author: 华总
 autoSort: 1000
 tags: 
-   - vue2
-   - element-ui
+  - vue2
+  - element-ui
+permalink: /pages/a7c65e/
+categories: 
+  - 前端
+  - vue2
+titleTag: 原创
+date: 2023-08-25 11:12:39
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 ## 一. 移除mock
@@ -224,11 +231,7 @@ const service = axios.create({
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+
 
 

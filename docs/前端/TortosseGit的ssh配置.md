@@ -1,7 +1,16 @@
 ---
 title: TortosseGit的ssh配置
-author: 华总
 autoSort: 880
+permalink: /pages/3f5ce6/
+categories: 
+  - 前端
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-31 11:39:21
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 ## **GIT的ssh配置**
@@ -25,7 +34,7 @@ TortoiseGit使用扩展名为ppk的密钥，而不是ssh-keygen生成的rsa密�
 
 所以我们需要用到TortoiseGit中的的putty key generator工具来生成密钥
 
-### **1，首先打开PuTTY Key工具**，点击“Generate”按钮
+### **1，首先打开PuTTY Key工具**，点击“Generate”按钮生成ssh key
 
 <img src="./assets/1693456242496.png" alt="1693456242496" style="zoom: 67%;" />
 
@@ -35,7 +44,7 @@ TortoiseGit使用扩展名为ppk的密钥，而不是ssh-keygen生成的rsa密�
 
 <img src="./assets/1693456308535.png" alt="1693456308535" style="zoom:67%;" />
 
-### **4.在去git 设置中添加一下第3步中的 ssh key**
+### 4.在去git 设置中添加一下生成的 ssh key
 
 ### 5. 去TortoiseGit 软件中设置ssh key与private.ppk
 
@@ -45,7 +54,7 @@ TortoiseGit使用扩展名为ppk的密钥，而不是ssh-keygen生成的rsa密�
 
 ![1693453931590](./assets/1693453931590.png)
 
-添加一下第3步中的 ssh key到signingkey
+添加生成的ssh key到signingkey
 
 #### 设置private.ppk
 
@@ -57,9 +66,5 @@ TortoiseGit使用扩展名为ppk的密钥，而不是ssh-keygen生成的rsa密�
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

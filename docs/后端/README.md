@@ -1,13 +1,19 @@
 ---
 title: 后端
-date: 2023-8-22
-author: 华总
 autoSort: 1000
 autoIgnore: true
 search: false
 tags: 
-   - vue3
-   - swagger
+  - vue3
+  - swagger
+permalink: /pages/0baae3/
+categories: 
+  - 后端
+titleTag: 原创
+date: 2023-08-21 13:25:05
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 

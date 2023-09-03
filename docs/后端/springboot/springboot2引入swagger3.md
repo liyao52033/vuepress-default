@@ -1,8 +1,17 @@
 ---
 title: springboot2引入swagger3
-author: 华总
-date: 2023/8/24 14:02:56
 autoSort: 998
+permalink: /pages/301b87/
+categories: 
+  - 后端
+  - springboot
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-24 10:48:32
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 ## 1. 引入依赖
@@ -61,9 +70,5 @@ public class Knife4jConfig {
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

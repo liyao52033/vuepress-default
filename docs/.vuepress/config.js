@@ -1,6 +1,5 @@
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
-const secureConf = require("../../comment/secureinfo")
 
 module.exports = {
 
@@ -8,6 +7,7 @@ module.exports = {
   description: 'Just playing around',
   head: [
     ['link', { rel: 'icon', href: '/img/logo.png' }],
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
   locales: {
     '/': {
@@ -15,10 +15,7 @@ module.exports = {
     }
   },
 
-  extendPageData ($page) {
-    $page.frontmatter.author = "华总"
-  },
-
+  theme: 'vdoing',
   plugins: pluginConfig,
 
   markdown: {
@@ -43,17 +40,27 @@ module.exports = {
   themeConfig: {
     logo: '/img/logo.png', // 导航栏左侧的logo,不写就不显示
     nav,
-    algolia: {
-      apiKey: secureConf.algolia_apiKey,
-      indexName: secureConf.algolia_indexName,
-      appId: secureConf.algolia_appId,
-      container: "#search-form span #algolia-search-input",
-      algoliaOptions: {
-        hitsPerPage: 1000
-      },
+    subSidebar: 'auto',
+    pageButton: false,
+    footer: {
+      createYear: 2023,
+      copyrightInfo: '<a href="https://github.com/liyao52033/vuepress-default">liyao</a> | MIT Licensed'
     },
+    extendFrontmatter: {
+      author: {
+        name: '华总',
+        link: 'https://liyao52033.github.io/'
+      },
+      titleTag: "原创",
+      date: new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+    },
+
     smoothScroll: true,
-    sidebarDepth: 2,
+    // searchMaxSuggestions: 100,
     activeHeaderLinks: true,
     displayAllHeaders: false,
     // 假如你的文档仓库和项目本身不在一个仓库：

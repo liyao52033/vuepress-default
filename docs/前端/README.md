@@ -1,12 +1,26 @@
 ---
 title: npm 和 yarn 换源
-author: 华总
+tags: 
+  - npm
+  - yarn
 autoSort: 1000
+permalink: /pages/7765ba/
+categories: 
+  - 前端
+titleTag: 原创
+date: 2023-08-21 09:11:30
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
-
+::: tip
 
 作为前端开发者我们经常会使用npm或yarn，我们都知道npm和yarn默认镜像在国外，国内访问这些镜像速度会比较慢，下面介绍修改npm和yarn源的方法
+
+:::
+
+<!-- more -->
 
 ## 一. npm和yarn源的简单修改（以淘宝镜像为例）
 
@@ -216,51 +230,3 @@ npm install -g cgr
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>

@@ -1,9 +1,17 @@
 ---
 title: 联表查询SQL
-date: 2023/8/25 11:00:32
-author: 华总
 autoSort: 580
-
+permalink: /pages/2f7eda/
+categories: 
+  - 前端
+  - vue3
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-24 18:03:14
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 
@@ -150,9 +158,5 @@ autoSort: 580
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

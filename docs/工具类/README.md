@@ -1,13 +1,19 @@
 ---
 title: 工具类
-date: 2023-8-22
-author: 华总
 autoSort: 300
 search: false
 autoIgnore: true
 tags: 
-   - vue3
-   - swagger
+  - vue3
+  - swagger
+permalink: /pages/d6b88b/
+categories: 
+  - 工具类
+titleTag: 原创
+date: 2023-08-25 11:29:46
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 

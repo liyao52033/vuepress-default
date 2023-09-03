@@ -6,18 +6,24 @@
   "author": "华总",
   "license": "MIT",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
+    "docs:dev": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
     "docs:build": "vuepress build docs",
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
     "push": "./docs/push.sh",
-    "postinstall": "patch-package"
+    "sitemap": "./docs/generate_sitemap.sh",
+    "postinstall": "patch-package",
+    "deleteFm": "node utils/deleteFrontmatter.js"
   },
   "dependencies": {
-    "clipboard": "^2.0.11",
-    "node-sass": "6.0.1",
+    "core-js": "2.6.12",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.4",
+    "gray-matter": "^4.0.3",
+    "node-sass": "8.0.0",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
+    "vue-tabs-component": "^1.5.0",
     "vuepress": "^1.9.10",
     "vuepress-plugin-nuggets-style-copy": "^1.0.3"
   },
@@ -27,6 +33,9 @@
     "sass-loader": "^13.3.2",
     "vuepress-plugin-auto-sidebar": "^2.3.2",
     "vuepress-plugin-comment": "^0.7.3",
-    "vuepress-plugin-container": "^2.1.5"
+    "vuepress-plugin-container": "^2.1.5",
+    "vuepress-plugin-element-ui": "^1.1.0",
+    "vuepress-plugin-flexsearch-pro": "^1.0.3",
+    "vuepress-theme-vdoing": "^1.12.9"
   }
 }

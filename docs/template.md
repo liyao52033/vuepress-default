@@ -1,7 +1,6 @@
 ---
 title: MyBatis Plus使用
-date: 2023/8/24 15:15:38
-author: 华总
+date: '2023/8/24 15:15:38'
 autoSort: 1000
 autoIgnore: true
 ---

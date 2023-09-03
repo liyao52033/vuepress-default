@@ -1,8 +1,17 @@
 ---
 title: 整合 Element Plus
-date: 2023/8/24 14:27:20
-author: 华总
 autoSort: 996
+permalink: /pages/5dfab8/
+categories: 
+  - 前端
+  - vue3
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-24 14:22:03
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 ## unplugin 自动导入
@@ -273,11 +282,7 @@ const tagContent = computed(() => {
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+
 
 

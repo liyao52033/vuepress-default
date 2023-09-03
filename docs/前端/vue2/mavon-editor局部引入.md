@@ -1,11 +1,18 @@
 ---
 title: mavon-editor局部引入
-date: 2023/8/25 11:13:21
-author: 华总
 autoSort: 700
 tags: 
-   - vue2
-   - element-ui
+  - vue2
+  - element-ui
+permalink: /pages/f1da4c/
+categories: 
+  - 前端
+  - vue2
+titleTag: 原创
+date: 2023-08-25 11:15:41
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 editor.vue
@@ -63,9 +70,5 @@ const $vm = this.$refs.md
       })
 ```
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

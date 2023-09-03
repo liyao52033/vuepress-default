@@ -1,11 +1,18 @@
 ---
 title: el-upload封装
-date: 2023/8/25 11:13:21
-author: 华总
 autoSort: 600
 tags: 
-   - vue2
-   - element-ui
+  - vue2
+  - element-ui
+permalink: /pages/e7c36c/
+categories: 
+  - 前端
+  - vue2
+titleTag: 原创
+date: 2023-08-25 11:15:42
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 父组件模板
@@ -74,9 +81,5 @@ export default {
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

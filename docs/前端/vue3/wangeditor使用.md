@@ -1,8 +1,17 @@
 ---
 title: wangeditor使用
-date: 2023/8/24 14:27:20
-author: 华总
 autoSort: 994
+permalink: /pages/ccabd7/
+categories: 
+  - 前端
+  - vue3
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-24 14:22:01
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 ::: tip 提示
@@ -137,9 +146,5 @@ export function uploadVideoApi(file: File): AxiosPromise<FileInfo> {
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+

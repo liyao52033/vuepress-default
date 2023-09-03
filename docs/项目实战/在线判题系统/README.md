@@ -1,13 +1,20 @@
 ---
 title: 侧边栏测试
-date: 2023-8-22
-author: 华总
 autoSort: 1000
 autoIgnore: true
 search: false
 tags: 
-   - vue3
-   - swagger
+  - vue3
+  - swagger
+permalink: /pages/55eef0/
+categories: 
+  - 项目实战
+  - 在线判题系统
+titleTag: 原创
+date: 2023-08-22 14:52:22
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 

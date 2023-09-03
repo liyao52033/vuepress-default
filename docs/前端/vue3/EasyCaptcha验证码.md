@@ -1,9 +1,17 @@
 ---
 title: 验证码封装
-date: 2023/8/25 11:00:32
-author: 华总
 autoSort: 600
-
+permalink: /pages/551c02/
+categories: 
+  - 前端
+  - vue3
+tags: 
+  - null
+titleTag: 原创
+date: 2023-08-24 15:16:11
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
 ---
 
 
@@ -204,9 +212,5 @@ onMounted(() => {
 
 
 
-<div style="float: right;font-size: .9em;line-height: 30px;">
-  <div>
-     <span style="font-weight: 500;color: #4e6e8e;">By: </span> 
-     <span style="font-weight: 400; color: #767676;">{{ $page.frontmatter.author }}   </span>
-  </div>
-</div>
+
+
