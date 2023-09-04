@@ -12,9 +12,7 @@
     "deploy": "./docs/.vuepress/deploy.sh",
     "push": "./docs/push.sh",
     "sitemap": "./docs/generate_sitemap.sh",
-    "postinstall": "patch-package",
-    "deleteFm": "node utils/deleteFrontmatter.js",
-    "updateFm": "node utils/addArticleField.js"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "core-js": "2.6.12",

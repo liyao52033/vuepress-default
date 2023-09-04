@@ -9,9 +9,6 @@ nvm use 16.20.1
 ## 代码推送到github
 yarn run push
 
-#生成新的sitemap.xml
-yarn run sitemap
-
 # 生成静态文件
 yarn run docs:build
 
@@ -20,9 +17,6 @@ cd docs/.vuepress/dist
 
 # 复制readme
 cp ../../../docs/README.md .
-
-## 复制sitemap.xml
-cp ../../../docs/sitemap.xml .
 
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
