@@ -2,15 +2,15 @@
 title: TortosseGit的ssh配置
 autoSort: 880
 permalink: /pages/3f5ce6/
-categories: 
+categories:
   - 前端
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-31 11:39:21
-author: 
+date: 2023-08-31T11:39:21.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## **GIT的ssh配置**

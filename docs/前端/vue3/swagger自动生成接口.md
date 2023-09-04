@@ -2,16 +2,16 @@
 title: swagger自动生成接口
 autoSort: 1000
 permalink: /pages/6c07a4/
-categories: 
+categories:
   - 前端
   - vue3
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 14:21:56
-author: 
+date: 2023-08-24T14:21:56.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## 1. 生成js/ts接口代码

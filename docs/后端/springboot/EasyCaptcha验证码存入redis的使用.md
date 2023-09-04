@@ -2,16 +2,16 @@
 title: EasyCaptcha验证码存入redis的使用
 autoSort: 996
 permalink: /pages/f0631c/
-categories: 
+categories:
   - 后端
   - springboot
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 10:40:12
-author: 
+date: 2023-08-24T10:40:12.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## 1. 引入Maven依赖

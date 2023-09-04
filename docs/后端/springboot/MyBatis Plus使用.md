@@ -2,16 +2,16 @@
 title: MyBatis Plus使用
 autoSort: 1000
 permalink: /pages/17352a/
-categories: 
+categories:
   - 后端
   - springboot
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 10:48:10
-author: 
+date: 2023-08-24T10:48:10.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ::: tip 提示

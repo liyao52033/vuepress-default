@@ -1,18 +1,18 @@
 ---
 title: vuex使用
 autoSort: 900
-tags: 
+tags:
   - vue2
   - element-ui
 permalink: /pages/219321/
-categories: 
+categories:
   - 前端
   - vue2
 titleTag: 原创
-date: 2023-08-25 11:15:38
-author: 
+date: 2023-08-25T11:15:38.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ::: tip 总体流程

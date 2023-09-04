@@ -1,17 +1,17 @@
 ---
-title: npm 和 yarn 
-tags: 
+title: npm 和 yarn
+tags:
   - npm
   - yarn
 autoSort: 1000
 permalink: /pages/7765ba/
-categories: 
+categories:
   - 前端
 titleTag: 原创
-date: 2023-08-21 09:11:30
-author: 
+date: 2023-08-21T09:11:30.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ::: tip

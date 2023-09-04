@@ -2,16 +2,16 @@
 title: Elasticsearch全文搜索
 autoSort: 992
 permalink: /pages/391da0/
-categories: 
+categories:
   - 后端
   - springboot
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 10:48:13
-author: 
+date: 2023-08-24T10:48:13.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## 在 Windows 上安装 Elasticsearch 作为服务

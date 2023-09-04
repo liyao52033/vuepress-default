@@ -1,17 +1,17 @@
 ---
 title: patch-package使用
-tags: 
+tags:
   - patch-package
   - node_module
 autoSort: 900
 permalink: /pages/596d77/
-categories: 
+categories:
   - 前端
 titleTag: 原创
-date: 2023-08-31 11:30:19
-author: 
+date: 2023-08-31T11:30:19.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ::: tip 

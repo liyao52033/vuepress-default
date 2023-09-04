@@ -1,18 +1,18 @@
 ---
 title: el-upload封装
 autoSort: 600
-tags: 
+tags:
   - vue2
   - element-ui
 permalink: /pages/e7c36c/
-categories: 
+categories:
   - 前端
   - vue2
 titleTag: 原创
-date: 2023-08-25 11:15:42
-author: 
+date: 2023-08-25T11:15:42.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 父组件模板

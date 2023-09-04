@@ -7,3 +7,4 @@ git add -A
 git commit -m 'first commit'
 git branch -M main
 git push -f git@github.com:liyao52033/vuepress-default.git main
+

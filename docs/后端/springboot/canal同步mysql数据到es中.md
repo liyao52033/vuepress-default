@@ -2,16 +2,16 @@
 title: canal同步mysql数据到es中
 autoSort: 990
 permalink: /pages/25d41b/
-categories: 
+categories:
   - 后端
   - springboot
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 10:48:15
-author: 
+date: 2023-08-24T10:48:15.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ::: tip 提示

@@ -1,18 +1,18 @@
 ---
 title: vue-element-ui使用
 autoSort: 1000
-tags: 
+tags:
   - vue2
   - element-ui
 permalink: /pages/a7c65e/
-categories: 
+categories:
   - 前端
   - vue2
 titleTag: 原创
-date: 2023-08-25 11:12:39
-author: 
+date: 2023-08-25T11:12:39.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## 一. 移除mock

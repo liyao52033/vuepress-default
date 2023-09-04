@@ -2,16 +2,16 @@
 title: springboot2引入swagger3
 autoSort: 998
 permalink: /pages/301b87/
-categories: 
+categories:
   - 后端
   - springboot
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 10:48:32
-author: 
+date: 2023-08-24T10:48:32.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 ## 1. 引入依赖

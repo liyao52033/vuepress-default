@@ -2,9 +2,22 @@ const secureConf = require("../../comment/secureinfo")
 
 module.exports = [
 
-  // '@vuepress/back-to-top',
   'element-ui',
+  'blocktoggle',
+  'vuepress-plugin-one-click-copy',
 
+  // ['editfrontmatter', {
+  //   customFields:[{
+  //     fields: [
+  //       {name: 'article', value: false}
+  //     ]
+  //   }],
+  //   defaultMatchAttribute:'title',
+  //   attr: '侧边栏测试'
+  // }],
+
+
+   //更新时间
   [
     '@vuepress/last-updated',
     {
@@ -14,6 +27,7 @@ module.exports = [
     }
   ],
 
+  //自动生成sitemap.xml
   ['sitemap', {
     hostname: 'https://liyao52033.github.io',
     exclude:['/404.html']
@@ -31,10 +45,6 @@ module.exports = [
       open: true,
     },
   }],
-
-  // 代码复制插件
-  "vuepress-plugin-nuggets-style-copy",
-
 
   ['@vuepress/active-header-links',{
     sidebarLinkSelector: '.sidebar-link',

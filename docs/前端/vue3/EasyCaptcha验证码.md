@@ -2,16 +2,16 @@
 title: 验证码封装
 autoSort: 600
 permalink: /pages/551c02/
-categories: 
+categories:
   - 前端
   - vue3
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 15:16:11
-author: 
+date: 2023-08-24T15:16:11.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 

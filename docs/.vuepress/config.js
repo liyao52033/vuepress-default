@@ -7,6 +7,7 @@ module.exports = {
   description: 'Just playing around',
   head: [
     ['link', { rel: 'icon', href: '/img/logo.png' }],
+    ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
   locales: {

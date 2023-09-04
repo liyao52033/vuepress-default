@@ -2,16 +2,16 @@
 title: monacoEditor使用
 autoSort: 990
 permalink: /pages/5bd4db/
-categories: 
+categories:
   - 前端
   - vue3
-tags: 
+tags:
   - null
 titleTag: 原创
-date: 2023-08-24 14:22:02
-author: 
+date: 2023-08-24T14:22:02.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 

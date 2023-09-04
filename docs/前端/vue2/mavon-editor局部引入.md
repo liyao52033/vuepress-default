@@ -1,18 +1,18 @@
 ---
 title: mavon-editor局部引入
 autoSort: 700
-tags: 
+tags:
   - vue2
   - element-ui
 permalink: /pages/f1da4c/
-categories: 
+categories:
   - 前端
   - vue2
 titleTag: 原创
-date: 2023-08-25 11:15:41
-author: 
+date: 2023-08-25T11:15:41.000Z
+author:
   name: 华总
-  link: https://liyao52033.github.io/
+  link: 'https://liyao52033.github.io/'
 ---
 
 editor.vue
