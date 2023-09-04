@@ -11,7 +11,6 @@
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
     "push": "./docs/push.sh",
-    "sitemap": "./docs/generate_sitemap.sh",
     "postinstall": "patch-package"
   },
   "dependencies": {

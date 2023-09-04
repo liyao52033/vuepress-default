@@ -1,9 +1,11 @@
 diff --git a/node_modules/vuepress-theme-vdoing/assets/404.png b/node_modules/vuepress-theme-vdoing/assets/404.png
 new file mode 100644
-index 0000000..e69de29
+index 0000000..3d8e230
+Binary files /dev/null and b/node_modules/vuepress-theme-vdoing/assets/404.png differ
 diff --git a/node_modules/vuepress-theme-vdoing/assets/404_cloud.png b/node_modules/vuepress-theme-vdoing/assets/404_cloud.png
 new file mode 100644
-index 0000000..e69de29
+index 0000000..c6281d0
+Binary files /dev/null and b/node_modules/vuepress-theme-vdoing/assets/404_cloud.png differ
 diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
 index 1b5e5c0..9575ad3 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
