@@ -33,6 +33,7 @@
     "vuepress-plugin-blocktoggle": "^1.1.2",
     "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-container": "^2.1.5",
+    "vuepress-plugin-copycodeblock": "^1.0.1",
     "vuepress-plugin-element-ui": "^1.1.0",
     "vuepress-plugin-flexsearch-pro": "^1.0.3",
     "vuepress-plugin-one-click-copy": "^1.0.6",

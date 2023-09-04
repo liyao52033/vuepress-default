@@ -4,7 +4,7 @@ module.exports = [
 
   'element-ui',
   'blocktoggle',
-  'vuepress-plugin-one-click-copy',
+  'copycodeblock',
 
   // ['editfrontmatter', {
   //   customFields:[{
