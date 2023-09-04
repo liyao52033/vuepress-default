@@ -1,10 +1,23 @@
 const secureConf = require("../../comment/secureinfo")
 
-  module.exports = [
+module.exports = [
 
-  '@vuepress/last-updated',
   // '@vuepress/back-to-top',
   'element-ui',
+
+  [
+    '@vuepress/last-updated',
+    {
+      transformer: (timestamp, lang) => {
+        return new Date(timestamp).toLocaleDateString();
+      }
+    }
+  ],
+
+  ['sitemap', {
+    hostname: 'https://liyao52033.github.io',
+    exclude:['/404.html']
+  }],
 
     //全文搜索
   ['flexsearch-pro',{

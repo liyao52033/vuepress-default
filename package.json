@@ -13,7 +13,8 @@
     "push": "./docs/push.sh",
     "sitemap": "./docs/generate_sitemap.sh",
     "postinstall": "patch-package",
-    "deleteFm": "node utils/deleteFrontmatter.js"
+    "deleteFm": "node utils/deleteFrontmatter.js",
+    "updateFm": "node utils/addArticleField.js"
   },
   "dependencies": {
     "core-js": "2.6.12",
@@ -36,6 +37,7 @@
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-plugin-element-ui": "^1.1.0",
     "vuepress-plugin-flexsearch-pro": "^1.0.3",
+    "vuepress-plugin-sitemap": "^2.3.1",
     "vuepress-theme-vdoing": "^1.12.9"
   }
 }

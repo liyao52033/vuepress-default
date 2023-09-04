@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const glob = require('glob');
 const matter = require('gray-matter');
 
@@ -7,7 +7,7 @@ const files = glob.sync('docs/**/*.md');
 
 
 // 要修改的字段名称和新值
-const fieldToModify = 'existingField'; // 替换成你要修改的字段名
+const fieldToModify = 'title'; // 替换成你要修改的字段名
 const newValue = '修改后的值';
 
 // 遍历Markdown文件并修改字段的值

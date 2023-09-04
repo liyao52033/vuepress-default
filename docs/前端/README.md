@@ -1,5 +1,5 @@
 ---
-title: npm 和 yarn 换源
+title: npm 和 yarn 
 tags: 
   - npm
   - yarn
@@ -82,7 +82,101 @@ yarn config set registry https://registry.npm.taobao.org/
 yarn config set registry https://registry.yarnpkg.com
 ```
 
-## 二. 使用第三方软件快速修改、切换 npm和yarn的源（以淘宝镜像为例）
+
+
+##  二. npm和yarn修改和查看全局安装路径和缓存路径
+
+### npm的安装和修改
+
+#### 查看各种路径命令
+
+- **查看当前npm包的全局安装路径**
+
+  ```javascript
+  npm prefix -g 
+  ```
+
+- **查看配置列表**
+
+  ```javascript
+  npm config ls 
+  ```
+
+#### 修改路径命令
+
+- **修改npm的包的全局安装路径**
+
+  ```javascript
+  npm config set prefix "D:\software\nodeJs\info\node_global"
+  ```
+
+- **修改npm的包的全局cache位置**
+
+  ```javascript
+  npm config set cache "D:/Users/nodejs/npm_cache"
+  ```
+
+#### 配置环境变量
+
+将全局路径配置在环境变量中
+
+此电脑 -> 属性 -> 高级系统设置 -> 环境变量 -> 系统变量 -> path ->编辑 - > 新增路径 -D:\software\nodeJs\info\node_global （路径可以根据npm prefix -g查看）
+
+详情参考：[yarn的配置](https://blog.csdn.net/zimeng303/article/details/109716237)
+
+### yarn 的安装路径和缓存路径
+
+#### 查看各种路径命令
+
+- **查看 yarn 全局bin位置**
+
+  ```javascript
+  yarn global bin
+  ```
+
+- **查看 yarn 全局安装位置**
+
+  ```javascript
+  yarn global dir
+  ```
+
+- **查看 yarn 全局cache位置**
+
+  ```javascript
+  yarn cache dir
+  ```
+
+#### 修改路径命令
+
+- **改变 yarn 全局bin位置**
+
+  ```javascript
+  yarn config set prefix "D:\software\Yarn\Data"
+  ```
+
+- **改变 yarn 全局安装位置**
+
+  ```javascript
+  yarn config  set global-folder "D:\software\Yarn\Data\global"
+  ```
+
+- **改变 yarn 全局cache位置**
+
+  ```javascript
+  yarn config set cache-folder "D:\software\Yarn\Cache"
+  ```
+
+- **改变 yarn 全局 link 位置**
+
+  ```javascript
+  yarn config set link-folder "D:\software\Yarn\Data\link"
+  ```
+
+
+
+
+
+## 三. 使用第三方软件快速修改、切换 npm和yarn的源（以淘宝镜像为例）
 
 ### （1）分别修改npm和yarn源（经实际测试，这种方法修改一个源另一个源也会同时修改）
 

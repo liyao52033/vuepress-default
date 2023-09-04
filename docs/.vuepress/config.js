@@ -32,7 +32,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@alias': 'docs/.vuepress'
+        '@alias': 'docs'
       }
     }
   },
