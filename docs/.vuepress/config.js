@@ -41,7 +41,7 @@ module.exports = {
   themeConfig: {
     logo: '/img/logo.png',
     nav,
-    // sidebar: 'structuring',
+    sidebar: 'structuring',
     subSidebar: 'auto',
     pageButton: false,
     footer: {

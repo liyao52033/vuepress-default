@@ -146,3 +146,21 @@ div[class*="language-"]::before {
     line-height: 0.3rem;
     color: rgba(150,150,150,0.7);
 }
+
+div[class*="language-"].line-numbers-mode .line-numbers-wrapper {
+    position: absolute;
+    top: -18px;
+    width: 2.5rem;
+    text-align: center;
+    color: rgba(127,127,127,0.5);
+    padding: 1.25rem 0;
+    line-height: 1.4;
+}
+
+body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="language-"] code {
+    color: var(--codeColor);
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    line-height: 1.4;
+}

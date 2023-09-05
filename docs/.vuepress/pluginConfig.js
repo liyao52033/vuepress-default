@@ -20,13 +20,22 @@ module.exports = [
 
    //更新时间
   [
-    '@vuepress/last-updated',
+    '@vuepress/last-updated', // "上次更新"时间格式
     {
       transformer: (timestamp, lang) => {
-        return new Date(timestamp).toLocaleString();
+        const moment = require('moment') // https://momentjs.com/
+        return moment(timestamp).format('YYYY/MM/DD HH:mm:ss');
       }
     }
   ],
+  // [
+  //   '@vuepress/last-updated',
+  //   {
+  //     transformer: (timestamp, lang) => {
+  //       return new Date(timestamp).toLocaleString();
+  //     }
+  //   }
+  // ],
 
   //自动生成sitemap.xml
   ['sitemap', {
@@ -40,12 +49,12 @@ module.exports = [
   }],
 
       // 自动侧边栏
-  ["vuepress-plugin-auto-sidebar",{
-    sidebarDepth: 2,
-    collapse: {
-      open: true,
-    },
-  }],
+  // ["vuepress-plugin-auto-sidebar",{
+  //   sidebarDepth: 2,
+  //   collapse: {
+  //     open: true,
+  //   },
+  // }],
 
   ['@vuepress/active-header-links',{
     sidebarLinkSelector: '.sidebar-link',
