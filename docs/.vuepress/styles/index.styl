@@ -133,11 +133,16 @@ img.vimg:hover {
     -ms-transform: rotate(360deg);
 }
 
-//.footer {
-//    display : none;
-//}
-
 .vpower{
     display : none !important;
 }
 
+div[class*="language-"]::before {
+    position: absolute;
+    z-index: 3;
+    top: 0.8em;
+    right: 1em;
+    font-size: 1.2rem;
+    line-height: 0.3rem;
+    color: rgba(150,150,150,0.7);
+}

@@ -30,7 +30,7 @@
     "@vuepress/plugin-back-to-top": "^1.9.10",
     "sass-loader": "^13.3.2",
     "vuepress-plugin-auto-sidebar": "^2.3.2",
-    "vuepress-plugin-blocktoggle": "^1.1.2",
+    "vuepress-plugin-blocktoggle": "^1.1.5",
     "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-plugin-copycodeblock": "^1.0.1",

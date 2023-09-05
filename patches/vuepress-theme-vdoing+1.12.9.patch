@@ -1,16 +1,14 @@
 diff --git a/node_modules/vuepress-theme-vdoing/assets/404.png b/node_modules/vuepress-theme-vdoing/assets/404.png
 new file mode 100644
-index 0000000..3d8e230
-Binary files /dev/null and b/node_modules/vuepress-theme-vdoing/assets/404.png differ
+index 0000000..e69de29
 diff --git a/node_modules/vuepress-theme-vdoing/assets/404_cloud.png b/node_modules/vuepress-theme-vdoing/assets/404_cloud.png
 new file mode 100644
-index 0000000..c6281d0
-Binary files /dev/null and b/node_modules/vuepress-theme-vdoing/assets/404_cloud.png differ
+index 0000000..e69de29
 diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
-index 1b5e5c0..9575ad3 100644
+index 1b5e5c0..2b26fd3 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
 +++ b/node_modules/vuepress-theme-vdoing/components/Footer.vue
-@@ -12,13 +12,6 @@
+@@ -12,15 +12,8 @@
      </div>
  
      <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
@@ -22,8 +20,11 @@ index 1b5e5c0..9575ad3 100644
 -      >Vdoing</a
 -    >
      <template v-if="footer">
-       | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
+-      | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
++      Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
        <span v-html="footer.copyrightInfo"></span>
+     </template>
+   </div>
 diff --git a/node_modules/vuepress-theme-vdoing/layouts/404.vue b/node_modules/vuepress-theme-vdoing/layouts/404.vue
 index c8b7672..e11a52a 100644
 --- a/node_modules/vuepress-theme-vdoing/layouts/404.vue
