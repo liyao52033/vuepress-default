@@ -39,8 +39,9 @@ module.exports = {
   },
 
   themeConfig: {
-    logo: '/img/logo.png', // 导航栏左侧的logo,不写就不显示
+    logo: '/img/logo.png',
     nav,
+    // sidebar: 'structuring',
     subSidebar: 'auto',
     pageButton: false,
     footer: {

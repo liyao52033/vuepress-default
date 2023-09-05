@@ -7,14 +7,15 @@ module.exports = [
   'copycodeblock',
 
   // ['editfrontmatter', {
-  //   customFields:[{
-  //     fields: [
-  //       {name: 'article', value: false}
-  //     ]
-  //   }],
-  //   defaultMatchAttribute:'title',
-  //   attr: '侧边栏测试'
-  // }],
+    // customFields:[{
+    //   fields: [
+    //     {name: 'article', value: false}
+    //   ]
+    // }],
+    // defaultMatchAttribute:'title',
+    // attr: '侧边栏测试'
+    // fieldsToDelete: ['article']
+ // }],
 
 
    //更新时间
