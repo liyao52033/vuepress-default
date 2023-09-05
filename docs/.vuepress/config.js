@@ -16,6 +16,10 @@ module.exports = {
     }
   },
 
+  extraWatchFiles: [
+    '../*.js', // 使用相对路径
+  ],
+
   theme: 'vdoing',
   plugins: pluginConfig,
 
@@ -30,18 +34,11 @@ module.exports = {
     // }
   },
 
-  configureWebpack: {
-    resolve: {
-      alias: {
-        '@alias': 'docs'
-      }
-    }
-  },
-
   themeConfig: {
     logo: '/img/logo.png',
     nav,
     sidebar: 'structuring',
+
     subSidebar: 'auto',
     pageButton: false,
     footer: {

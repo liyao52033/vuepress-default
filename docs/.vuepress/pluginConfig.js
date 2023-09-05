@@ -28,14 +28,6 @@ module.exports = [
       }
     }
   ],
-  // [
-  //   '@vuepress/last-updated',
-  //   {
-  //     transformer: (timestamp, lang) => {
-  //       return new Date(timestamp).toLocaleString();
-  //     }
-  //   }
-  // ],
 
   //自动生成sitemap.xml
   ['sitemap', {
