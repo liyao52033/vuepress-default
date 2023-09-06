@@ -6,34 +6,18 @@ module.exports = [
   'blocktoggle',
   'copycodeblock',
 
-  // ['editfrontmatter', {
-    // customFields:[{
-    //   fields: [
-    //     {name: 'article', value: false}
-    //   ]
-    // }],
-    // defaultMatchAttribute:'title',
-    // attr: '侧边栏测试'
-    // fieldsToDelete: ['article']
- // }],
-
-
    //更新时间
   [
     '@vuepress/last-updated', // "上次更新"时间格式
     {
       transformer: (timestamp, lang) => {
         const moment = require('moment') // https://momentjs.com/
+        moment.locale(lang)
         return moment(timestamp).format('YYYY/MM/DD HH:mm:ss');
       }
+
     }
   ],
-
-  //自动生成sitemap.xml
-  ['sitemap', {
-    hostname: 'https://liyao52033.github.io',
-    exclude:['/404.html']
-  }],
 
     //全文搜索
   ['flexsearch-pro',{

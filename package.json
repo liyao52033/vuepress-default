@@ -11,20 +11,26 @@
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
     "push": "./docs/push.sh",
-    "postinstall": "patch-package"
+    "editFm": "node ./frontmatter/editFrontmatter.mjs",
+    "sitemap": "./docs/generate_sitemap.sh",
+    "postinstall": "patch-package",
+    "updateTheme": "yarn add vuepress-theme-vdoing -D"
   },
   "dependencies": {
+    "chalk": "^5.3.0",
     "core-js": "2.6.12",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.4",
     "gray-matter": "^4.0.3",
+    "inquirer": "^9.2.10",
+    "json2yaml": "^1.1.0",
     "moment": "^2.29.4",
     "node-sass": "8.0.0",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "vue-tabs-component": "^1.5.0",
     "vuepress": "^1.9.10",
-    "vuepress-plugin-editfrontmatter": "^1.0.3"
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "^1.9.10",
@@ -37,8 +43,6 @@
     "vuepress-plugin-copycodeblock": "^1.0.1",
     "vuepress-plugin-element-ui": "^1.1.0",
     "vuepress-plugin-flexsearch-pro": "^1.0.3",
-    "vuepress-plugin-one-click-copy": "^1.0.6",
-    "vuepress-plugin-sitemap": "^2.3.1",
     "vuepress-theme-vdoing": "^1.12.9"
   }
 }

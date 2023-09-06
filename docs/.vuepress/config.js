@@ -38,7 +38,6 @@ module.exports = {
     logo: '/img/logo.png',
     nav,
     sidebar: 'structuring',
-
     subSidebar: 'auto',
     pageButton: false,
     footer: {
