@@ -6,11 +6,11 @@ set -e
 # 指定要使用的Node.js版本
 nvm use 16.20.1
 
-## 代码推送到github
-yarn run push
-
 #生成sitemap.xml
 yarn run sitemap
+
+## 代码推送到github
+yarn run push
 
 # 生成静态文件
 yarn run docs:build
