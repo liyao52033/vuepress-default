@@ -55,10 +55,59 @@ docs
 
 
 
-## 5. 自动生成导航栏与侧边栏
+## 5. 导航栏与侧边栏
 
-```bash
+voding主题已经提供[结构化侧边栏](https://doc.xugaoyi.com/pages/a20ce8/#sidebar)，也内置了自动生成侧边栏插件，两者选一即可
+
+-  若使用自动生成侧边栏插件，执行以下命令，将生成的nav.js在.vuppress/config.js引入即可自动生成侧边栏, 更多内容见[官网](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar)
+
+```sh
+// 生成nav.js
 yarn run docs:nav
+
+//使用插件并引入nav.js  .vuepress/config.js
+const nav = require("./nav.js");
+module.exports = {
+  plugins: [
+     ["vuepress-plugin-auto-sidebar",{
+   sidebarDepth: 2,
+     collapse: {
+       open: true,
+    },
+}],
+  ]
+  themeConfig: {
+    nav
+}
+}
+
+
+```
+
+- 若使用vdoing主题侧边栏，导航栏只需写与.vuepress同层的一级目录，link写该文件夹内任意md文件frontmatter的permalink,格式如下，更多内容见[官网](https://doc.xugaoyi.com/pages/54651a/)
+
+```javascript
+ // config.js
+module.exports = {
+    themeConfig: {
+        nav:  [
+            // 没有二级导航时可以直接添加
+           {text: '目录页', link: '/web/'},
+
+          // 有二级导航时
+           {text: '页面',
+            /** 目录页， vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页，
+             依赖于结构化的侧边栏数据，就是说你需要在config.js配置 sidebar: 'structuring' 或 sidebar: { mode: 'structuring', collapsable: false} 才能实现目录页数据的获取。**/
+               link: '/ui/',   
+               items: [
+                 {text: 'HTML', link: '/pages/11/'},
+                 {text: 'CSS', link: '/pages/22/'},
+               ]
+            },
+       ]
+    }
+}
+
 ```
 
 
