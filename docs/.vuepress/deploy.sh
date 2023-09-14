@@ -29,7 +29,7 @@ cp ../../../docs/sitemap.xml .
 
 git init
 git add -A
-git commit -m 'deploy'
+git commit -m '新增文章'
 git branch -M main
 
 # 如果发布到 https://<USERNAME>.github.io
