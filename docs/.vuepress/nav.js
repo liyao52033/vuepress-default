@@ -26,7 +26,7 @@
 
   {
     "text": "工具类",
-     link: '/archives/',
+     link: '/tags/',
     "items": [
     {
       "text": "工具类",
