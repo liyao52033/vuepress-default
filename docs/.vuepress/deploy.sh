@@ -25,7 +25,7 @@ cp ../../../docs/README.md .
 cp ../../../docs/sitemap.xml .
 
 # 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
+ echo 'xiaoying.org.cn' > CNAME
 
 git init
 git add -A
