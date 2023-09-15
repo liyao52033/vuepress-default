@@ -25,6 +25,20 @@
   },
 
   {
+    "text": "机器人",
+    "items": [
+      {
+        "text": "海康AGV",
+        "link": "/pages/ed4a55/"
+      },
+      {
+        "text": "四向车",
+        "link": "/pages/bbd1d8/"
+      }
+    ]
+  },
+
+  {
     "text": "工具类",
      link: '/tags/',
     "items": [
