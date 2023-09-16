@@ -40,7 +40,7 @@
 
   {
     "text": "工具类",
-     link: '/tags/',
+     link: '/categories/',
     "items": [
     {
       "text": "工具类",

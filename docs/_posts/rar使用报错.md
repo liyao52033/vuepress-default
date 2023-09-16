@@ -1,0 +1,92 @@
+---
+title: rar使用报错
+date: 2023-09-16 21:53:42
+permalink: /pages/93df54/
+sidebar: auto
+categories:
+  - 随笔
+tags:
+  - 
+author: 
+  name: 华总
+  link: https://liyao52033.github.io/
+titleTag: 原创
+---
+
+
+
+## 001、问题：rar: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by rar)
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154851.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872454;8999999999&q-key-time=1694872454;8999999999&q-header-list=host&q-url-param-list=&q-signature=9b7a74fe1ee6f3b751d9e3e59b271e2967c12cc3)
+
+ 
+
+ 
+
+## 002、问题原因（缺乏动态库文件）
+
+/lib64/libstdc++.so.6: version `GLIBCXX_3.4.21'下没有GLIBCXX_3.4.21这个版本，简而言之就是/lib64/libstdc++.so.6下的glibc版本太低了。
+
+ 
+
+### 003、查看动态库中有哪些版本的glibc（发现缺少3.4.21的这个版本）
+
+```
+strings /usr/lib64/libstdc++.so.6 | grep GLIBC
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154457.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872461;9000000000&q-key-time=1694872461;9000000000&q-header-list=host&q-url-param-list=&q-signature=930039d8f74656ca6ac370fff2816a430caa68b2)
+
+ 
+
+ 
+
+## 004、解决方法
+
+由于anaconda中已经有了新版本glibc，所以复制anaconda中的glibc到/usr/lib64/中
+
+ 
+
+## 005、查找annaconda的glibc所在位置
+
+```
+find / -name "libstdc++.so*"
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154802.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872465;8999999999&q-key-time=1694872465;8999999999&q-header-list=host&q-url-param-list=&q-signature=fa3c44ab00e76715dd84cdd6c687d3b5203513a8)
+
+ 
+
+ 
+
+## 006、将该libstdc++.so.6.0.28拷贝到/usr/lib64/目录下
+
+```
+cp /root/anaconda3/lib/libstdc++.so.6.0.28 /usr/lib64/
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154837.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872468;8999999999&q-key-time=1694872468;8999999999&q-header-list=host&q-url-param-list=&q-signature=6d2fe60ac083fdd9ecae44bc9e73ac0d188d1ae7)
+
+## 007、重新设置软链接，使listdc++.so.6.0.28指向listdc++.so.6
+
+```
+ln -sf /lib64/libstdc++.so.6.0.28 /lib64/libstdc++.so.6
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154867.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872471;8999999999&q-key-time=1694872471;8999999999&q-header-list=host&q-url-param-list=&q-signature=0be648dbd70f3b3bfcb6ad318a6ff81ea2148b10)
+
+## 008、查看动态库中glibc的版本
+
+```
+strings /usr/lib64/libstdc++.so.6 | grep GLIBC
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154827.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872474;8999999999&q-key-time=1694872474;8999999999&q-header-list=host&q-url-param-list=&q-signature=8da97efd93aac6db995618b582e8745366ee32d6)
+
+009、测试rar命令
+
+```
+rar | head
+```
+
+![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154973.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872477;8999999999&q-key-time=1694872477;8999999999&q-header-list=host&q-url-param-list=&q-signature=7b3b4006e1c0b9c863140aba065a6c6af7e2499a)
