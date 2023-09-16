@@ -25,7 +25,7 @@ titleTag: 原创
 
  
 
-### 003、查看动态库中有哪些版本的glibc（发现缺少3.4.21的这个版本）
+## 003、查看动态库中有哪些版本的glibc（发现缺少3.4.21的这个版本）
 
 ```
 strings /usr/lib64/libstdc++.so.6 | grep GLIBC
