@@ -13,8 +13,6 @@ author:
 titleTag: 原创
 ---
 
-
-
 ## 001、问题：rar: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by rar)
 
 ![img](https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202309162154851.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1694872454;8999999999&q-key-time=1694872454;8999999999&q-header-list=host&q-url-param-list=&q-signature=9b7a74fe1ee6f3b751d9e3e59b271e2967c12cc3)
@@ -22,8 +20,6 @@ titleTag: 原创
 ## 002、问题原因（缺乏动态库文件）
 
 /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21'下没有GLIBCXX_3.4.21这个版本，简而言之就是/lib64/libstdc++.so.6下的glibc版本太低了。
-
- 
 
 ## 003、查看动态库中有哪些版本的glibc（发现缺少3.4.21的这个版本）
 
