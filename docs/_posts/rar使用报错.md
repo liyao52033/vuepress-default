@@ -87,3 +87,18 @@ cd build/
 make -j2
 make install
 ```
+
+## 011、rar安装
+
+从[最新版rar](https://www.rarlab.com/download.htm)获取下载地址
+
+```shell
+cd /opt
+wget https://www.rarlab.com/rar/rarlinux-x64-623.tar.gz --no-check-certificate
+tar -zxvf rarlinux-x64-623.tar.gz
+cd rar
+# sudo cp -v rar unrar /usr/local/bin/
+ln -s /opt/rar/rar /usr/local/bin/rar
+ln -s /opt/rar/unrar /usr/local/bin/unrar
+```
+
