@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ssh docker login   
-        uses: liyao52033/vuepress-default@main
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.TENCENT_CLOUD_IP }} 
           username: ${{ secrets.TENCENT_CLOUD_NAME }} 
