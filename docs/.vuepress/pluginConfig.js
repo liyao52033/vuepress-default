@@ -23,12 +23,12 @@ module.exports = [
   [
     'vuepress-plugin-meilisearch',
     {
-      hostUrl: 'https://xiaoying.org.cn',        // meilisearch 服务端域名
-      apiKey: "8e22a93d0b1f1a6d59acd8383f0fe39eaa897fa448ecd7824329ba08db84814c", // 只有搜索权限的 key
+      hostUrl: secureConf. meilisearch_hostUrl,        // meilisearch 服务端域名
+      apiKey: secureConf.meilisearch_apiKey, // 只有搜索权限的 key
       indexUid: 'blog',
       placeholder: 'Search as you type...',   // 在搜索栏中显示的占位符
       maxSuggestions: 100,                      // 最多显示几个搜索结果
-      cropLength: 100,                         // 每个搜索结果最多显示多少个字符
+      cropLength: 20,                         // 每个搜索结果最多显示多少个字符
     },
   ],
 
