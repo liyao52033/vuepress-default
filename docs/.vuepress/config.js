@@ -1,5 +1,6 @@
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
+const secureinfo = require("../../comment/secureinfo")
 
 module.exports = {
 
@@ -49,12 +50,7 @@ module.exports = {
         name: '华总',
         link: 'https://liyao52033.github.io/'
       },
-      titleTag: "原创",
-      date: new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })
+      titleTag: "原创"
     },
 
     smoothScroll: true,
