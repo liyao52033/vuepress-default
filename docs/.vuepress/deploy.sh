@@ -12,6 +12,9 @@ yarn run sitemap
 # 生成静态文件
 yarn run docs:build
 
+# 替换css
+sed -i  's/https.*\/all\.min\.css/https:\/\/cdn\.staticfile\.org\/font-awesome\/5\.14\.0\/css\/all\.min\.css/' ./docs/.vuepress/dist/assets/css/*.css
+
 # 进入生成的文件夹
 cd docs/.vuepress/dist
 
