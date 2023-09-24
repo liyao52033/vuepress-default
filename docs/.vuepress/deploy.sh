@@ -9,9 +9,6 @@ nvm use 16.20.1
 #生成sitemap.xml
 yarn run sitemap
 
-## 代码推送到github
-yarn run push
-
 # 生成静态文件
 yarn run docs:build
 
@@ -36,6 +33,9 @@ git branch -M main
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
 
 git push -f git@github.com:liyao52033/liyao52033.github.io.git main
+
+## 代码推送到github
+yarn run push
 
 # 切换回18版本
 nvm use 18
