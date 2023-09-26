@@ -1,8 +1,9 @@
-name: GitHub Actions Build and Deploy Demo
+name: GitHub Actions Build and Deploy
+
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 9 1/7 * *'
+
 jobs:
   crawler:
     runs-on: ubuntu-latest
