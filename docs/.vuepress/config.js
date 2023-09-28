@@ -1,6 +1,5 @@
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
-const secureinfo = require("../../comment/secureinfo")
 
 module.exports = {
 
@@ -20,6 +19,15 @@ module.exports = {
   extraWatchFiles: [
     '../*.js', // 使用相对路径
   ],
+
+  devServer: {
+    proxy: {
+      '/indexes': {
+        target: 'https://xiaoying.org.cn/indexes',
+        changeOrigin: true
+      }
+    }
+  },
 
   theme: 'vdoing',
   plugins: pluginConfig,
