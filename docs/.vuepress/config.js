@@ -20,15 +20,6 @@ module.exports = {
     '../*.js', // 使用相对路径
   ],
 
-  devServer: {
-    proxy: {
-      '/indexes': {
-        target: 'https://xiaoying.org.cn/indexes',
-        changeOrigin: true
-      }
-    }
-  },
-
   theme: 'vdoing',
   plugins: pluginConfig,
 
