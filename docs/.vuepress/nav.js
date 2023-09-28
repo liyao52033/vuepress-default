@@ -29,7 +29,7 @@
     "items": [
       {
         "text": "海康AGV",
-        "link": "/pages/ed4a55/"
+        "link": "/pages/a4f024/"
       },
       {
         "text": "四向车",
