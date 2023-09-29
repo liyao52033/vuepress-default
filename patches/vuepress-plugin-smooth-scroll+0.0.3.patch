@@ -1,5 +1,5 @@
 diff --git a/node_modules/vuepress-plugin-smooth-scroll/lib/enhanceApp.js b/node_modules/vuepress-plugin-smooth-scroll/lib/enhanceApp.js
-index fbe861a..3ca56dd 100644
+index fbe861a..96dc99f 100644
 --- a/node_modules/vuepress-plugin-smooth-scroll/lib/enhanceApp.js
 +++ b/node_modules/vuepress-plugin-smooth-scroll/lib/enhanceApp.js
 @@ -1,4 +1,5 @@
@@ -8,17 +8,16 @@ index fbe861a..3ca56dd 100644
  export default ({ Vue, router }) => {
      router.options.scrollBehavior = (to, from, savedPosition) => {
          if (savedPosition) {
-@@ -11,7 +12,12 @@ export default ({ Vue, router }) => {
+@@ -11,7 +12,11 @@ export default ({ Vue, router }) => {
              if (Vue.$vuepress.$get('disableScrollBehavior')) {
                  return false;
              }
 -            const targetElement = document.querySelector(to.hash);
 +            // 解码并清理 to.hash 值以去除特殊字符
 +            const decodedHash = decodeURIComponent(to.hash);
-+            const sanitizedHash = decodedHash.replace(/[^\w-]/g, '');
++            const sanitizedHash = decodedHash.replace(/[^\w\u4e00-\u9fa5-]/g, '');
++            const targetElement = document.querySelector('#' + sanitizedHash.replace(/%/g, '\\%'));
 +
-+            const targetElement = document.querySelector('#' + sanitizedHash);
-+           // const targetElement = document.querySelector(to.hash);
              if (targetElement) {
                  return window.scrollTo({
                      top: getElementPosition(targetElement).y,
