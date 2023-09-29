@@ -1,0 +1,28 @@
+diff --git a/node_modules/vuepress-plugin-comment/Comment.vue b/node_modules/vuepress-plugin-comment/Comment.vue
+index 3f38f4a..e10a7c2 100644
+--- a/node_modules/vuepress-plugin-comment/Comment.vue
++++ b/node_modules/vuepress-plugin-comment/Comment.vue
+@@ -49,7 +49,6 @@ function clear (frontmatter) {
+       if (el.startsWith('#')) {
+         el = el.slice(1)
+       }
+-      console.log(el)
+       return provider.valine.clear(el)
+     default: return false
+   }
+diff --git a/node_modules/vuepress-plugin-comment/util.js b/node_modules/vuepress-plugin-comment/util.js
+index d1e5abe..47eb23e 100644
+--- a/node_modules/vuepress-plugin-comment/util.js
++++ b/node_modules/vuepress-plugin-comment/util.js
+@@ -6,10 +6,7 @@ let Gitalk, Valine
+ loadScript(COMMENT_CHOOSEN)
+ 
+ const defaultChoosen = 'comment plugins'
+-console.log(
+-  `How to use "${COMMENT_CHOOSEN || defaultChoosen}" in ${config.name}@v${config.version}:`,
+-  config.homepage
+-)
++
+ 
+ /**
+  * Lazy load pkg
