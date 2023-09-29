@@ -26,9 +26,9 @@ module.exports = [
       hostUrl: secureConf. meilisearch_hostUrl,        // meilisearch 服务端域名
       apiKey: secureConf.meilisearch_apiKey, // 只有搜索权限的 key
       indexUid: 'blog',
-      placeholder: 'Search as you type...',   // 在搜索栏中显示的占位符
+      placeholder: '搜索一下，你就知道',   // 在搜索栏中显示的占位符
       maxSuggestions: 100,                      // 最多显示几个搜索结果
-      cropLength: 20,                         // 每个搜索结果最多显示多少个字符
+      cropLength: 20
     },
   ],
 
