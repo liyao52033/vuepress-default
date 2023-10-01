@@ -1,13 +1,5 @@
-diff --git a/node_modules/@vuepress/theme-default/assets/404.png b/node_modules/@vuepress/theme-default/assets/404.png
-new file mode 100644
-index 0000000..3d8e230
-Binary files /dev/null and b/node_modules/@vuepress/theme-default/assets/404.png differ
-diff --git a/node_modules/@vuepress/theme-default/assets/404_cloud.png b/node_modules/@vuepress/theme-default/assets/404_cloud.png
-new file mode 100644
-index 0000000..c6281d0
-Binary files /dev/null and b/node_modules/@vuepress/theme-default/assets/404_cloud.png differ
 diff --git a/node_modules/@vuepress/theme-default/layouts/404.vue b/node_modules/@vuepress/theme-default/layouts/404.vue
-index 2cbfa0f..e11a52a 100644
+index 2cbfa0f..1baa985 100644
 --- a/node_modules/@vuepress/theme-default/layouts/404.vue
 +++ b/node_modules/@vuepress/theme-default/layouts/404.vue
 @@ -1,30 +1,254 @@
@@ -37,22 +29,22 @@ index 2cbfa0f..e11a52a 100644
 +	  <div class="pic-404">
 +		<img
 +		  class="pic-404__parent"
-+		  src="../assets/404.png"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012125958.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166720;8999999999&q-key-time=1696166720;8999999999&q-header-list=host&q-url-param-list=&q-signature=791e6846a407484343215b7a4e4d79efb426d72b"
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child left"
-+		  src="../assets/404_cloud.png"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child mid"
-+		  src="../assets/404_cloud.png"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child right"
-+		  src="../assets/404_cloud.png"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
 +		  alt="404"
 +		/>
 +	  </div>
