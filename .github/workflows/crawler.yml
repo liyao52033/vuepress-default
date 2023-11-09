@@ -8,10 +8,10 @@ jobs:
   crawler:
     runs-on: ubuntu-latest
     steps:
-      - name: ssh docker login   
+      - name: ssh docker login
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.TENCENT_CLOUD_IP }} 
-          username: ${{ secrets.TENCENT_CLOUD_NAME }} 
-          password: ${{ secrets.TENCENT_CLOUD_PASSWORD }} 
-          script:  cd /tmp/scraper && sh do.sh
+          host: ${{ secrets.TENCENT_CLOUD_IP }}
+          username: ${{ secrets.TENCENT_CLOUD_NAME }}
+          password: ${{ secrets.TENCENT_CLOUD_PASSWORD }}
+          script:  cd /usr/local/meilisearch && sh do.sh
