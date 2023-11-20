@@ -42,7 +42,8 @@ module.exports = {
     pageButton: false,
     footer: {
       createYear: 2023,
-      copyrightInfo: '<a href="https://github.com/liyao52033/vuepress-default">liyao</a> | MIT Licensed'
+      copyrightInfo: '<a href="https://github.com/liyao52033/vuepress-default">liyao52033</a> | 备案号：<a' +
+        ' href="https://beian.miit.gov.cn/">鄂ICP备2023023964号</a>'
     },
     extendFrontmatter: {
       author: {
