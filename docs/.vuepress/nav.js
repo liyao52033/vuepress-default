@@ -18,8 +18,12 @@
     "text": "项目实战",
     "items": [
     {
-      "text": "在线判题系统",
-      "link": "/pages/55eef0/"
+      "text": "星球项目",
+      "link": "/pages/7a1d12/"
+    },
+    {
+      "text": "开源项目",
+      "link": "/pages/91eb9e/"
     }
   ]
   },

@@ -10,6 +10,7 @@
     "docs:build": "vuepress build docs",
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
+    "build": "./docs/.vuepress/build.sh",
     "push": "./docs/push.sh",
     "editFm": "node ./frontmatter/editFrontmatter.mjs",
     "sitemap": "./docs/generate_sitemap.sh",
