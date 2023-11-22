@@ -42,9 +42,11 @@ module.exports = {
     pageButton: false,
     footer: {
       createYear: 2023,
+      // copyrightInfo: '<a target="_blank"' +
+      //   ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
+      //   ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
       copyrightInfo: '<a target="_blank"' +
-        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
-        ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>'
     },
     extendFrontmatter: {
       author: {
