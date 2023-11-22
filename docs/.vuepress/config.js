@@ -42,11 +42,11 @@ module.exports = {
     pageButton: false,
     footer: {
       createYear: 2023,
-      // copyrightInfo: '<a target="_blank"' +
-      //   ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
-      //   ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
       copyrightInfo: '<a target="_blank"' +
-        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>'
+        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
+        ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+      // copyrightInfo: '<a target="_blank"' +
+      //   ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>'
     },
     extendFrontmatter: {
       author: {
@@ -61,15 +61,15 @@ module.exports = {
     activeHeaderLinks: true,
     displayAllHeaders: false,
     // 假如你的文档仓库和项目本身不在一个仓库：
-    docsRepo: 'https://github.com/liyao52033/vuepress-default',
-    // 假如文档不是放在仓库的根目录下：
-    docsDir: 'docs',
-    // 假如文档放在一个特定的分支下：
-    docsBranch: 'main',
-    // 默认是 false, 设置为 true 来启用
-    editLinks: true,
-    // 默认为 "Edit this page"
-    editLinkText: '帮助我们改善此页面!',
+    // docsRepo: 'https://github.com/liyao52033/vuepress-default',
+    // // 假如文档不是放在仓库的根目录下：
+    // docsDir: 'docs',
+    // // 假如文档放在一个特定的分支下：
+    // docsBranch: 'main',
+    // // 默认是 false, 设置为 true 来启用
+    // editLinks: true,
+    // // 默认为 "Edit this page"
+    // editLinkText: '帮助我们改善此页面!',
     lastUpdated: '上次更新'
   }
 
