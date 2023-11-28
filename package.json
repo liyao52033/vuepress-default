@@ -38,6 +38,7 @@
     "@vuepress/plugin-active-header-links": "^1.9.10",
     "@vuepress/plugin-back-to-top": "^1.9.10",
     "sass-loader": "^13.3.2",
+    "v-dialogs": "^2.2.0",
     "vuepress-plugin-auto-sidebar": "^2.3.2",
     "vuepress-plugin-blocktoggle": "^1.1.5",
     "vuepress-plugin-comment": "^0.7.3",
