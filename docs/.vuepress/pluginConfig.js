@@ -5,6 +5,7 @@ module.exports = [
   'element-ui',
   'blocktoggle',
   'copycodeblock',
+  'img-lazy',
 
    //更新时间
   [

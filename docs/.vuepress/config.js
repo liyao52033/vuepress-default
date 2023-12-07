@@ -28,7 +28,15 @@ module.exports = {
     // markdown-it-anchor 的选项
     anchor: { permalink: true },
     // markdown-it-toc 的选项
-    toc: { includeLevel: [1, 2] },
+    toc: { includeLevel: [1, 2, 3, 4] },
+    extractHeaders: ['h2', 'h3', 'h4'],
+    externalLinks: {
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    slugify: (s) => s.replace(/#+\s*/g, () => {
+      return crypto.randomBytes(3).toString('hex').substring(0, 6);
+    }).toLowerCase().replace(/\s+/g, '-')
     // extendMarkdown: md => {
     //   md.use();
     // }
