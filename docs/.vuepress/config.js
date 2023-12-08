@@ -46,8 +46,9 @@ module.exports = {
 
   themeConfig: {
     logo: '/img/logo.png',
-    bodyBgImg: '/img/bg.jpg',  // 你的图片路径(必须位于 public 下)，可以是 URL
-    bodyBgImgOpacity: 1, // body 背景图透明度，选值 0 ~ 1.0, 默认0.5
+    bodyBgImg: ['/img/default-cover.jpg', '/img/bg.jpg', '/img/1.png'],  
+    bodyBgImgOpacity: 1, // body 背景图透明度，选值 0 ~ 1.0, 默认0.5,
+    bodyBgImgInterval: 10000, // body 背景图切换时间间隔，单位 s
     nav,
     sidebar: 'structuring',
     subSidebar: 'auto',
