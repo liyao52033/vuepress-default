@@ -231,7 +231,7 @@ export default {
 
 .webinfo-content {
     display: inline-block;
-    float: right;
+    /* float: right; */
 }
 
 @keyframes turn {
