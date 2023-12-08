@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "docs:dev": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:build": "set NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=102400 ./node_modules/vuepress/cli.js build docs",
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
     "build": "./docs/.vuepress/build.sh",

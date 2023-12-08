@@ -7,6 +7,11 @@ module.exports = [
   'copycodeblock',
   'img-lazy',
 
+  {
+    name: 'custom-plugins',
+    globalUIComponents: ["PageInfo"] // 2.x 版本 globalUIComponents 改名为 clientAppRootComponentFiles
+  }
+
    //更新时间
   [
     '@vuepress/last-updated', // "上次更新"时间格式
