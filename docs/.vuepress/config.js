@@ -23,6 +23,10 @@ module.exports = {
     }
   },
 
+  // globalUIComponents: [
+  //   'RightArrow'
+  // ],
+
   extraWatchFiles: [
     '../*.js', // 使用相对路径
   ],
@@ -48,9 +52,9 @@ module.exports = {
 
   themeConfig: {
     logo: '/img/logo.png',
-    bodyBgImg: ['/img/default-cover.jpg', '/img/bg.jpg', '/img/1.png'],  
+    bodyBgImg: ['/img/bg.jpg', '/img/default-cover.jpg', '/img/1.png', '/img/2.jpeg'],  
     bodyBgImgOpacity: 1, // body 背景图透明度，选值 0 ~ 1.0, 默认0.5,
-    bodyBgImgInterval: 1800, // body 背景图切换时间间隔，单位 s
+    bodyBgImgInterval: 600, // body 背景图切换时间间隔，单位 s
     nav,
     sidebar: 'structuring',
     subSidebar: 'auto',
