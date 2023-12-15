@@ -29,7 +29,7 @@ module.exports = [
   [
     'vuepress-plugin-meilisearch',
     {
-      hostUrl: secureConf. meilisearch_hostUrl,        // meilisearch 服务端域名
+      hostUrl: secureConf.meilisearch_hostUrl,        // meilisearch 服务端域名
       apiKey: secureConf.meilisearch_apiKey, // 只有搜索权限的 key
       indexUid: 'blog',
       placeholder: '搜索一下，你就知道',   // 在搜索栏中显示的占位符
