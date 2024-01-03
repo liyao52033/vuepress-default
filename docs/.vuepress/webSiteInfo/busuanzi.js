@@ -103,7 +103,10 @@ bszTag = {
 
 export default () => {
     bszTag && bszTag.hides();
-    bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function (t) {
+    // bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function (t) {
+    //     bszTag.texts(t), bszTag.shows();
+    // })
+    bszCaller.fetch("https://busuanzi.9420.ltd/js", function (t) {
         bszTag.texts(t), bszTag.shows();
     })
 };

@@ -30,9 +30,12 @@
         </div>
 
         <div v-if="indexView" class="webinfo-item">
-            <div class="webinfo-item-title">本站被访问了：</div>
+            <div class="webinfo-item-title">本站总访问量：</div>
             <div class="webinfo-content">
-                <span id="busuanzi_value_site_pv" class="web-site-pv"><i title="正在获取..."
+                <!-- <span id="busuanzi_value_site_pv" class="web-site-pv"><i title="正在获取..."
+                        class="loading iconfont icon-loading"></i>
+                </span> -->
+                <span id="busuanzi_site_pv"><i title="正在获取..."
                         class="loading iconfont icon-loading"></i>
                 </span>
                 次
@@ -40,12 +43,15 @@
         </div>
 
         <div v-if="indexView" class="webinfo-item">
-            <div class="webinfo-item-title">您的访问排名：</div>
+            <div class="webinfo-item-title">本站总访客数：</div>
             <div class="webinfo-content busuanzi">
-                <span id="busuanzi_value_site_uv" class="web-site-uv"><i title="正在获取..."
+                <!-- <span id="busuanzi_value_site_uv" class="web-site-uv"><i title="正在获取..."
                         class="loading iconfont icon-loading"></i>
-                </span>
-                名
+                </span> -->
+               <span id="busuanzi_site_uv"><i title="正在获取..."
+                            class="loading iconfont icon-loading"></i>
+                 </span>
+                人
             </div>
         </div>
     </div>

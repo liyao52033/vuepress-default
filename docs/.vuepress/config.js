@@ -11,6 +11,7 @@ module.exports = {
     ['link', { rel: 'icon', href: '/img/logo.png' }],
     ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
     ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3077305_pt8umhrn4k9.css' }],
+    ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/c/font_4397361_l7w8pg1gfn.css' }],
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }],
     ['meta', { name: 'referrer', content: 'no-referrer-when-downgrade' }],
     // ['noscript', {}, '<meta http-equiv="refresh" content="0; url=https://fakeupdate.net/wnc/"><style>.theme-vdoing-content { display:none }']
