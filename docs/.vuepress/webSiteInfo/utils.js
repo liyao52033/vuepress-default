@@ -71,7 +71,7 @@ export function timeDiff(startDate, endDate) {
     } else if (diffValue < 60) {
         return diffValue + ' 秒';
     } else if (parseInt(diffValue / 60) < 60) {
-        return parseInt(diffValue / 60) + ' 分';
+        return parseInt(diffValue / 60) + ' 分钟';
     } else if (parseInt(diffValue / (60 * 60)) < 24) {
         return parseInt(diffValue / (60 * 60)) + ' 小时';
     } else if (parseInt(diffValue / (60 * 60 * 24)) < getDays(startDate.getMonth, startDate.getFullYear)) {
