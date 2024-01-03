@@ -73,11 +73,11 @@ export function timeDiff(startDate, endDate) {
     } else if (parseInt(diffValue / 60) < 60) {
         return parseInt(diffValue / 60) + ' 分';
     } else if (parseInt(diffValue / (60 * 60)) < 24) {
-        return parseInt(diffValue / (60 * 60)) + ' 时';
+        return parseInt(diffValue / (60 * 60)) + ' 小时';
     } else if (parseInt(diffValue / (60 * 60 * 24)) < getDays(startDate.getMonth, startDate.getFullYear)) {
         return parseInt(diffValue / (60 * 60 * 24)) + ' 天';
     } else if (parseInt(diffValue / (60 * 60 * 24 * getDays(startDate.getMonth, startDate.getFullYear))) < 12) {
-        return parseInt(diffValue / (60 * 60 * 24 * getDays(startDate.getMonth, startDate.getFullYear))) + ' 月';
+        return parseInt(diffValue / (60 * 60 * 24 * getDays(startDate.getMonth, startDate.getFullYear))) + ' 个月';
     } else {
         return parseInt(diffValue / (60 * 60 * 24 * getDays(startDate.getMonth, startDate.getFullYear) * 12)) + ' 年';
     }
