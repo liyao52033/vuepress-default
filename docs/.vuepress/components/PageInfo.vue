@@ -15,7 +15,7 @@ export default {
     // },
     async mounted() {
         await this.$nextTick();
-        if (this.$route && this.$route.path !== "/") {
+        if (this.$route && this.$route.path != "/") {
             await this.initPageInfo();
         }
     },

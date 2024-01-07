@@ -29,10 +29,6 @@ module.exports = {
     '../*.js', // 使用相对路径
   ],
 
-  // configureWebpack: {
-  //   devtool: 'source-map'
-  // },
-
   theme: 'vdoing',
   plugins: pluginConfig,
 
