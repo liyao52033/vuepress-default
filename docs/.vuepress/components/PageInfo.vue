@@ -1,12 +1,49 @@
-<template></template>
+<template>
+    <div class="page-info">
+
+        <!-- 当前文章页字数 -->
+        <div class="book-words iconfont icon-book" style="float: left; margin-left: 20px; font-size: 0.8rem;">
+            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ wordsCount }}</a>
+        </div>
+
+        <!-- 预计阅读时间 -->
+        <div class="reading-time iconfont icon-shijian" style="float: left; margin-left: 20px; font-size: 0.8rem;">
+            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ readTimeCount }}</a>
+        </div>
+
+         <!-- 文章页访问量 -->
+            <div class="page-view iconfont icon-view" style="float: left; margin-left: 20px; font-size: 0.8rem;">
+                <a href="javascript:;" id="busuanzi_page_pv" class="view-data">
+                    <i title="正在获取..." class="loading iconfont icon-loading"></i>
+                </a>
+            </div>
+
+            <!-- 本文总访客量 -->
+            <div class="page_total_view iconfont icon-tongji" style="float: left; margin-left: 20px; font-size: 0.8rem;">
+                <a href="javascript:;" id="busuanzi_page_uv" class="view-data">
+                    <i title="正在获取..." class="loading iconfont icon-loading"></i>
+                </a>
+            </div>
+
+    </div>
+</template>
 
 <script>
 import fetch from "../webSiteInfo/busuanzi";
 export default {
 
+     data() {
+        return {
+            wordsCount: 0,
+            readTimeCount: 0,
+        };
+    },
+
     mounted: function () {
         this.$nextTick(function () {
-             if (this.$route && this.$route.path != "/") {
+            let page = document.querySelector(".page-info");
+            this.mountedView(page)
+            if (this.$route && this.$route.path != "/") {
                 this.initPageInfo();
             }
         })
@@ -20,6 +57,8 @@ export default {
                 to.path !== from.path &&
                 this.$themeConfig.blogInfo
             ) { 
+                let page = document.querySelector(".page-info");
+                this.mountedView(page)
                 this.initPageInfo();
             } 
         },
@@ -39,9 +78,9 @@ export default {
                         eachFileWords.forEach((itemFile) => {
                             if (itemFile.permalink === this.$frontmatter.permalink) {
                                 // this.addPageWordsCount 和 if 可以调换位置，从而让文章的字数和预阅读时间交换位置
-                                this.addPageWordsCount(itemFile.wordsCount);
+                                this.wordsCount = itemFile.wordsCount;
                                 if (readingTime || readingTime === undefined) {
-                                    this.addReadTimeCount(itemFile.readingTime);
+                                    this.readTimeCount = itemFile.readingTime;
                                 }
                            //     throw new Error();
                             }
@@ -97,123 +136,56 @@ export default {
             }, iterationTime);
         },
         /**
-         * 添加浏览量元素
+         * 浏览量
          */
         addPageView() {
             let pageView = document.querySelector(".page-view");
             if (pageView) {
-                pageView.innerHTML =
-                // '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_value_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-                '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-            } else {
-                // 创建访问量的元素
-                let template = document.createElement("div");
-                template.title = "浏览量";
-                template.className = "page-view iconfont icon-view";
-                template.style.float = "left";
-                template.style.marginLeft = "20px";
-                template.style.fontSize = "0.8rem";
-                template.innerHTML =
-                    // '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_value_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-                '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
                 // 添加 loading 效果
                 let style = document.createElement("style");
                 style.innerHTML = `@keyframes turn {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      .loading {
-        display: inline-block;
-        animation: turn 1s linear infinite;
-        -webkit-animation: turn 1s linear infinite;
-      }`;
-                document.head.appendChild(style);
-                this.mountedView(template);
+                0% {
+                transform: rotate(0deg);
+                }
+                100% {
+                transform: rotate(360deg);
+                }
             }
+             .loading {
+                display: inline-block;
+                animation: turn 1s linear infinite;
+                -webkit-animation: turn 1s linear infinite;
+            }
+          `;
+                        document.head.appendChild(style);
+                    }
         },
 
          /**
-        * 添加本文总访客量
+        * 本文总访客量
         */
         addtotalPageView() {
             let pageView = document.querySelector(".page_total_view");
             if (pageView) {
-                pageView.innerHTML =
-                    // '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_value_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-                    '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_page_uv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-            } else {
-                // 创建访问量的元素
-                let template = document.createElement("div");
-                template.title = "本文总访客量";
-                template.className = "page_total_view iconfont icon-tongji";
-                template.style.float = "left";
-                template.style.marginLeft = "20px";
-                template.style.fontSize = "0.8rem";
-                template.innerHTML =
-                    // '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_value_page_pv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-                    '<a style="color: #888; margin-left: 3px" href="javascript:;" id="busuanzi_page_uv" class="view-data"><i title="正在获取..." class="loading iconfont icon-loading"></i></a>';
-                // 添加 loading 效果
+             // 添加 loading 效果
                 let style = document.createElement("style");
                 style.innerHTML = `@keyframes turn {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      .loading {
-        display: inline-block;
-        animation: turn 1s linear infinite;
-        -webkit-animation: turn 1s linear infinite;
-      }`;
+                0% {
+                transform: rotate(0deg);
+                }
+                100% {
+                transform: rotate(360deg);
+                }
+            }
+            .loading {
+                display: inline-block;
+                animation: turn 1s linear infinite;
+                -webkit-animation: turn 1s linear infinite;
+            }`;
                 document.head.appendChild(style);
-                this.mountedView(template);
             }
         },
 
-
-        /**
-         * 添加当前文章页的字数元素
-         */
-        addPageWordsCount(wordsCount = 0) {
-            let words = document.querySelector(".book-words");
-            if (words) {
-                words.innerHTML = `<a href="javascript:;" style="margin-left: 3px; color: #888">${wordsCount}</a>`;
-            } else {
-                let template = document.createElement("div");
-                template.title = "文章字数";
-                template.className = "book-words iconfont icon-book";
-                template.style.float = "left";
-                template.style.marginLeft = "20px";
-                template.style.fontSize = "0.8rem";
-
-                template.innerHTML = `<a href="javascript:;" style="margin-left: 3px; color: #888">${wordsCount}</a>`;
-                this.mountedView(template);
-            }
-        },
-        /**
-         * 添加预计的阅读时间
-         */
-        addReadTimeCount(readTimeCount = 0) {
-            let reading = document.querySelector(".reading-time");
-            if (reading) {
-                reading.innerHTML = `<a href="javascript:;" style="margin-left: 3px; color: #888">${readTimeCount}</a>`;
-            } else {
-                let template = document.createElement("div");
-                template.title = "预阅读时长";
-                template.className = "reading-time iconfont icon-shijian";
-                template.style.float = "left";
-                template.style.marginLeft = "20px";
-                template.style.fontSize = "0.8rem";
-                template.innerHTML = `<a href="javascript:;" style="margin-left: 3px; color: #888">${readTimeCount}</a>`;
-                this.mountedView(template);
-            }
-        },
         /**
          * 挂载目标到页面上
          */
@@ -248,13 +220,7 @@ export default {
                 });
             }
         },
-        /**
-         * 如果元素存在，则删除
-         */
-        removeElement(selector) {
-            var element = document.querySelector(selector);
-            element && element.parentNode.removeChild(element);
-        },
+       
         /**
          * 目标是否已经挂载在页面上
          */
@@ -265,18 +231,33 @@ export default {
                 return false;
             }
         },
-
-          // 防止重写编译时，导致页面信息重复出现问题
-        beforeMount() {
-            clearInterval(this.interval);
-            this.removeElement(".page-view");
-            this.removeElement(".page_total_view");
-            this.removeElement(".book-words");
-            this.removeElement(".reading-time");
-        },
+       
     },
   
 };
 </script>
 
-<style></style>
+<style>
+ .view-data {
+    color: #999;
+    margin-left: 3px;
+    /* font-size: 12px;
+    margin-top: 10px;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap; */
+ }
+ .page-info {
+    display: inline-block;
+    /* align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap; */
+ }
+</style>
