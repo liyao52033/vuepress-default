@@ -4,20 +4,12 @@
 import fetch from "../webSiteInfo/busuanzi";
 export default {
 
-    // mounted() {
-    //     // 首页不初始页面信息
-    //      this.$nextTick(() => {
-    //          // 在这里进行DOM操作
-    //          if (this.$route && this.$route.path !== "/") {
-    //             this.initPageInfo();
-    //         }
-    //     });         
-    // },
-    async mounted() {
-        await this.$nextTick();
-        if (this.$route && this.$route.path != "/") {
-            await this.initPageInfo();
-        }
+    mounted: function () {
+        this.$nextTick(function () {
+             if (this.$route && this.$route.path != "/") {
+                this.initPageInfo();
+            }
+        })
     },
 
     watch: {
@@ -36,7 +28,7 @@ export default {
         /**
          * 初始化页面信息
          */
-      async initPageInfo() {
+        initPageInfo() {
             if (this.$frontmatter.article === undefined || this.$frontmatter.article) {
                 // 排除掉 article 为 false 的文章
                 const { eachFileWords, pageView, pageIteration, readingTime } =
