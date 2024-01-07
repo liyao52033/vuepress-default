@@ -3,12 +3,23 @@
 <script>
 import fetch from "../webSiteInfo/busuanzi";
 export default {
-    mounted() {
-        // 首页不初始页面信息
-        if (this.$route.path != "/") {
-            this.initPageInfo();
+
+    // mounted() {
+    //     // 首页不初始页面信息
+    //      this.$nextTick(() => {
+    //          // 在这里进行DOM操作
+    //          if (this.$route && this.$route.path !== "/") {
+    //             this.initPageInfo();
+    //         }
+    //     });         
+    // },
+    async mounted() {
+        await this.$nextTick();
+        if (this.$route && this.$route.path !== "/") {
+            await this.initPageInfo();
         }
     },
+
     watch: {
         $route(to, from) {
             // 如果页面是非首页，# 号也会触发路由变化，这里要排除掉
@@ -16,17 +27,17 @@ export default {
                 to.path !== "/" &&
                 to.path !== from.path &&
                 this.$themeConfig.blogInfo
-            ) {
+            ) { 
                 this.initPageInfo();
-            }
+            } 
         },
     },
     methods: {
         /**
          * 初始化页面信息
          */
-        initPageInfo() {
-            if (this.$frontmatter.article == undefined || this.$frontmatter.article) {
+      async initPageInfo() {
+            if (this.$frontmatter.article === undefined || this.$frontmatter.article) {
                 // 排除掉 article 为 false 的文章
                 const { eachFileWords, pageView, pageIteration, readingTime } =
                     this.$themeConfig.blogInfo;
@@ -34,18 +45,20 @@ export default {
                 if (eachFileWords) {
                     try {
                         eachFileWords.forEach((itemFile) => {
-                            if (itemFile.permalink == this.$frontmatter.permalink) {
+                            if (itemFile.permalink === this.$frontmatter.permalink) {
                                 // this.addPageWordsCount 和 if 可以调换位置，从而让文章的字数和预阅读时间交换位置
                                 this.addPageWordsCount(itemFile.wordsCount);
-                                if (readingTime || readingTime == undefined) {
+                                if (readingTime || readingTime === undefined) {
                                     this.addReadTimeCount(itemFile.readingTime);
                                 }
-                                throw new Error();
+                           //     throw new Error();
                             }
                         });
-                    } catch (error) { }
+                    } catch (error) { 
+                    console.error("初始化失败：", error);
+                    }
                 }
-                if (pageView || pageView == undefined) {
+                if (pageView || pageView === undefined) {
                     this.addPageView();
                     this.addtotalPageView()
                     this.getPageViewCouter(pageIteration);
@@ -214,7 +227,7 @@ export default {
          */
         mountedView(
             template,
-            mountedIntervalTime = 100,
+            mountedIntervalTime = 1000,
             moutedParentEvent = ".articleInfo-wrap > .articleInfo > .info"
         ) {
             let i = 0;
@@ -254,21 +267,23 @@ export default {
          * 目标是否已经挂载在页面上
          */
         isMountedView(element, parentElement) {
-            if (element.parentNode == parentElement) {
+            if (element.parentNode === parentElement) {
                 return true;
             } else {
                 return false;
             }
         },
+
+          // 防止重写编译时，导致页面信息重复出现问题
+        beforeMount() {
+            clearInterval(this.interval);
+            this.removeElement(".page-view");
+            this.removeElement(".page_total_view");
+            this.removeElement(".book-words");
+            this.removeElement(".reading-time");
+        },
     },
-    // 防止重写编译时，导致页面信息重复出现问题
-    beforeMount() {
-        clearInterval(this.interval);
-        this.removeElement(".page-view");
-        this.removeElement(".page_total_view");
-        this.removeElement(".book-words");
-        this.removeElement(".reading-time");
-    },
+  
 };
 </script>
 

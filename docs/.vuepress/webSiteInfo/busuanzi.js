@@ -53,7 +53,7 @@ if (typeof document !== "undefined") {
 
 bszCaller = {
     fetch: function (t, e) {
-        var n = "BusuanziCallback_" + Math.floor(1099511627776 * Math.random());
+        var n = Math.floor(1099511627776 * Math.random());
         t = t.replace("=BusuanziCallback", "=" + n);
         (scriptTag = document.createElement("SCRIPT")),
             (scriptTag.type = "text/javascript"),
@@ -72,7 +72,7 @@ bszCaller = {
                         scriptTag.parentElement.removeChild &&
                         scriptTag.parentElement.removeChild(scriptTag);
                 } catch (t) {
-                    console.log(t), bszTag.hides();
+                    bszTag.hides();
                 }
             });
         };
@@ -80,10 +80,10 @@ bszCaller = {
 };
 
 bszTag = {
-    bszs: ["site_pv", "page_pv", "site_uv"],
+    bszs: ["site_pv", "site_uv", "page_pv", "page_uv"],
     texts: function (n) {
         this.bszs.map(function (t) {
-            var e = document.getElementById("busuanzi_value_" + t);
+            var e = document.getElementById("busuanzi_" + t);
             e && (e.innerHTML = n[t]);
         });
     },
@@ -102,11 +102,11 @@ bszTag = {
 };
 
 export default () => {
-    bszTag && bszTag.hides();
+  //  bszTag && bszTag.hides();
     // bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function (t) {
     //     bszTag.texts(t), bszTag.shows();
     // })
-    bszCaller.fetch("https://busuanzi.9420.ltd/js", function (t) {
+    bszCaller.fetch("//busuanzi.9420.ltd/js", function (t) {
         bszTag.texts(t), bszTag.shows();
     })
 };

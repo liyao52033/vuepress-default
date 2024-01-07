@@ -330,6 +330,38 @@ index c8b7672..1baa985 100644
 +
  </style>
 +
+diff --git a/node_modules/vuepress-theme-vdoing/layouts/Layout.vue b/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
+index 62dda70..17e55ec 100644
+--- a/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
++++ b/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
+@@ -301,10 +301,24 @@ export default {
+       this.$emit('toggle-sidebar', this.isSidebarOpen)
+     },
+     _autoMode() {
+-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) { // 系统处于深色模式
+-        this.themeMode = 'dark'
+-      } else {
++      // if (window.matchMedia('(prefers-color-scheme: dark)').matches) { // 系统处于深色模式
++      //   this.themeMode = 'dark'
++      // } else {
++      //   this.themeMode = 'light'
++      // }
++      var hours = new Date().getHours();
++      if (hours >= 6 && hours < 11) {
+         this.themeMode = 'light'
++      } else if (hours >= 11 && hours <= 12) {
++       this.themeMode = 'read'
++      } else if (hours >= 13 && hours < 17) {
++         this.themeMode = 'light'
++      } else if (hours >= 17 && hours < 19) {
++       this.themeMode = 'read'
++      } else if (hours >= 19 && hours < 24) {
++        this.themeMode = 'dark'
++      } else if (hours >= 0 && hours < 6) {
++         this.themeMode = 'dark'
+       }
+     },
+     toggleThemeMode(key) {
 diff --git a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js b/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
 index ab52ffd..1a5fc73 100644
 --- a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
