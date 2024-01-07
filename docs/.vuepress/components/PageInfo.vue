@@ -36,13 +36,13 @@ export default {
         return {
             wordsCount: 0,
             readTimeCount: 0,
+            mountedIntervalTime: 1000,
+            moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
         };
     },
 
     mounted: function () {
         this.$nextTick(function () {
-            let page = document.querySelector(".page-info");
-            this.mountedView(page)
             if (this.$route && this.$route.path != "/") {
                 this.initPageInfo();
             }
@@ -52,14 +52,9 @@ export default {
     watch: {
         $route(to, from) {
             // 如果页面是非首页，# 号也会触发路由变化，这里要排除掉
-            if (
-                to.path !== "/" &&
-                to.path !== from.path &&
-                this.$themeConfig.blogInfo
-            ) { 
-                let page = document.querySelector(".page-info");
-                this.mountedView(page)
+            if (to.path != "/" && to.path != from.path && this.$themeConfig.blogInfo) {
                 this.initPageInfo();
+                this.isMounted(document.querySelector(".page-info"));
             } 
         },
     },
@@ -93,6 +88,10 @@ export default {
                     this.addPageView();
                     this.addtotalPageView()
                     this.getPageViewCouter(pageIteration);
+                }
+                let page = document.querySelector(".page-info");
+                if (page) {
+                    this.mountedView(page);
                 }
                 return;
             }
@@ -189,47 +188,70 @@ export default {
         /**
          * 挂载目标到页面上
          */
-        mountedView(
-            template,
-            mountedIntervalTime = 1000,
-            moutedParentEvent = ".articleInfo-wrap > .articleInfo > .info"
-        ) {
+        mountedView(template) {
             let i = 0;
-            let parentElement = document.querySelector(moutedParentEvent);
+            let parentElement = document.querySelector(this.moutedParentEvent);
             if (parentElement) {
                 if (!this.isMountedView(template, parentElement)) {
                     parentElement.appendChild(template);
                 }
             } else {
-                let interval = setInterval(() => {
-                    parentElement = document.querySelector(moutedParentEvent);
-                    if (parentElement) {
-                        if (!this.isMountedView(template, parentElement)) {
-                            parentElement.appendChild(template);
-                            clearInterval(interval);
-                        }
-                    } else if (i > 1 * 10) {
-                        // 10 秒后清除
+               let interval = setInterval(() => {
+              let parentElement = document.querySelector(this.moutedParentEvent);
+                if (parentElement) {
+                    if (!this.isMountedView(template, parentElement)) {
+                        parentElement.appendChild(template);
                         clearInterval(interval);
                     }
-                }, mountedIntervalTime);
-                // 绑定 beforeDestroy 生命钩子，清除定时器
-                this.$once("hook:beforeDestroy", () => {
+                } else if (i > 1 * 10) {
+                    // 10 秒后清除
                     clearInterval(interval);
-                    interval = null;
-                });
+                }
+            }, this.mountedIntervalTime);
+            // 绑定 beforeDestroy 生命钩子，清除定时器
+            this.$once("hook:beforeDestroy", () => {
+                clearInterval(interval);
+                interval = null;
+            });
             }
+        },
+
+        //* 用于判断是否已经挂载到页面上 */
+        isMounted(template) {
+            let i = 0;
+            let interval = setInterval(() => {
+              let parentElement = document.querySelector(this.moutedParentEvent);
+                if (parentElement) {
+                    if (!this.isMountedView(template, parentElement) && template) {
+                        parentElement.appendChild(template);
+                        clearInterval(interval);
+                    }
+                } else if (i > 1 * 10) {
+                    // 10 秒后清除
+                    clearInterval(interval);
+                }
+            }, this.mountedIntervalTime);
+            // 绑定 beforeDestroy 生命钩子，清除定时器
+            this.$once("hook:beforeDestroy", () => {
+                clearInterval(interval);
+                interval = null;
+            });
         },
        
         /**
          * 目标是否已经挂载在页面上
          */
         isMountedView(element, parentElement) {
-            if (element.parentNode === parentElement) {
-                return true;
-            } else {
+            if (element) {
+                if (element.parentNode == parentElement) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else { 
                 return false;
             }
+            
         },
        
     },
