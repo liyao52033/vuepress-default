@@ -2,7 +2,7 @@
 <script>
 export default {
     mounted() {
-        if (to.path != "/") {
+        if (this.$route.path != "/") {
              this.bgTimeColor();
         } 
     },

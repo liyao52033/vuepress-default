@@ -1,5 +1,4 @@
 <template>
-    <!-- <div :class="{ 'page-info': showPageInfo, 'page-hide': !showPageInfo }"> -->
     <div class="page-info">
 
         <!-- 当前文章页字数 -->
@@ -38,15 +37,13 @@ export default {
             wordsCount: 0,
             readTimeCount: 0,
             mountedIntervalTime: 1000,
-            moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info",
-            showPageInfo: false,
+            moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
         };
     },
 
     mounted: function () {
         this.$nextTick(function () {
             if (this.$route.path != "/") {
-            //    this.showPageInfo = true
                 this.initPageInfo();
                 this.isMounted(document.querySelector(".page-info"));
             }
@@ -57,7 +54,6 @@ export default {
         $route(to, from) {
             // 如果页面是非首页，# 号也会触发路由变化，这里要排除掉
             if (to.path != "/" && to.path != from.path && this.$themeConfig.blogInfo) {
-            //    this.showPageInfo = true
                 this.initPageInfo();
                 this.isMounted(document.querySelector(".page-info"));
             } 
@@ -82,7 +78,6 @@ export default {
                                 if (readingTime || readingTime === undefined) {
                                     this.readTimeCount = itemFile.readingTime;
                                 }
-                           //     throw new Error();
                             }
                         });
                     } catch (error) { 
@@ -95,13 +90,11 @@ export default {
                     this.getPageViewCouter(pageIteration);
                 }
                  let page = document.querySelector(".page-info");
-                // console.log(page);
                 if (page) {
                     this.mountedView(page);
-                } 
-                //else { 
-                   //  console.error("初始化失败：", "站点信息不存在");
-                // }
+                } else { 
+                    console.error("初始化失败：", "站点信息不存在");
+                }
                 return;
             }
         },
