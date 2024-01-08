@@ -1,4 +1,5 @@
 <template>
+    <!-- <div :class="{ 'page-info': showPageInfo, 'page-hide': !showPageInfo }"> -->
     <div class="page-info">
 
         <!-- 当前文章页字数 -->
@@ -37,14 +38,17 @@ export default {
             wordsCount: 0,
             readTimeCount: 0,
             mountedIntervalTime: 1000,
-            moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
+            moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info",
+            showPageInfo: false,
         };
     },
 
     mounted: function () {
         this.$nextTick(function () {
-            if (this.$route && this.$route.path != "/") {
+            if (this.$route.path != "/") {
+            //    this.showPageInfo = true
                 this.initPageInfo();
+                this.isMounted(document.querySelector(".page-info"));
             }
         })
     },
@@ -53,6 +57,7 @@ export default {
         $route(to, from) {
             // 如果页面是非首页，# 号也会触发路由变化，这里要排除掉
             if (to.path != "/" && to.path != from.path && this.$themeConfig.blogInfo) {
+            //    this.showPageInfo = true
                 this.initPageInfo();
                 this.isMounted(document.querySelector(".page-info"));
             } 
@@ -81,7 +86,7 @@ export default {
                             }
                         });
                     } catch (error) { 
-                    console.error("初始化失败：", error);
+                    console.error("获取浏览量失败：", error);
                     }
                 }
                 if (pageView || pageView === undefined) {
@@ -89,10 +94,14 @@ export default {
                     this.addtotalPageView()
                     this.getPageViewCouter(pageIteration);
                 }
-                let page = document.querySelector(".page-info");
+                 let page = document.querySelector(".page-info");
+                // console.log(page);
                 if (page) {
                     this.mountedView(page);
-                }
+                } 
+                //else { 
+                   //  console.error("初始化失败：", "站点信息不存在");
+                // }
                 return;
             }
         },
@@ -263,23 +272,16 @@ export default {
  .view-data {
     color: #999;
     margin-left: 3px;
-    /* font-size: 12px;
-    margin-top: 10px;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
-    white-space: nowrap; */
  }
  .page-info {
     display: inline-block;
-    /* align-items: center;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #333;
-    font-weight: 500;
-    line-height: 1.5;
-    text-align: left;
-    white-space: nowrap; */
  }
+
+ .page-hide{
+    display: none; 
+    /* position: fixed;
+    top: 96px;
+    right: 450px;
+    background-color: red; */
+}
 </style>

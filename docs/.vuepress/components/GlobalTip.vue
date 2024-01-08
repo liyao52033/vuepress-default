@@ -2,14 +2,16 @@
 <script>
 export default {
     mounted() {
-         this.bgTimeColor();
+        if (to.path != "/") {
+             this.bgTimeColor();
+        } 
     },
     watch: {
         $route(to, from) {
             let gloablTip = document.getElementsByClassName("gloablTip");
             // 如果已经存在一个消息提示，则不会重新弹出，除非消息提示已经消失
             if (gloablTip.length <= 0) {
-                 if (to.path !== from.path && this.$themeConfig.blogInfo) {
+                 if (to.path !== from.path && this.$themeConfig.blogInfo && to.path != "/") {
                     this.bgTimeColor();
                 }
             } 
