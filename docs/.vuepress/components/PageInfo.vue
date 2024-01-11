@@ -36,19 +36,18 @@ export default {
         return {
             wordsCount: 0,
             readTimeCount: 0,
-            mountedIntervalTime: 1000,
-      //      showPageInfo: true,
+            mountedIntervalTime: 500,
             moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
         };
     },
 
     mounted: function () {
-        this.$nextTick(function () {
-            if (this.$route.path != "/") {
+        setTimeout(() => {
+            if (this.$route.path !== "/") {
                 this.initPageInfo();
                 this.isMounted(document.querySelector(".page-info"));
-            } 
-        })
+            }
+        }, this.mountedIntervalTime);
     },
 
     watch: {

@@ -6,6 +6,17 @@
 
 <script>
 export default {
+
+    mounted: function () {
+        setTimeout(() => {
+            if (this.$route.path !== "/") {
+                this.adjustArrow();
+            }
+        }, 200);
+      
+    },
+
+
      watch: {
         $route(to, from) {
             // 如果页面是非首页，# 号也会触发路由变化，这里要排除掉
@@ -27,7 +38,7 @@ export default {
 
                 if (rightbar) {
                     if (arrow) {
-                        arrow.style.right = "15rem";
+                        arrow.style.right = "16rem";
                     }
                 } else {
                      if (arrow) {
