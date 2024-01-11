@@ -1,0 +1,218 @@
+.navbar .links {
+    flex-direction: row-reverse !important;
+    right: 100px !important;
+}
+
+.search-box {
+    right: -20px;
+}
+
+.search-box .suggestions {
+    width: 40rem !important;
+    max-height : 32rem !important;
+    overflow: scroll;
+    position: absolute;
+    top: 2rem;
+    right: .5rem;
+}
+
+.dsb-dataset-1{
+    width: 40rem !important;
+    max-height : 32rem !important;
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    right: .5rem;
+}
+
+.suggestion__title{
+    background-color : #3eaf7c !important;
+    width: 37rem;
+    line-height : 35px;
+    padding-left :10px;
+}
+
+.ds-dropdown-menu {
+    width: 40rem !important;
+    max-height: 32rem;
+    overflow: scroll;
+}
+
+
+.algolia-docsearch-footer {
+    display : none !important;
+}
+
+.meilisearch-autocomplete .docs-searchbar-footer {
+    display : none !important;
+}
+
+.search-box input {
+    cursor: text;
+    width: 0 !important;
+    border: 0 !important;
+}
+
+.search-box input:focus {
+    width: 10rem !important;
+    border: 1px solid #3eaf7c !important;
+    border-radius: 20px; /* 设置圆角半径，可以根据需要调整 */
+}
+
+::v-deep .vsys{
+    display:none !important;
+}
+
+#valine-vuepress-comment{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#veditor {
+    background-image: url(https://cdn.jsdelivr.net/gh/drew233/cdn/20200409110727.webp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: vertical;
+}
+
+#veditor:focus{
+    background-position-y: 200px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+
+.vheader{
+    display: flex;
+    flex-grow: 1;
+}
+
+
+#valine-vuepress-comment .vheader .vnick {
+    border: 2px solid #dedede;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: #66b1ff !important;
+    font-size : 17px;
+}
+
+#valine-vuepress-comment .vheader .vmail {
+    border: 2px solid #dedede;
+    margin-left: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    font-size : 17px;
+    color: #66b1ff !important;
+}
+
+#valine-vuepress-comment .vheader .vlink {
+    border: 2px solid #dedede;
+    margin-left: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    font-size : 15px;
+    color: #66b1ff !important;
+}
+
+#valine-vuepress-comment .vcards .vcard {
+    padding: 15px 20px 0 20px;
+    margin-bottom: 15px;
+    transition: all .3s;
+    color: #2F0822;
+}
+
+#valine-vuepress-comment .vcards .vcard:hover {
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, .12)
+}
+
+#valine-vuepress-comment .vcards .vcard .vh .vcard {
+    border: none;
+    box-shadow: none;
+}
+
+img.vimg {
+    transition: all 1s   /* 旋转时间为 1s */
+}
+
+img.vimg:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+}
+
+.vpower{
+    display : none !important;
+}
+
+div[class*="language-"]::before {
+    position: absolute;
+    z-index: 3;
+    top: 0.8em;
+    right: 1em;
+    font-size: 1.2rem;
+    line-height: 0.3rem;
+    color: rgba(150,150,150,0.7);
+}
+
+div[class*="language-"].line-numbers-mode .line-numbers-wrapper {
+    position: absolute;
+    top: -18px;
+    width: 2.5rem;
+    text-align: center;
+    color: rgba(127,127,127,0.5);
+    padding: 1.25rem 0;
+    line-height: 1.4;
+}
+
+body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="language-"] code {
+    color: var(--codeColor);
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    line-height: 1.4;
+}
+
+
+.footer {
+    padding: 3rem 15rem 2.5rem !important; 
+    text-align: center;
+    color: #666;
+    box-sizing: border-box;
+    font-size: 1rem !important;
+    transition: all 0.2s ease;
+    background-color: var(--mainBg);
+    width : auto;
+    display: inline-block;
+    position:relative;
+    left:50%;
+    transform:translateX(-47%);
+    margin-bottom: 0.5rem;
+
+    /* 媒体查询调整移动端样式 */
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    padding: 3rem 4rem 2.5rem !important; 
+  } 
+}
+
+ .page-nav-centre-wrap .page-nav-centre:before {
+    width: 30px !important;
+    height: 30px !important;
+    border-top: 2px solid #409eff !important;
+    border-right: 2px solid #409eff !important;
+}
+
+  .page-nav-next {
+    right: 2rem !important;
+}
+
+.page-rightbar-next {
+    right: 15rem !important;
+}
+

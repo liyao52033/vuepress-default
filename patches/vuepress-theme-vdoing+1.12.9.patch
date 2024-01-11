@@ -1,0 +1,390 @@
+diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
+index 1b5e5c0..2b26fd3 100644
+--- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
++++ b/node_modules/vuepress-theme-vdoing/components/Footer.vue
+@@ -12,15 +12,8 @@
+     </div>
+ 
+     <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
+-    Theme by
+-    <a
+-      href="https://github.com/xugaoyi/vuepress-theme-vdoing"
+-      target="_blank"
+-      title="本站主题"
+-      >Vdoing</a
+-    >
+     <template v-if="footer">
+-      | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
++      Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
+       <span v-html="footer.copyrightInfo"></span>
+     </template>
+   </div>
+diff --git a/node_modules/vuepress-theme-vdoing/components/Page.vue b/node_modules/vuepress-theme-vdoing/components/Page.vue
+index 5d0865c..faa7927 100644
+--- a/node_modules/vuepress-theme-vdoing/components/Page.vue
++++ b/node_modules/vuepress-theme-vdoing/components/Page.vue
+@@ -34,7 +34,7 @@
+       </div>
+ 
+       <UpdateArticle
+-        :length="3"
++        :length="5"
+         :moreArticle="updateBarConfig && updateBarConfig.moreArticle"
+         v-if="isShowUpdateBar"
+       />
+diff --git a/node_modules/vuepress-theme-vdoing/components/UpdateArticle.vue b/node_modules/vuepress-theme-vdoing/components/UpdateArticle.vue
+index ae0270f..794a7a8 100644
+--- a/node_modules/vuepress-theme-vdoing/components/UpdateArticle.vue
++++ b/node_modules/vuepress-theme-vdoing/components/UpdateArticle.vue
+@@ -40,7 +40,7 @@ export default {
+   props: {
+     length: {
+       type: [String, Number],
+-      default: 3
++      default: 5
+     },
+     moreArticle: String
+   },
+diff --git a/node_modules/vuepress-theme-vdoing/layouts/404.vue b/node_modules/vuepress-theme-vdoing/layouts/404.vue
+index c8b7672..1baa985 100644
+--- a/node_modules/vuepress-theme-vdoing/layouts/404.vue
++++ b/node_modules/vuepress-theme-vdoing/layouts/404.vue
+@@ -1,35 +1,254 @@
++<script>
++export default {
++  data() {
++	return {
++	  message: "阿噢，一不小心来到了荒无人烟的沙漠"
++	};
++  }
++};
++</script>
++
+ <template>
+-  <div class="theme-container">
+-    <div class="theme-vdoing-content">
+-      <span>404</span>
+-      <blockquote>{{ getMsg() }}</blockquote>
+-      <router-link to="/">返回首页</router-link>
+-    </div>
++  <div class="wscn-http404-container">
++	<div class="wscn-http404">
++	  <div class="pic-404">
++		<img
++		  class="pic-404__parent"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012125958.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166720;8999999999&q-key-time=1696166720;8999999999&q-header-list=host&q-url-param-list=&q-signature=791e6846a407484343215b7a4e4d79efb426d72b"
++		  alt="404"
++		/>
++		<img
++		  class="pic-404__child left"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  alt="404"
++		/>
++		<img
++		  class="pic-404__child mid"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  alt="404"
++		/>
++		<img
++		  class="pic-404__child right"
++		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  alt="404"
++		/>
++	  </div>
++	  <div class="bullshit">
++		<div class="bullshit__oops">OOPS!</div>
++		<div class="bullshit__info">
++		  All rights reserved
++		  <a
++			style="color: #20a0ff"
++			href="https://vuepress.vuejs.org/zh/theme/option-api.html#globallayout"
++			target="_blank"
++		  >vuepress</a
++		  >
++		</div>
++		<div class="bullshit__headline">{{ message }}</div>
++		<div class="bullshit__info">
++		  请检查您输入的网址是否正确，或返回首页。
++		</div>
++		<a href="/" class="bullshit__return-home">回首页</a>
++	  </div>
++	</div>
+   </div>
+ </template>
+ 
+-<script>
+-const msgs = [
+-  `这里什么都没有。`,
+-  `我是谁？我在哪？`,
+-  `这是一个Four-Oh-Four.`,
+-  `看来我们的链接坏掉了~`
+-]
++<style lang="stylus" scoped>
+ 
+-export default {
+-  methods: {
+-    getMsg () {
+-      return msgs[Math.floor(Math.random() * msgs.length)]
+-    }
++.wscn-http404-container {
++  position: relative !important;
++}
++
++.wscn-http404 {
++  position: absolute !important;
++  top: 50% !important;
++  transform: translateY(50%) !important;
++  width: 1200px;
++  padding: 0 50px;
++  overflow: hidden;
++}
++
++.wscn-http404 > .pic-404 {
++  position: relative;
++  float: left;
++  width: 600px;
++  overflow: hidden;
++}
++
++.pic-404__parent {
++  width: 100%;
++}
++
++.pic-404__child {
++  position: absolute;
++}
++
++
++.left {
++  top: 17px;
++  left: 220px;
++  width: 80px;
++  opacity: 0;
++  animation-name: cloudLeft;
++  animation-duration: 2s;
++  animation-timing-function: linear;
++  animation-delay: 1s;
++  animation-fill-mode: forwards;
++}
++
++.mid {
++  top: 10px;
++  left: 420px;
++  width: 46px;
++  opacity: 0;
++  animation-name: cloudMid;
++  animation-duration: 2s;
++  animation-timing-function: linear;
++  animation-delay: 1.2s;
++  animation-fill-mode: forwards;
++}
++
++.right {
++  top: 100px;
++  left: 500px;
++  width: 62px;
++  opacity: 0;
++  animation-name: cloudRight;
++  animation-duration: 2s;
++  animation-timing-function: linear;
++  animation-delay: 1s;
++  animation-fill-mode: forwards;
++}
++
++@keyframes cloudLeft {
++  0% {
++	top: 17px;
++	left: 220px;
++	opacity: 0;
++  }
++  
++  20% {
++	top: 33px;
++	left: 188px;
++	opacity: 1;
++  }
++  
++  80% {
++	top: 81px;
++	left: 92px;
++	opacity: 1;
++  }
++  
++  100% {
++	top: 97px;
++	left: 60px;
++	opacity: 0;
+   }
+ }
+-</script>
+ 
+-<style lang="stylus" scoped>
+-.theme-vdoing-content
+-  margin 3rem auto
+-  padding 1.5rem
+-  span
+-    font-size 6rem
+-    color $accentColor
++@keyframes cloudRight {
++  0% {
++	top: 100px;
++	left: 500px;
++	opacity: 0;
++  }
++  
++  20% {
++	top: 120px;
++	left: 460px;
++	opacity: 1;
++  }
++  
++  80% {
++	top: 180px;
++	left: 340px;
++	opacity: 1;
++  }
++  
++  100% {
++	top: 200px;
++	left: 300px;
++	opacity: 0;
++  }
++}
++
++.bullshit {
++  position: relative;
++  float: left;
++  width: 300px;
++  padding: 30px 0;
++  overflow: hidden;
++}
++
++.bullshit__oops {
++  margin-bottom: 20px;
++  font-size: 32px;
++  font-weight: bold;
++  line-height: 40px;
++  color: #1482f0;
++  opacity: 0;
++  animation-name: slideUp;
++  animation-duration: 0.5s;
++  animation-fill-mode: forwards;
++}
++
++.bullshit__headline {
++  margin-bottom: 10px;
++  font-size: 20px;
++  font-weight: bold;
++  line-height: 24px;
++  color: #222;
++  opacity: 0;
++  animation-name: slideUp;
++  animation-duration: 0.5s;
++  animation-delay: 0.1s;
++  animation-fill-mode: forwards;
++}
++
++.bullshit__info {
++  margin-bottom: 30px;
++  font-size: 13px;
++  line-height: 21px;
++  color: grey;
++  opacity: 0;
++  animation-name: slideUp;
++  animation-duration: 0.5s;
++  animation-delay: 0.2s;
++  animation-fill-mode: forwards;
++}
++
++.bullshit__return-home {
++  display: block;
++  float: left;
++  width: 110px;
++  height: 36px;
++  font-size: 14px;
++  line-height: 36px;
++  color: #fff;
++  text-align: center;
++  cursor: pointer;
++  background: #1482f0;
++  border-radius: 100px;
++  opacity: 0;
++  animation-name: slideUp;
++  animation-duration: 0.5s;
++  animation-delay: 0.3s;
++  animation-fill-mode: forwards;
++}
++
++@keyframes slideUp {
++  0% {
++	opacity: 0;
++	transform: translateY(60px);
++  }
++  
++  100% {
++	opacity: 1;
++	transform: translateY(0);
++  }
++}
++
++
+ </style>
++
+diff --git a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js b/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
+index ab52ffd..1a5fc73 100644
+--- a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
++++ b/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
+@@ -48,7 +48,7 @@ function readTocs(root) {
+   const files = fs.readdirSync(root); // 读取目录,返回数组，成员是root底下所有的目录名 (包含文件夹和文件)
+   files.forEach(name => {
+     const file = path.resolve(root, name); // 将路径或路径片段的序列解析为绝对路径
+-    if (fs.statSync(file).isDirectory() && name !== '.vuepress' && name !== '@pages') { // 是否为文件夹目录，并排除.vuepress文件夹
++    if (fs.statSync(file).isDirectory() && name !== '.vuepress') { // 是否为文件夹目录，并排除.vuepress文件夹
+       result.push(file);
+     }
+   })
+diff --git a/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js b/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js
+index 5268653..d092261 100644
+--- a/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js
++++ b/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js
+@@ -8,17 +8,22 @@ const log = console.log
+ 
+ function createPage (sourceDir, page) {
+   const dirPath = path.join(sourceDir, '@pages') // 生成的文件夹路径
++  let pageCounter = 10; // 初始序号
++  let pagePath
+ 
+   // 文件夹不存在时
+   if (!fs.existsSync(dirPath)) {
+     fs.mkdirSync(dirPath) // 创建文件夹
+   }
+ 
+-  const pagePath = path.join(dirPath, `${page}.md`) // 生成的文件路径
++  for (let i = 0; i < page.length; i++) {
++    pagePath = path.join(dirPath, `${pageCounter}.${page}.md`) // 生成的文件路径
++    pageCounter++; // 递增序号
+ 
+-  // 文件已经存在时跳出
+-  if (fs.existsSync(pagePath)) {
+-    return
++    // 文件已经存在时跳出
++    if (fs.existsSync(pagePath)) {
++      return
++    }
+   }
+ 
+   // 注意：反引号字符串的格式会映射到文件
+@@ -45,11 +50,12 @@ permalink: /archives/
+ article: false
+ ---`
+   }
+-
+   if (content) {
+     fs.writeFileSync(pagePath, content)
+     log(chalk.blue('tip ') + chalk.green(`create page(生成页面): ${pagePath}`))
+   }
++
++
+ }
+ 
+ // 删除页面文件
