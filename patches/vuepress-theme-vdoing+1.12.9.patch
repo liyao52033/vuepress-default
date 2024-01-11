@@ -1,3 +1,215 @@
+diff --git a/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue b/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
+index a7a2a07..7fc3a5f 100644
+--- a/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
++++ b/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
+@@ -42,6 +42,29 @@
+         <div class="date iconfont icon-riqi" title="创建时间" v-if="date">
+           <a href="javascript:;">{{ date }}</a>
+         </div>
++        <!-- 当前文章页字数 -->
++        <div class="book-words iconfont icon-book" style="float: left; margin-left: 20px; font-size: 0.8rem;">
++            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ wordsCount }}</a>
++        </div>
++
++        <!-- 预计阅读时间 -->
++        <div class="reading-time iconfont icon-shijian" style="float: left; margin-left: 20px; font-size: 0.8rem;">
++            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ readTimeCount }}</a>
++        </div>
++
++        <!-- 文章页访问量 -->
++        <div class="page-view iconfont icon-view" style="float: left; margin-left: 20px; font-size: 0.8rem;">
++            <a href="javascript:;" id="busuanzi_page_pv" class="view-data">
++                <i title="正在获取..." class="loading iconfont icon-loading"></i>
++            </a>
++        </div>
++
++      <!-- 本文总访客量 -->
++        <div class="page_total_view iconfont icon-tongji" style="float: left; margin-left: 20px; font-size: 0.8rem;">
++            <a href="javascript:;" id="busuanzi_page_uv" class="view-data">
++                <i title="正在获取..." class="loading iconfont icon-loading"></i>
++            </a>
++        </div>
+         <div
+           class="date iconfont icon-wenjian"
+           title="分类"
+@@ -64,6 +87,7 @@
+ </template>
+ 
+ <script>
++import fetch from '../util/busuanzi.js'
+ export default {
+   data() {
+     return {
+@@ -72,16 +96,26 @@ export default {
+       classifyList: [],
+       cataloguePermalink: '',
+       author: null,
+-      categories: []
++      categories: [],
++      wordsCount: 0,
++      readTimeCount: 0,
++      mountedIntervalTime: 1000,
++      moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
+     }
+   },
+   created() {
+     this.getPageInfo()
+   },
++  mounted() {
++   this.$nextTick(function () { 
++      this.initPageInfo();
++    })
++  },
+   watch: {
+     '$route.path'() {
+       this.classifyList = []
+       this.getPageInfo()
++      this.initPageInfo()
+     }
+   },
+   methods: {
+@@ -132,7 +166,129 @@ export default {
+         ? ''
+         : '/'
+         }#${item}`
+-    }
++    },
++
++     /**
++        * 初始化页面信息
++        */
++    initPageInfo() {
++      if (this.$frontmatter.article === undefined || this.$frontmatter.article) {
++        // 排除掉 article 为 false 的文章
++        const { eachFileWords, pageView, pageIteration, readingTime } =
++          this.$themeConfig.blogInfo;
++        // 下面两个 if 可以调换位置，从而让文章的浏览量和字数交换位置
++        if (eachFileWords) {
++          try {
++            eachFileWords.forEach((itemFile) => {
++              if (itemFile.permalink === this.$frontmatter.permalink) {
++                // this.addPageWordsCount 和 if 可以调换位置，从而让文章的字数和预阅读时间交换位置
++                this.wordsCount = itemFile.wordsCount;
++                if (readingTime || readingTime === undefined) {
++                  this.readTimeCount = itemFile.readingTime;
++                }
++              }
++            });
++          } catch (error) {
++            //     console.error("获取浏览量失败：", error);
++          }
++        }
++        if (pageView || pageView === undefined) {
++          this.addPageView();
++          this.addtotalPageView()
++          this.getPageViewCouter(pageIteration);
++        }
++        return;
++      }
++    },
++    /**
++     * 文章页的访问量
++     */
++    getPageViewCouter(iterationTime = 3000) {
++      fetch();
++      let i = 0;
++      var defaultCouter = "9999";
++      // 如果只需要第一次获取数据（可能获取失败），可注释掉 setTimeout 内容，此内容是第一次获取失败后，重新获取访问量
++      // 可能会导致访问量再次 + 1 原因：取决于 setTimeout 的时间（需求调节），setTimeout 太快导致第一个获取的数据没返回，就第二次获取，导致结果返回 + 2 的数据
++      setTimeout(() => {
++        let pageView = document.querySelector(".view-data");
++        if (pageView && pageView.innerText == "") {
++          let interval = setInterval(() => {
++            // 再次判断原因：防止进入 setInterval 的瞬间，访问量获取成功
++            if (pageView && pageView.innerText == "") {
++              i += iterationTime;
++              if (i > iterationTime * 5) {
++                pageView.innerText = defaultCouter;
++                clearInterval(interval); // 5 次后无法获取，则取消获取
++              }
++              if (pageView.innerText == "") {
++                // 手动获取访问量
++                fetch();
++              } else {
++                clearInterval(interval);
++              }
++            } else {
++              clearInterval(interval);
++            }
++          }, iterationTime);
++          // 绑定 beforeDestroy 生命钩子，清除定时器
++          this.$once("hook:beforeDestroy", () => {
++            clearInterval(interval);
++            interval = null;
++          });
++        }
++      }, iterationTime);
++    },
++    /**
++     * 浏览量
++     */
++    addPageView() {
++      let pageView = document.querySelector(".page-view");
++      if (pageView) {
++        // 添加 loading 效果
++        let style = document.createElement("style");
++        style.innerHTML = `@keyframes turn {
++                0% {
++                transform: rotate(0deg);
++                }
++                100% {
++                transform: rotate(360deg);
++                }
++            }
++             .loading {
++                display: inline-block;
++                animation: turn 1s linear infinite;
++                -webkit-animation: turn 1s linear infinite;
++            }
++          `;
++        document.head.appendChild(style);
++      }
++    },
++
++    /**
++   * 本文总访客量
++   */
++    addtotalPageView() {
++      let pageView = document.querySelector(".page_total_view");
++      if (pageView) {
++        // 添加 loading 效果
++        let style = document.createElement("style");
++        style.innerHTML = `@keyframes turn {
++                0% {
++                transform: rotate(0deg);
++                }
++                100% {
++                transform: rotate(360deg);
++                }
++            }
++            .loading {
++                display: inline-block;
++                animation: turn 1s linear infinite;
++                -webkit-animation: turn 1s linear infinite;
++            }`;
++        document.head.appendChild(style);
++      }
++    },
++
+   }
+ }
+ </script>
+@@ -200,4 +356,10 @@ export default {
+           &:hover
+             color $accentColor
+             text-decoration underline
++
++ .view-data {
++    color: #999;
++    margin-left: 3px;
++ }
++
+ </style>
 diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
 index 1b5e5c0..2b26fd3 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
@@ -420,3 +632,121 @@ index 5268653..d092261 100644
  }
  
  // 删除页面文件
+diff --git a/node_modules/vuepress-theme-vdoing/util/busuanzi.js b/node_modules/vuepress-theme-vdoing/util/busuanzi.js
+new file mode 100644
+index 0000000..ee6e1f9
+--- /dev/null
++++ b/node_modules/vuepress-theme-vdoing/util/busuanzi.js
+@@ -0,0 +1,112 @@
++var bszCaller, bszTag, scriptTag, ready;
++
++var t,
++    e,
++    n,
++    a = !1,
++    c = [];
++
++// 修复Node同构代码的问题
++if (typeof document !== "undefined") {
++    (ready = function (t) {
++        return (
++            a ||
++                "interactive" === document.readyState ||
++                "complete" === document.readyState
++                ? t.call(document)
++                : c.push(function () {
++                    return t.call(this);
++                }),
++            this
++        );
++    }),
++        (e = function () {
++            for (var t = 0, e = c.length; t < e; t++) c[t].apply(document);
++            c = [];
++        }),
++        (n = function () {
++            a ||
++                ((a = !0),
++                    e.call(window),
++                    document.removeEventListener
++                        ? document.removeEventListener("DOMContentLoaded", n, !1)
++                        : document.attachEvent &&
++                        (document.detachEvent("onreadystatechange", n),
++                            window == window.top && (clearInterval(t), (t = null))));
++        }),
++        document.addEventListener
++            ? document.addEventListener("DOMContentLoaded", n, !1)
++            : document.attachEvent &&
++            (document.attachEvent("onreadystatechange", function () {
++                /loaded|complete/.test(document.readyState) && n();
++            }),
++                window == window.top &&
++                (t = setInterval(function () {
++                    try {
++                        a || document.documentElement.doScroll("left");
++                    } catch (t) {
++                        return;
++                    }
++                    n();
++                }, 5)));
++}
++
++bszCaller = {
++    fetch: function (t, e) {
++        var n = Math.floor(1099511627776 * Math.random());
++        t = t.replace("=BusuanziCallback", "=" + n);
++        (scriptTag = document.createElement("SCRIPT")),
++            (scriptTag.type = "text/javascript"),
++            (scriptTag.defer = !0),
++            (scriptTag.src = t),
++            document.getElementsByTagName("HEAD")[0].appendChild(scriptTag);
++        window[n] = this.evalCall(e);
++    },
++    evalCall: function (e) {
++        return function (t) {
++            ready(function () {
++                try {
++                    e(t),
++                        scriptTag &&
++                        scriptTag.parentElement &&
++                        scriptTag.parentElement.removeChild &&
++                        scriptTag.parentElement.removeChild(scriptTag);
++                } catch (t) {
++                    bszTag.hides();
++                }
++            });
++        };
++    },
++};
++
++bszTag = {
++    bszs: ["site_pv", "site_uv", "page_pv", "page_uv"],
++    texts: function (n) {
++        this.bszs.map(function (t) {
++            var e = document.getElementById("busuanzi_" + t);
++            e && (e.innerHTML = n[t]);
++        });
++    },
++    hides: function () {
++        this.bszs.map(function (t) {
++            var e = document.getElementById("busuanzi_container_" + t);
++            e && (e.style.display = "none");
++        });
++    },
++    shows: function () {
++        this.bszs.map(function (t) {
++            var e = document.getElementById("busuanzi_container_" + t);
++            e && (e.style.display = "inline");
++        });
++    },
++};
++
++export default () => {
++  //  bszTag && bszTag.hides();
++    // bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function (t) {
++    //     bszTag.texts(t), bszTag.shows();
++    // })
++    bszCaller.fetch("//busuanzi.9420.ltd/js", function (t) {
++        bszTag.texts(t), bszTag.shows();
++    })
++};

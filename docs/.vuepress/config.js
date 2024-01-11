@@ -1,5 +1,6 @@
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
+// const { html5Media } = require('markdown-it-html5-media');
 const { readFileList, readTotalFileWords, readEachFileWords } = require('./webSiteInfo/readFile.js');
 
 
@@ -29,6 +30,10 @@ module.exports = {
     '../*.js', // 使用相对路径
   ],
 
+  // configureWebpack: (config) => {
+  //   config.devtool = 'source-map';
+  // },
+
   theme: 'vdoing',
   plugins: pluginConfig,
 
@@ -42,9 +47,9 @@ module.exports = {
     externalLinks: {
       target: '_blank',
       rel: 'noopener noreferrer'
-    }
+    },
     // extendMarkdown: md => {
-    //   md.use();
+    //   md.use(html5Media);
     // }
   },
 
@@ -89,11 +94,11 @@ module.exports = {
     },
     footer: {
       createYear: 2023,
-      // copyrightInfo: '<a target="_blank"' +
-      //   ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
-      //   ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
       copyrightInfo: '<a target="_blank"' +
-        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>'
+        ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>&nbsp;&nbsp;All Rights' +
+        ' Reserved<br>备案号：<a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2023023964号-1</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+      // copyrightInfo: '<a target="_blank"' +
+      //   ' href="https://github.com/liyao52033/vuepress-default">liyao52033</a>'
     },
     extendFrontmatter: {
       author: {

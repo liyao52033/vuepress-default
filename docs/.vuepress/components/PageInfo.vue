@@ -37,6 +37,7 @@ export default {
             wordsCount: 0,
             readTimeCount: 0,
             mountedIntervalTime: 1000,
+      //      showPageInfo: true,
             moutedParentEvent: ".articleInfo-wrap > .articleInfo > .info"
         };
     },
@@ -46,7 +47,7 @@ export default {
             if (this.$route.path != "/") {
                 this.initPageInfo();
                 this.isMounted(document.querySelector(".page-info"));
-            }
+            } 
         })
     },
 
@@ -81,7 +82,7 @@ export default {
                             }
                         });
                     } catch (error) { 
-                    console.error("获取浏览量失败：", error);
+               //     console.error("获取浏览量失败：", error);
                     }
                 }
                 if (pageView || pageView === undefined) {
@@ -92,9 +93,10 @@ export default {
                  let page = document.querySelector(".page-info");
                 if (page) {
                     this.mountedView(page);
-                } else { 
-                    console.error("初始化失败：", "站点信息不存在");
                 }
+                // else { 
+                //     console.error("初始化失败：", "站点信息不存在");
+                // }
                 return;
             }
         },
@@ -255,7 +257,8 @@ export default {
             }
             
         },
-       
+
+        
     },
   
 };
