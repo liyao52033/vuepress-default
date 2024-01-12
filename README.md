@@ -13,8 +13,8 @@ yarn
 "scripts": {
     "docs:dev": "vuepress dev docs",  //启动项目
     "docs:build": "vuepress build docs", // 打包项目
-    "deploy": "./docs/.vuepress/deploy.sh", //部署到github.io
-    "push": "./docs/push.sh"  //推送到github
+    "deploy": "./docs/.vuepress/deploy.sh", //部署到github.io，更改为自己的github地址
+    "push": "./docs/push.sh"  //推送到github，更改为自己的github地址
   },
 ```
 
