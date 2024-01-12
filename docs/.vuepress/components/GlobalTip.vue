@@ -1,10 +1,15 @@
 <template></template>
 <script>
 export default {
+    data() {
+        return {
+            time: 2000
+        }
+    },
     mounted() {
-        if (this.$route.path != "/") {
-             this.bgTimeColor();
-        } 
+        if (this.$route.path !== "/") {
+           this.bgTimeColor();
+       }  
     },
     watch: {
         $route(to, from) {
@@ -30,51 +35,51 @@ export default {
             if (hours >= 6 && hours < 11) {
                 addTip(
                     `早上好呀~~，现在是 ${hours}:${minutes}:${seconds}，吃早餐了吗？😊🤭`,
-                    "info",
+                    "success",
                     50,
-                    4000
+                    this.time
                 );
             }  else if (hours >= 11 && hours <= 12) {
                 addTip(
                     `中午好呀~~，现在是 ${hours}:${minutes}:${seconds}，睡个午觉吧🥤🏀~~`,
                     "info",
                     50,
-                    4000
+                    this.time
                 );
             } else if (hours >= 13 && hours < 17) {
                 addTip(
                     `下午好呀~~，现在是 ${hours}:${minutes}:${seconds}，繁忙的下午也要适当休息哦🥤🏀~~`,
                     "info",
                     50,
-                    4000
+                    2000
                 );
             } else if (hours >= 17 && hours < 19) {
                 addTip(
                     `到黄昏了~~，现在是 ${hours}:${minutes}:${seconds}，准备下班干饭🥗🍖~~`,
                     "info",
                     50,
-                    4000
+                    this.time
                 );
             } else if (hours >= 19 && hours < 22) {
                 addTip(
                     `晚上好呀~~，现在是 ${hours}:${minutes}:${seconds}，看个电影放松一下吧🥱😪~~`,
-                    "info",
+                    "success",
                     50,
-                    4000
+                    this.time
                 );
             } else if (hours >= 22 && hours < 24) {
                 addTip(
                     `晚上好呀~~，现在是 ${hours}:${minutes}:${seconds}，该准备睡觉了🥱😪~~`,
-                    "info",
+                    "warning",
                     50,
-                    4000
+                    this.time
                 );
             } else if (hours >= 0 && hours < 6) {
                 addTip(
                     `别再熬夜了~~，现在是 ${hours}:${minutes}:${seconds}，早点睡吧，让我们一起欣赏早上的太阳~~😇🛏`,
-                    "info",
+                    "danger",
                     50,
-                    4000
+                     this.time
                 );
             }
             document.body.append(div);
@@ -91,7 +96,7 @@ export default {
  * 
  * 在 head 里添加图标 link 地址：https://at.alicdn.com/t/font_3114978_qe0b39no76.css
  */
-function addTip(content, type, startHeight = 50, dieTime = 500) {
+function addTip(content, type, startHeight = 50, dieTime =  3000) {
     var tip = document.querySelectorAll(".global-tip");
     var time = new Date().getTime();
     // 获取最后消息提示元素的高度
