@@ -1,11 +1,8 @@
-# 一. 使用本项目
 
-## 1. 克隆到本地
+## 1. 下载到本地并安装依赖
 
 ```bash
-git clone https://github.com/liyao52033/vuepress-default.git
-
-yarn install
+yarn 
 ```
 
 
@@ -16,74 +13,13 @@ yarn install
 "scripts": {
     "docs:dev": "vuepress dev docs",  //启动项目
     "docs:build": "vuepress build docs", // 打包项目
-    "docs:nav": "vuepress nav docs -f" , // 生成导航栏与侧边栏
     "deploy": "./docs/.vuepress/deploy.sh", //部署到github.io
     "push": "./docs/push.sh"  //推送到github
   },
 ```
 
 
-
-## 3. 启动项目
-
-```bash
-yarn run docs:dev
-```
-
-
-
-## 4. 在docs构建目录如下
-
-```
-docs
-├─ README.md
-├─ contact.md
-├─ about.md
-├─ foo/
-│  ├─ test
-│  ├─  ├─ README.md   
-│  ├─ README.md
-│  ├─ one.md
-│  └─ two.md
-└─ bar/
-   ├─ README.md
-   ├─ three.md
-   └─ four.md
-```
-
-文件夹可以嵌套，但每个文件夹都必须有README目录，不然会报404
-
-
-
-## 5. 导航栏与侧边栏
-
-voding主题已经提供[结构化侧边栏](https://doc.xugaoyi.com/pages/a20ce8/#sidebar)，也内置了自动生成侧边栏插件，两者选一即可
-
--  若使用自动生成侧边栏插件，执行以下命令，将生成的nav.js在.vuppress/config.js引入即可自动生成侧边栏, 更多内容见[官网](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar)
-
-```sh
-// 生成nav.js
-yarn run docs:nav
-
-//使用插件并引入nav.js  .vuepress/config.js
-const nav = require("./nav.js");
-module.exports = {
-  plugins: [
-     ["vuepress-plugin-auto-sidebar",{
-   sidebarDepth: 2,
-     collapse: {
-       open: true,
-    },
-}],
-  ]
-  themeConfig: {
-    nav
-}
-}
-
-
-```
-
+## 3. 编辑导航栏
 - 若使用vdoing主题侧边栏，导航栏只需写与.vuepress同层的一级目录，link写该文件夹内任意md文件frontmatter的permalink,格式如下，更多内容见[官网](https://doc.xugaoyi.com/pages/54651a/)
 
 ```javascript
@@ -110,6 +46,53 @@ module.exports = {
 
 ```
 
+## 4. 添加全文搜素与评论功能
+### 4.1 自建meiLisearch，参考[meilisearch部署](https://xiaoying.org.cn/pages/a8083d/)并完善下列信息
+```javascript
+// 全文搜索插件 meilisearch
+  [
+    'vuepress-plugin-meilisearch',
+    {
+      hostUrl: '',        // meilisearch 服务端域名
+      apiKey: '', // 只有搜索权限的 key
+      indexUid: 'blog',
+      placeholder: '搜索一下，你就知道',   // 在搜索栏中显示的占位符
+      maxSuggestions: 100,                      // 最多显示几个搜索结果
+      cropLength: 20
+    },
+  ],
+```
+
+### 4.2 参考[leancloud文档](https://docs.leancloud.cn/sdk/start/quickstart/)并完善下列信息
+  ```javascript
+
+    //valine评论
+  ['vuepress-plugin-comment', {
+      choosen: 'valine',
+      // options选项中的所有参数，会传给Valine的配置
+      options: {
+        el: '#valine-vuepress-comment',
+        appId: '', // valine的appid
+        appKey: '', // valine的appkey
+        serverURLs: "https://qqatv4n2.lc-cn-n1-shared.com",
+        avatar: 'wavatar',
+        path: '<%- window.location.pathname %>',
+        enable: true,
+        enableQQ: true,
+        pageSize: 5,
+        visitor: true,
+        placeholder: '同道中人，文明留言...',  // 评论框占位提示符
+        lang: 'zh-cn', // 支持中文
+      }
+    }
+  ]
+```
+
+## 5. 启动项目
+
+```bash
+yarn run docs:dev
+```
 
 
 ## 6.部署，此处只部署到 USERNAME.github.io,其他情况见[官网](https://vuepress.vuejs.org/zh/guide/deploy.html)
@@ -129,211 +112,10 @@ yarn run deploy
 
 
 
-# [二. 从零到一根据官网搭建](https://vuepress.vuejs.org/)
-
-## 安装
-
-```bash
-yarn add -D vuepress
-```
-
- 注意
-
-如果你的现有项目依赖了 webpack 3.x，我们推荐使用 [Yarn (opens new window)](https://classic.yarnpkg.com/zh-Hans/)而不是 npm 来安装 VuePress。因为在这种情形下，npm 会生成错误的依赖树,导致项目无法启动
-
-## 在 `package.json` 中添加脚本
-
-这一步骤是可选的，但我们推荐你完成它。在下文中，我们会默认这些 scripts 已经被添加。
-
-```json
-{
-  "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
-  }
-}
-```
 
 
 
-## 在本地启动服务器
 
-```bash
-yarn docs:dev 
-```
-
-
-
-# 三. 目录结构
-
-VuePress 遵循 **“约定优于配置”** 的原则，推荐的目录结构如下：
-
-```
-.
-├── docs
-│   ├── .vuepress (可选的)
-│   │   ├── components (可选的)
-│   │   ├── theme (可选的)
-│   │   │   └── Layout.vue
-│   │   ├── public (可选的)
-│   │   ├── styles (可选的)
-│   │   │   ├── index.styl
-│   │   │   └── palette.styl
-│   │   ├── templates (可选的, 谨慎配置)
-│   │   │   ├── dev.html
-│   │   │   └── ssr.html
-│   │   ├── config.js (可选的)
-│   │   └── enhanceApp.js (可选的)
-│   │ 
-│   ├── README.md
-│   ├── guide
-│   │   └── README.md
-│   └── config.md
-│ 
-└── package.json
-```
-
-注意
-
-请留意目录名的大写。
-
-- `docs/.vuepress`: 用于存放全局的配置、组件、静态资源等。
-
-- `docs/.vuepress/components`: 该目录中的 Vue 组件将会被自动注册为全局组件。
-
-- `docs/.vuepress/theme`: 用于存放本地主题。
-
-- `docs/.vuepress/styles`: 用于存放样式相关的文件。
-
-- `docs/.vuepress/styles/index.styl`: 将会被自动应用的全局样式文件，会生成在最终的 CSS 文件结尾，具有比默认样式更高的优先级。
-
-- `docs/.vuepress/styles/palette.styl`: 用于重写默认颜色常量，或者设置新的 stylus 颜色常量。
-
-- `docs/.vuepress/public`: 静态资源目录。
-
-- `docs/.vuepress/templates`: 存储 HTML 模板文件。
-
-- `docs/.vuepress/templates/dev.html`: 用于开发环境的 HTML 模板文件。
-
-- `docs/.vuepress/templates/ssr.html`: 构建时基于 Vue SSR 的 HTML 模板文件。
-
-- `docs/.vuepress/config.js`: 配置文件的入口文件，也可以是 `YML` 或 `toml`。
-
-- `docs/.vuepress/enhanceApp.js`: 客户端应用的增强。
-
-  
-
-  ## 默认的页面路由
-
-  此处我们把 `docs` 目录作为 `targetDir` （参考 [命令行接口](https://vuepress.vuejs.org/zh/api/cli.html#基本用法)），下面所有的“文件的相对路径”都是相对于 `docs` 目录的。在项目根目录下的 `package.json` 中添加 `scripts` ：
-
-  ```json
-  {
-    "scripts": {
-      "dev": "vuepress dev docs",
-      "build": "vuepress build docs"
-    }
-  }
-  ```
-
-  对于上述的目录结构，默认页面路由地址如下：
-
-  | 文件的相对路径     | 页面路由地址   |
-  | ------------------ | -------------- |
-  | `/README.md`       | `/`            |
-  | `/guide/README.md` | `/guide/`      |
-  | `/config.md`       | `/config.html` |
-
-​      默认的主题提供了一个首页（Homepage）的布局 (用于 这个网站的主页)。想要使用它，需要在你的根级 README.md 的 YAML front    matter 指定 home: true。
-
-
-
-## 导航栏与侧边栏配置
-
-用[Vuepress Plugin Auto Sidebar](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar)自动生成插件，[详细文档](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/)
-
-## 安装
-
-```bash
-yarn add vuepress-plugin-auto-sidebar -D
-```
-
-## [使用](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/zh/features/plugin-options.html#%E6%A6%82%E8%A7%88)
-
-> **Attention, do not put `plugins` in the themeConfig**
-
-```js
-module.exports = {
-  plugins: [
-    ["vuepress-plugin-auto-sidebar", {
-       sidebarDepth: 2,
-       collapse: {
-          open: true,
-      },
-    }]
-  ]
-}
-```
-
-## 快速生成简单的导航栏
-
-1. 添加脚本到 `package.json` 中
-
-   ```json
-   {
-     "scripts": {
-       "docs:nav": "vuepress nav docs"
-     }
-   }
-   ```
-
-2. 执行命令
-
-   ```bash
-   yarn run docs:nav
-   ```
-
-​     它将会在 `.vuepress` 文件夹下生成 `nav.js` 文件，每次新增文件夹都要执行一次该命令重新生成路由
-
-3. 引入生成的 nav 文件
-
-   ```js
-   const nav = require("./nav.js");
-   
-   module.exports = {
-     plugins: {
-       "vuepress-plugin-auto-sidebar": {}
-     },
-     themeConfig: {
-       nav
-     }
-   }
-   ```
-
-
-
-## 专注写作
-
-在docs目录下存放写的文章即可，目录如下
-
-```text
-docs
-├─ README.md
-├─ contact.md
-├─ about.md
-├─ foo/
-│  ├─ README.md
-│  ├─ one.md
-│  └─ two.md
-└─ bar/
-   ├─ README.md
-   ├─ three.md
-   └─ four.md
-```
-
-**==<!--警告-->==**
-
-每个文件夹下必须有一个README.md，不然跳转404
 
 
 
