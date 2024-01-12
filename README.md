@@ -46,7 +46,7 @@ module.exports = {
 
 ```
 
-## 4. 添加全文搜素与评论功能
+## 4. 添加全文搜索与评论功能
 ### 4.1 自建meiLisearch，参考[meilisearch部署](https://xiaoying.org.cn/pages/a8083d/)并完善下列信息
 ```javascript
 // 全文搜索插件 meilisearch
