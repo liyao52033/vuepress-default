@@ -1,8 +1,7 @@
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
 // const { html5Media } = require('markdown-it-html5-media');
-const { readFileList, readTotalFileWords, readEachFileWords } = require('./webSiteInfo/readFile.js');
-
+const { readEachFileWords } = require('./webSiteInfo/readFile.js');
 
 module.exports = {
 
@@ -30,9 +29,19 @@ module.exports = {
     '../*.js', // 使用相对路径
   ],
 
-  // configureWebpack: (config) => {
-  //   config.devtool = 'source-map';
-  // },
+   additionalPages: [
+    {
+      path: '/login/',
+      frontmatter: {
+        layout: 'Login',
+        article: false
+      }
+    }
+  ],
+    
+  configureWebpack: (config) => {
+    config.devtool = 'nosources-source-map';
+  },
 
   theme: 'vdoing',
   plugins: pluginConfig,
@@ -62,6 +71,11 @@ module.exports = {
     sidebar: 'structuring',
     subSidebar: 'auto',
     pageButton: true,
+    loginInfo: {
+      isLogin: false, // 是否开启登录
+      token: Math.random().toString(32).slice(2) + Math.round(new Date().getTime() / 1000),
+      time: 1  // token过期时间，单位：天
+    },
     indexImg: {
       navColor: 1,    // 导航栏左侧名字、中间搜索框、右侧字体的颜色，1 是黑色，2 是白色。默认是 1
       switchNavColor: false,    // 页面移出大图片的位置后，navColor 是否变换，如由白色变黑色，黑色变白色。默认是 false

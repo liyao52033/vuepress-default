@@ -1,6 +1,6 @@
 <template>
-  <div>
-	<span>{{ currentDate }}</span>
+  <div class="getDate">
+	{{ currentDate }}
   </div>
 </template>
 
@@ -25,3 +25,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.getDate {
+	color:red;
+	margin: 10px auto;
+	width:75px;
+}
+
+</style>
