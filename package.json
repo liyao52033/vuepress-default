@@ -25,7 +25,6 @@
     "gray-matter": "^4.0.3",
     "inquirer": "^9.2.10",
     "json2yaml": "^1.1.0",
-    "markdown-it-html5-media": "^0.7.1",
     "moment": "^2.29.4",
     "node-sass": "8.0.0",
     "patch-package": "^8.0.0",

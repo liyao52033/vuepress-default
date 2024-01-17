@@ -9,7 +9,8 @@ module.exports = [
 
   {
     name: 'custom-plugins',
-    globalUIComponents: [ "GlobalTip", "RightArrow", "LoginInfo"] // 2.x 版本 globalUIComponents 改名为clientAppRootComponentFiles
+    // 2.x 版本 globalUIComponents 改名为clientAppRootComponentFiles
+    globalUIComponents: [ "GlobalTip", "RightArrow", "LoginInfo"] 
   },
 
    //更新时间

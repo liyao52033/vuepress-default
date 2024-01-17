@@ -17,7 +17,7 @@ export default {
     },
     mounted() {
         let { isLogin } = this.$themeConfig.loginInfo
-        if (!checkAuth() && this.$route.path !== '/login/' && isLogin) {
+        if (!checkAuth() && this.$route.path !== '/login/' && this.$route.path !== '/' && isLogin) {
             this.$router.push('/login/')
         }
     },

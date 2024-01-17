@@ -13,7 +13,6 @@ export default {
                 this.adjustArrow();
             }
         }, 200);
-      
     },
 
 
@@ -25,28 +24,25 @@ export default {
                 to.path !== from.path &&
                 this.$themeConfig.blogInfo
             ) {
-               this.$nextTick(() => {
+                this.$nextTick(() => {
                     this.adjustArrow();
-                });
+                });  
             }
         },
     },
     methods: {
         adjustArrow() {
-                let rightbar = document.querySelector(".right-menu-wrapper");
-                let arrow = document.querySelector(".page-nav-centre-next");
-
+            let rightbar = document.querySelector(".right-menu-wrapper");
+            let arrow = document.querySelector(".page-nav-centre-next");
+           
                 if (rightbar) {
-                    if (arrow) {
-                        arrow.style.right = "16rem";
-                    }
-                } else {
-                     if (arrow) {
-                        arrow.style.right = "2rem";
-                    }
+                    arrow.style.right = "16rem";
+                } else { 
+                    arrow.style.right = "2rem";
                 }
           
         },
+
     }
 };
 </script>

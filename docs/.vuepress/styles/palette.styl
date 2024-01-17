@@ -149,6 +149,7 @@ div[class*="language-"]
   --borderColor: #1d1d26
   --codeBg: #1d1d26
   --codeColor: #A9B7C6
+  
   codeThemeDark()
   div[class*="language-"].line-numbers-mode::after  // 代码块的行数和内容分割线颜色
     border-right 1px solid rgba(0, 0, 0, 0.66)
@@ -239,13 +240,12 @@ div[class*="language-"]
     background #904ac2
 
   // vuepress-plugin-tabs 插件的背景色
-  .tabs-component-tab,
-  .tabs-component-panels
-    background-color rgba(25,25,49,0.53)
-    border none
+  .el-tabs__item
+    color: #fff
   // vuepress-plugin-tabs 插件的标题选中颜色
-  .tabs-component-tab.is-active       
+  .el-tabs__item.is-active       
     color #b160ea
+ 
 
 // 阅读模式
 .theme-mode-read
