@@ -8,7 +8,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$route.path !== "/" && this.$route.path !== "/login/") {
+        if (this.$route.path !== "/" && this.$route.path !== "/login") {
            this.bgTimeColor();
        }  
     },

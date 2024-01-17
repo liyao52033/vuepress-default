@@ -30,7 +30,7 @@ module.exports = {
 
    additionalPages: [
     {
-      path: '/login/',
+      path: '/login',
       frontmatter: {
         layout: 'Login',
         article: false
@@ -38,9 +38,7 @@ module.exports = {
     } 
   ],
     
-  configureWebpack: (config) => {
-    config.devtool = 'source-map';
-  },
+  
 
   theme: 'vdoing',
   plugins: pluginConfig,

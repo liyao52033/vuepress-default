@@ -9,7 +9,7 @@ export default {
 
     mounted: function () {
         setTimeout(() => {
-            if (this.$route.path !== "/") {
+            if (this.$route.path !== "/" && this.$route.path !== '/login') {
                 this.adjustArrow();
             }
         }, 200);
@@ -35,12 +35,16 @@ export default {
             let rightbar = document.querySelector(".right-menu-wrapper");
             let arrow = document.querySelector(".page-nav-centre-next");
            
-                if (rightbar) {
-                    arrow.style.right = "16rem";
-                } else { 
-                    arrow.style.right = "2rem";
+            if (rightbar) {
+                if (arrow) {
+                     arrow.style.right = "16rem";   
+                }  
+            } else { 
+                if (arrow) {
+                     arrow.style.right = "2rem";
+                 }
+                   
                 }
-          
         },
 
     }
