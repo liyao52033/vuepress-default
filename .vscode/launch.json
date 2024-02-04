@@ -12,7 +12,6 @@
                 "docs:dev"
             ],
             "console": "integratedTerminal",
-            "debugServer": 4711,
             "sourceMaps": true,
             "sourceMapPathOverrides": {
                 "webpack:///docs/*": "${workspaceFolder}/docs/*"

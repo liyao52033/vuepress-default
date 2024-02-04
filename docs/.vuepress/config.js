@@ -38,7 +38,9 @@ module.exports = {
     } 
   ],
     
-  
+  // configureWebpack: (config) => {
+  //   config.devtool = 'source-map';
+  // },
 
   theme: 'vdoing',
   plugins: pluginConfig,
@@ -69,7 +71,7 @@ module.exports = {
     subSidebar: 'auto',
     pageButton: true,
     loginInfo: {
-      isLogin: true, // 是否开启登录
+      isLogin: false, // 是否开启登录
       token: Math.random().toString(32).slice(2) + Math.round(new Date().getTime() / 1000), 
       time: 0.5  // token过期时间，单位：天
     },
