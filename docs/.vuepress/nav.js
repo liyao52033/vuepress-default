@@ -5,7 +5,7 @@
     "items": [
     {
       "text": "前端",
-      "link": "/pages/bafa79/"
+        "link": "/pages/7765ba/"
     },
     {
       "text": "后端",
