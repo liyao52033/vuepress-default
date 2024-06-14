@@ -1,38 +1,100 @@
 diff --git a/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue b/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
-index a7a2a07..7fc3a5f 100644
+index a7a2a07..edd0fe3 100644
 --- a/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
 +++ b/node_modules/vuepress-theme-vdoing/components/ArticleInfo.vue
-@@ -42,6 +42,29 @@
+@@ -10,15 +10,11 @@
+         <li v-for="item in classifyList" :key="item">
+           <!-- 跳目录页 -->
+           <router-link v-if="cataloguePermalink" :to="getLink(item)">{{
+-            item
+-          }}</router-link>
++        item
++      }}</router-link>
+           <!-- 跳分类页 -->
+-          <router-link
+-            v-else-if="$themeConfig.category !== false"
+-            :to="`/categories/?category=${encodeURIComponent(item)}`"
+-            title="分类"
+-            >{{ item }}</router-link
+-          >
++          <router-link v-else-if="$themeConfig.category !== false"
++            :to="`/categories/?category=${encodeURIComponent(item)}`" title="分类">{{ item }}</router-link>
+           <!-- 没有跳转 -->
+           <span v-else>{{ item }}</span>
+         </li>
+@@ -27,36 +23,46 @@
+       <!-- 作者&日期 -->
+       <div class="info">
+         <div class="author iconfont icon-touxiang" title="作者" v-if="author">
+-          <a
+-            :href="author.href || author.link"
+-            v-if="
+-              author.href || (author.link && typeof author.link === 'string')
+-            "
+-            target="_blank"
+-            class="beLink"
+-            title="作者"
+-            >{{ author.name }}</a
+-          >
++          <a :href="author.href || author.link" v-if="author.href || (author.link && typeof author.link === 'string')
++        " target="_blank" class="beLink" title="作者">{{ author.name }}</a>
+           <a v-else href="javascript:;">{{ author.name || author }}</a>
+         </div>
          <div class="date iconfont icon-riqi" title="创建时间" v-if="date">
            <a href="javascript:;">{{ date }}</a>
          </div>
+-        <div
+-          class="date iconfont icon-wenjian"
+-          title="分类"
+-          v-if="
+-            $themeConfig.category !== false &&
+-            !(classify1 && classify1 !== '_posts') &&
+-            categories
+-          "
+-        >
+-          <router-link
+-            :to="`/categories/?category=${encodeURIComponent(item)}`"
+-            v-for="(item, index) in categories"
+-            :key="index"
+-            >{{ item + ' ' }}</router-link
+-          >
 +        <!-- 当前文章页字数 -->
-+        <div class="book-words iconfont icon-book" style="float: left; margin-left: 20px; font-size: 0.8rem;">
-+            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ wordsCount }}</a>
++        <div class="book-words iconfont icon-book" style="float: left; margin-left: 20px; font-size: 0.8rem;"
++          title="文章字数">
++          <a href="javascript:;" style="margin-left: 3px; color: #888">{{ wordsCount }}</a>
 +        </div>
 +
 +        <!-- 预计阅读时间 -->
-+        <div class="reading-time iconfont icon-shijian" style="float: left; margin-left: 20px; font-size: 0.8rem;">
-+            <a href="javascript:;" style="margin-left: 3px; color: #888">{{ readTimeCount }}</a>
++        <div class="reading-time iconfont icon-shijian" style="float: left; margin-left: 20px; font-size: 0.8rem;"
++          title="预计阅读时间">
++          <a href="javascript:;" style="margin-left: 3px; color: #888">{{ readTimeCount }}</a>
 +        </div>
 +
 +        <!-- 文章页访问量 -->
-+        <div class="page-view iconfont icon-view" style="float: left; margin-left: 20px; font-size: 0.8rem;">
-+            <a href="javascript:;" id="busuanzi_page_pv" class="view-data">
-+                <i title="正在获取..." class="loading iconfont icon-loading"></i>
-+            </a>
++        <div class="page-view iconfont icon-view" style="float: left; margin-left: 20px; font-size: 0.8rem;"
++          title="文章访问量">
++          <a href="javascript:;" id="busuanzi_page_pv" class="view-data">
++            <i title="正在获取..." class="loading iconfont icon-loading"></i>
++          </a>
 +        </div>
 +
-+      <!-- 本文总访客量 -->
-+        <div class="page_total_view iconfont icon-tongji" style="float: left; margin-left: 20px; font-size: 0.8rem;">
-+            <a href="javascript:;" id="busuanzi_page_uv" class="view-data">
-+                <i title="正在获取..." class="loading iconfont icon-loading"></i>
-+            </a>
++        <!-- 本文总访客量 -->
++        <div class="page_total_view iconfont icon-tongji" style="float: left; margin-left: 20px; font-size: 0.8rem;"
++          title="本文总访客量">
++          <a href="javascript:;" id="busuanzi_page_uv" class="view-data">
++            <i title="正在获取..." class="loading iconfont icon-loading"></i>
++          </a>
 +        </div>
-         <div
-           class="date iconfont icon-wenjian"
-           title="分类"
-@@ -64,6 +87,7 @@
++        <div class="date iconfont icon-wenjian" title="分类" v-if="$themeConfig.category !== false &&
++        !(classify1 && classify1 !== '_posts') &&
++        categories
++        ">
++          <router-link :to="`/categories/?category=${encodeURIComponent(item)}`" v-for="(item, index) in categories"
++            :key="index">{{ item + ' ' }}</router-link>
+         </div>
+       </div>
+     </div>
+@@ -64,6 +70,7 @@
  </template>
  
  <script>
@@ -40,7 +102,7 @@ index a7a2a07..7fc3a5f 100644
  export default {
    data() {
      return {
-@@ -72,16 +96,26 @@ export default {
+@@ -72,16 +79,26 @@ export default {
        classifyList: [],
        cataloguePermalink: '',
        author: null,
@@ -68,7 +130,7 @@ index a7a2a07..7fc3a5f 100644
      }
    },
    methods: {
-@@ -132,7 +166,129 @@ export default {
+@@ -132,7 +149,129 @@ export default {
          ? ''
          : '/'
          }#${item}`
@@ -199,7 +261,7 @@ index a7a2a07..7fc3a5f 100644
    }
  }
  </script>
-@@ -200,4 +356,10 @@ export default {
+@@ -200,4 +339,10 @@ export default {
            &:hover
              color $accentColor
              text-decoration underline

@@ -25,7 +25,8 @@
        
         {
             // 配置类型
-            "type": "chrome",
+          //  "type": "chrome",
+            "type": "msedge",
             // 请求类型
             "request": "launch",
             // 配置名称
@@ -36,7 +37,7 @@
             // "runtimeArgs": [
             //     "--auto-open-devtools-for-tabs"
             // ],
-            "runtimeExecutable": "canary",
+         //   "runtimeExecutable": "edge",
             "userDataDir": false,
             // 项目根目录
             "webRoot": "${workspaceFolder}",
@@ -51,7 +52,7 @@
                 // 这是webpack的协议，用于匹配所有路径,用于调试js
                 // 匹配规则是webpack://开头，?:*表示匹配但不映射，再后面是一个斜杠和星号，表示匹配剩余路径
                 // 右侧的值是路径替换规则，使用了变量${webRoot}，表示要替换为webRoot变量的值
-              //  "webpack://?:*/*": "${webRoot}/*"
+                "webpack://?:*/*": "${webRoot}/*"
             },
         },
 

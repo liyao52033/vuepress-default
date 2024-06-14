@@ -44,7 +44,7 @@
 
   {
     "text": "工具类",
-     link: '/categories/',
+     link: '/archives/',
     "items": [
     {
       "text": "工具类",
