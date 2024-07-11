@@ -27,6 +27,16 @@ module.exports = {
   extraWatchFiles: [
     '../*.js', // 使用相对路径
   ],
+
+  // additionalPages: [
+  //   {
+  //     path: '/login/',
+  //     frontmatter: {
+  //       layout: 'Login',
+  //       article: false
+  //     }
+  //   }
+  // ],
   
   // configureWebpack: (config) => {
   //    config.devtool = 'source-map';
