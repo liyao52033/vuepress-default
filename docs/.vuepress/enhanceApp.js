@@ -9,7 +9,6 @@
 
 import { checkAuth, STORAGE_KEY } from './login/helper';
 const whiteList = ['/login', '/']
-const List = ['/pages/bbd1d8/', '/pages/2fcd29/']  //加密文章列表
 
 //部分文章加密
 export default ({ Vue, router }) => {
@@ -19,7 +18,7 @@ export default ({ Vue, router }) => {
 
       let dialog = require('v-dialogs')
       Vue.use(dialog)
-      let { isLogin, token } = this.$themeConfig.loginInfo
+      let { isLogin, List, token } = this.$themeConfig.loginInfo
 
       if (isLogin) {
         router.beforeEach(async (to, from, next) => {

@@ -63,6 +63,7 @@ module.exports = {
     loginInfo: {
       isLogin: true, // 是否开启登录
       token: Math.random().toString(32).slice(2) + Math.round(new Date().getTime() / 1000), 
+      List: ['/pages/bbd1d8/', '/pages/2fcd29/'] , //加密文章列表
       expiration: 0.5  // token过期时间，单位：天
     },
     indexImg: {
@@ -140,7 +141,6 @@ module.exports = {
       moutedEvent: '.tags-wrapper',   // 首页的站点模块挂载在某个元素后面（支持多种选择器）
       indexIteration: 5000,   // 如果首页获取访问量失败，则每隔多少时间后获取一次访问量，直到获取成功或获取 10 次后
       pageIteration: 5000,    // 如果文章页获取访问量失败，则每隔多少时间后获取一次访问量，直到获取成功或获取 10 次后
-
     }
 
   }

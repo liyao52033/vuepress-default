@@ -7,8 +7,6 @@
 <script>
 import { checkAuth, STORAGE_KEY } from '../login/helper';
 
-const List = ['/pages/bbd1d8/', '/pages/2fcd29/']  //加密文章列表
-
 export default {
     data() {
         return {
@@ -19,7 +17,7 @@ export default {
 
     },
     mounted() {
-        let { isLogin } = this.$themeConfig.loginInfo
+        let { isLogin, List } = this.$themeConfig.loginInfo
       //     if (!checkAuth() && this.$route.path !== '/login' && this.$route.path !== '/' && isLogin) { //全局拦截
       //     this.$router.push('/login')
       // }
