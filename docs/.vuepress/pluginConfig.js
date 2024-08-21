@@ -1,12 +1,10 @@
 const secureConf = require("../../comment/secureinfo")
 
 module.exports = [
-
   'element-ui',
   'blocktoggle',
   'copycodeblock',
   'img-lazy',
-
   {
     name: 'custom-plugins',
     // 2.x 版本 globalUIComponents 改名为clientAppRootComponentFiles

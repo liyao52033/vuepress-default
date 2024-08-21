@@ -3,7 +3,6 @@ const pluginConfig = require("./pluginConfig.js")
 const { readEachFileWords } = require('./webSiteInfo/readFile.js');
 
 module.exports = {
-
   title: '编程随笔',
   description: 'Just playing around',
   head: [
@@ -28,15 +27,15 @@ module.exports = {
     '../*.js', // 使用相对路径
   ],
 
-  // additionalPages: [
-  //   {
-  //     path: '/login/',
-  //     frontmatter: {
-  //       layout: 'Login',
-  //       article: false
-  //     }
-  //   }
-  // ],
+  additionalPages: [
+    {
+      path: '/login/',
+      frontmatter: {
+        layout: 'Login',
+        article: false
+      }
+    }
+  ],
   
   // configureWebpack: (config) => {
   //    config.devtool = 'source-map';
