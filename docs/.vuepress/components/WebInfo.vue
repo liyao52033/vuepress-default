@@ -1,5 +1,4 @@
 <template>
-    <!-- Young Kbt -->
     <div class="web-info card-box">
         <div class="webinfo-title">
             <i class="iconfont icon-award" style="font-size: 0.875rem; font-weight: 900; width: 1.25em"></i>
@@ -63,7 +62,6 @@ import fetch from "../webSiteInfo/busuanzi"; // 统计量
 export default {
     data() {
         return {
-            // Young Kbt
             mdFileCount: 0, // markdown 文档总数
             createToNowDay: 0, // 博客创建时间距今多少天
             lastActiveDate: "", // 最后活动时间
@@ -77,7 +75,6 @@ export default {
         },
     },
     mounted() {
-        // Young Kbt
         if (Object.keys(this.$themeConfig.blogInfo).length > 0) {
             const {
                 blogCreate,

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { checkAuth, STORAGE_KEY } from '../login/helper';
+import { checkAuth } from '../login/helper';
 
 export default {
     data() {

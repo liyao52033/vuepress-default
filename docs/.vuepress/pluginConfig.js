@@ -52,25 +52,25 @@ module.exports = [
   }],
 
     //valine评论
-  ['vuepress-plugin-comment', {
-      choosen: 'valine',
-      // options选项中的所有参数，会传给Valine的配置
-      options: {
-        el: '#valine-vuepress-comment',
-        appId: secureConf.leancloud_appId,
-        appKey: secureConf.leancloud_appKey,
-        serverURLs: "https://qqatv4n2.lc-cn-n1-shared.com",
-        avatar: 'wavatar',
-        path: '<%- window.location.pathname %>',
-        enable: true,
-        enableQQ: true,
-        pageSize: 5,
-        visitor: true,
-        placeholder: '同道中人，文明留言...',  // 评论框占位提示符
-        lang: 'zh-cn', // 支持中文
-      }
-    }
-  ]
+  // ['vuepress-plugin-comment', {
+  //     choosen: 'valine',
+  //     // options选项中的所有参数，会传给Valine的配置
+  //     options: {
+  //       el: '#valine-vuepress-comment',
+  //       appId: secureConf.leancloud_appId,
+  //       appKey: secureConf.leancloud_appKey,
+  //       serverURLs: "https://qqatv4n2.lc-cn-n1-shared.com",
+  //       avatar: 'wavatar',
+  //       path: '<%- window.location.pathname %>',
+  //       enable: true,
+  //       enableQQ: true,
+  //       pageSize: 5,
+  //       visitor: true,
+  //       placeholder: '同道中人，文明留言...',  // 评论框占位提示符
+  //       lang: 'zh-cn', // 支持中文
+  //     }
+  //   }
+  // ]
 
 
 
