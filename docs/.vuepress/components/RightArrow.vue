@@ -34,6 +34,8 @@ export default {
         adjustArrow() {
             let rightbar = document.querySelector(".right-menu-wrapper");
             let arrow = document.querySelector(".page-nav-centre-next");
+            let rightMenu = document.querySelector(".have-rightmenu");
+            let footer = document.querySelector(".footer");
            
             if (rightbar) {
                 if (arrow) {
@@ -41,10 +43,19 @@ export default {
                 }  
             } else { 
                 if (arrow) {
-                     arrow.style.right = "2rem";
-                 }
-                   
-                }
+                    arrow.style.right = "2rem";
+                }     
+            }
+
+            if (rightMenu) {
+                footer.style.left = "50%";
+                footer.style.padding = "3rem 15rem 2.5rem"
+
+            } else {
+                footer.style.left = "58%";
+                footer.style.padding = "3rem 17rem 2.5rem"
+            }
+
         },
 
     }
