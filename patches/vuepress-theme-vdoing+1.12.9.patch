@@ -273,7 +273,7 @@ index a7a2a07..edd0fe3 100644
 +
  </style>
 diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
-index 1b5e5c0..2b26fd3 100644
+index 1b5e5c0..6aa229f 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
 +++ b/node_modules/vuepress-theme-vdoing/components/Footer.vue
 @@ -12,15 +12,8 @@
@@ -293,6 +293,77 @@ index 1b5e5c0..2b26fd3 100644
        <span v-html="footer.copyrightInfo"></span>
      </template>
    </div>
+@@ -42,12 +35,19 @@ export default {
+ <style lang='stylus'>
+ // $mobileSidebarWidth = $sidebarWidth * 0.82
+ .footer
+-  padding 5rem 1.5rem 2.5rem
++  width ($contentWidth + 80px)
++  padding 3rem 2.5rem 2.5rem 2.5rem
+   text-align center
+   color #666
++  background-color: var(--mainBg);
++  display inline-block
+   box-sizing border-box
+   font-size 0.85rem
+   transition all 0.2s ease
++  position relative;
++  left 48.5%;
++  transform translateX(-47%);
++  margin-bottom 0.5rem;
+   > span
+     line-height 1.5rem
+   .icons
+@@ -59,14 +59,42 @@ export default {
+     color inherit
+     &:hover
+       color $accentColor
++/* 媒体查询调整移动端样式 */
++@media only screen and (max-width: 768px) {
++  width: 100%;
++  padding: 3rem 4rem 2.5rem; 
++} 
++/* 媒体查询调整PC端样式 */
+ @media (min-width ($MQMobile + 1px))
+-  .sidebar-open .footer
+-    width auto
+-    padding-left: ($sidebarWidth + 1.5rem)
++  .sidebar-open:not(.have-rightmenu) .footer
++    position relative;
++    left 58%;
++    transform translateX(-47%);
++  .have-rightmenu:not(.sidebar-open) .footer
++    position relative;
++    left 40%;
++    transform translateX(-47%);
++  .sidebar-open.have-rightmenu .footer
++    width ($contentWidth + 23px)
++    position relative;
++    left 50%;
++    transform translateX(-47%);
++  .no-sidebar .footer
++    position relative;
++    left 45%;
++    transform translateX(-47%);
++  .no-sidebar.sidebar-open .footer
++    position relative;
++    left 45%;
++    transform translateX(-47%);
++ 
++
++/* 媒体查询调整大屏样式 */
+ @media (min-width 1520px)
+   .have-rightmenu .footer
+-    padding-right: ($rightMenuWidth + 1.5rem)
+-.no-sidebar .footer
+-  width auto
+-  padding-left 1.5rem
++    width auto
++    padding-right ($rightMenuWidth + 1.5rem)
++// .no-sidebar .footer
++//   width auto
++//   padding-left 1.5rem
+ </style>
 diff --git a/node_modules/vuepress-theme-vdoing/components/Page.vue b/node_modules/vuepress-theme-vdoing/components/Page.vue
 index 5d0865c..faa7927 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Page.vue
@@ -605,9 +676,18 @@ index c8b7672..1baa985 100644
  </style>
 +
 diff --git a/node_modules/vuepress-theme-vdoing/layouts/Layout.vue b/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
-index 62dda70..17e55ec 100644
+index 62dda70..9fb9928 100644
 --- a/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
 +++ b/node_modules/vuepress-theme-vdoing/layouts/Layout.vue
+@@ -65,7 +65,7 @@
+       /> -->
+     </Page>
+ 
+-    <Footer />
++    <Footer  @toggle-sidebar="toggleSidebar" />
+ 
+     <Buttons ref="buttons" @toggle-theme-mode="toggleThemeMode" />
+ 
 @@ -301,10 +301,24 @@ export default {
        this.$emit('toggle-sidebar', this.isSidebarOpen)
      },
@@ -637,7 +717,7 @@ index 62dda70..17e55ec 100644
      },
      toggleThemeMode(key) {
 diff --git a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js b/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
-index ab52ffd..1a5fc73 100644
+index ab52ffd..6b7eff7 100644
 --- a/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
 +++ b/node_modules/vuepress-theme-vdoing/node_utils/getSidebarData.js
 @@ -48,7 +48,7 @@ function readTocs(root) {
@@ -649,6 +729,15 @@ index ab52ffd..1a5fc73 100644
        result.push(file);
      }
    })
+@@ -154,7 +154,7 @@ function mapTocToSidebar(root, collapsable, prefix = '') {
+       }
+     } else { // 是文件
+       if (type !== 'md') {
+-        log(chalk.yellow(`warning: 该文件 "${file}" 非.md格式文件，不支持该文件类型`))
++        log(chalk.yellow(`warning: 该文件 "${file}" 非.md格式文件,不支持该文件类型`))
+         return;
+       }
+       const contentStr = fs.readFileSync(file, 'utf8') // 读取md文件内容，返回字符串
 diff --git a/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js b/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js
 index 5268653..d092261 100644
 --- a/node_modules/vuepress-theme-vdoing/node_utils/handlePage.js
