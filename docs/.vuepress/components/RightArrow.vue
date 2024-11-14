@@ -47,7 +47,7 @@ export default {
        
             if (rightbar) {
                 if (arrow) {
-                     arrow.style.right = "16rem";   
+                     arrow.style.right = "3rem";   
                 }  
             } else { 
                 if (arrow) {
