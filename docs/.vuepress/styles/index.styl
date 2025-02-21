@@ -183,27 +183,110 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
 }
 
 
-// .footer {
-//   //  padding: 3rem 15rem 2.5rem; 
-//     text-align: center;
-//     color: #666;
-//     box-sizing: border-box;
-//     font-size: 1rem !important;
-//     transition: all 0.2s ease;
-//     background-color: var(--mainBg);
-//     width : auto;
-//     display: inline-block;
-//     position:relative;
-//  //   left:50%;
-//     transform:translateX(-47%);
-//     margin-bottom: 0.5rem;
+.footer {
+    width: $contentWidth;
+    padding: 3rem 2.5rem 2.5rem 2.5rem;
+    text-align: center;
+    color: #666;
+    background-color: var(--mainBg);
+    box-sizing: border-box;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
+    position: relative;  /* 设置为相对定位，以便根据不同的布局调整位置 */
+    left: 0;
+    right: 0;
+}
 
-//     /* 媒体查询调整移动端样式 */
-//   @media only screen and (max-width: 768px) {
-//     width: 100%;
-//     padding: 3rem 4rem 2.5rem !important; 
-//   } 
-// }
+.footer > span {
+    line-height: 1.5rem;
+}
+
+.footer .icons {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer .iconfont {
+    padding: 0 10px;
+    font-size: 1.3rem;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: $accentColor;
+}
+
+/* 媒体查询调整移动端样式 */
+@media (max-width: 500px) {
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        align-items: center;
+        width: 100%;  /* 移动端宽度占满全屏 */
+    }
+    
+    .footer .icons {
+        margin-bottom: 10px;
+    }
+
+    .footer span {
+        font-size: 0.8rem;
+    }
+}
+
+/* 媒体查询调整PC端样式 */
+@media (min-width: 720px) {
+    /* 如果侧边栏打开，footer的left值需要根据sidebarWidth动态调整 */
+    .sidebar-open:not(.have-rightmenu) .footer {
+        width: ($contentWidth + 5rem) !important;
+        padding: 3rem !important;
+        left: ($sidebarWidth + 8.5rem) !important; /* 动态设置left值，确保footer对齐内容区域 */
+    }
+
+    /* 如果右侧菜单打开，footer的left值需要根据rightMenuWidth调整 */
+    .have-rightmenu:not(.sidebar-open) .footer {
+        width: ($contentWidth + 5rem) !important;
+        left: ($sidebarWidth - 8rem) !important; /* 保证footer不被右侧菜单遮挡 */
+    }
+
+    /* 如果侧边栏和右侧菜单都打开，footer的left值需要根据sidebarWidth和rightMenuWidth同时调整 */
+    .sidebar-open.have-rightmenu .footer {
+        width: ($contentWidth + 5rem) !important;
+        left: ($sidebarWidth + 1rem) !important; /* 保证footer的左边位置始终与内容区域对齐 */
+    }
+
+    /* 没有侧边栏时，footer宽度为contentWidth，左对齐 */
+    .no-sidebar .footer {
+        width: $contentWidth !important;
+        left: $sidebarWidth !important; /* 没有侧边栏时，footer应该从0开始 */
+    }
+    
+    /* 没有侧边栏且侧边栏被打开时，footer的宽度为contentWidth，左对齐 */
+    .no-sidebar.sidebar-open .footer {
+        width: $contentWidth !important;
+        left: $sidebarWidth !important;
+    }
+}
+
+/* 媒体查询调整大屏样式 */
+@media (min-width: 1520px) {
+    .footer {
+        width: auto;
+        padding-right: ($rightMenuWidth + 1.5rem);
+        justify-content: flex-start;
+    }
+}
+
+
 
  .page-nav-centre-wrap .page-nav-centre:before {
     width: 30px !important;

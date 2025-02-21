@@ -273,13 +273,26 @@ index a7a2a07..edd0fe3 100644
 +
  </style>
 diff --git a/node_modules/vuepress-theme-vdoing/components/Footer.vue b/node_modules/vuepress-theme-vdoing/components/Footer.vue
-index 1b5e5c0..6aa229f 100644
+index 1b5e5c0..cc78159 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Footer.vue
 +++ b/node_modules/vuepress-theme-vdoing/components/Footer.vue
-@@ -12,15 +12,8 @@
+@@ -1,26 +1,12 @@
+ <template>
+   <div class="footer">
+     <div class="icons" v-if="social && social.icons">
+-      <a
+-        :href="item.link"
+-        :title="item.title"
+-        :class="['iconfont', item.iconClass]"
+-        v-for="(item, index) in social.icons"
+-        :key="index"
+-        target="_blank"
+-      ></a>
++      <a :href="item.link" :title="item.title" :class="['iconfont', item.iconClass]"
++        v-for="(item, index) in social.icons" :key="index" target="_blank"></a>
      </div>
  
-     <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
+-    <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
 -    Theme by
 -    <a
 -      href="https://github.com/xugaoyi/vuepress-theme-vdoing"
@@ -293,77 +306,68 @@ index 1b5e5c0..6aa229f 100644
        <span v-html="footer.copyrightInfo"></span>
      </template>
    </div>
-@@ -42,12 +35,19 @@ export default {
+@@ -41,32 +27,32 @@ export default {
+ 
  <style lang='stylus'>
  // $mobileSidebarWidth = $sidebarWidth * 0.82
- .footer
+-.footer
 -  padding 5rem 1.5rem 2.5rem
-+  width ($contentWidth + 80px)
-+  padding 3rem 2.5rem 2.5rem 2.5rem
-   text-align center
-   color #666
-+  background-color: var(--mainBg);
-+  display inline-block
-   box-sizing border-box
-   font-size 0.85rem
-   transition all 0.2s ease
-+  position relative;
-+  left 48.5%;
-+  transform translateX(-47%);
-+  margin-bottom 0.5rem;
-   > span
-     line-height 1.5rem
-   .icons
-@@ -59,14 +59,42 @@ export default {
-     color inherit
-     &:hover
-       color $accentColor
-+/* 媒体查询调整移动端样式 */
-+@media only screen and (max-width: 768px) {
-+  width: 100%;
-+  padding: 3rem 4rem 2.5rem; 
-+} 
-+/* 媒体查询调整PC端样式 */
- @media (min-width ($MQMobile + 1px))
+-  text-align center
+-  color #666
+-  box-sizing border-box
+-  font-size 0.85rem
+-  transition all 0.2s ease
+-  > span
+-    line-height 1.5rem
+-  .icons
+-    margin-bottom 12px
+-    .iconfont
+-      padding 0 10px
+-      font-size 1.3rem
+-  a
+-    color inherit
+-    &:hover
+-      color $accentColor
+-@media (min-width ($MQMobile + 1px))
 -  .sidebar-open .footer
 -    width auto
 -    padding-left: ($sidebarWidth + 1.5rem)
-+  .sidebar-open:not(.have-rightmenu) .footer
-+    position relative;
-+    left 58%;
-+    transform translateX(-47%);
-+  .have-rightmenu:not(.sidebar-open) .footer
-+    position relative;
-+    left 40%;
-+    transform translateX(-47%);
-+  .sidebar-open.have-rightmenu .footer
-+    width ($contentWidth + 23px)
-+    position relative;
-+    left 50%;
-+    transform translateX(-47%);
-+  .no-sidebar .footer
-+    position relative;
-+    left 45%;
-+    transform translateX(-47%);
-+  .no-sidebar.sidebar-open .footer
-+    position relative;
-+    left 45%;
-+    transform translateX(-47%);
-+ 
-+
-+/* 媒体查询调整大屏样式 */
- @media (min-width 1520px)
-   .have-rightmenu .footer
+-@media (min-width 1520px)
+-  .have-rightmenu .footer
 -    padding-right: ($rightMenuWidth + 1.5rem)
 -.no-sidebar .footer
 -  width auto
 -  padding-left 1.5rem
-+    width auto
-+    padding-right ($rightMenuWidth + 1.5rem)
++// .footer
++//   padding 5rem 1.5rem 2.5rem
++//   text-align center
++//   color #666
++//   box-sizing border-box
++//   font-size 0.85rem
++//   transition all 0.2s ease
++//   > span
++//     line-height 1.5rem
++//   .icons
++//     margin-bottom 12px
++//     .iconfont
++//       padding 0 10px
++//       font-size 1.3rem
++//   a
++//     color inherit
++//     &:hover
++//       color $accentColor
++// @media (min-width ($MQMobile + 1px))
++//   .sidebar-open .footer
++//     width auto
++//     padding-left: ($sidebarWidth + 1.5rem)
++// @media (min-width 1520px)
++//   .have-rightmenu .footer
++//     padding-right: ($rightMenuWidth + 1.5rem)
 +// .no-sidebar .footer
 +//   width auto
 +//   padding-left 1.5rem
  </style>
+\ No newline at end of file
 diff --git a/node_modules/vuepress-theme-vdoing/components/Page.vue b/node_modules/vuepress-theme-vdoing/components/Page.vue
 index 5d0865c..faa7927 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Page.vue
