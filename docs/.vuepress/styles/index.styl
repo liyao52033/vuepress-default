@@ -184,7 +184,7 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
 
 
 .footer {
-    width: $contentWidth;
+    width: ($contentWidth + 5rem);
     padding: 3rem 2.5rem 2.5rem 2.5rem;
     text-align: center;
     color: #666;
@@ -194,7 +194,7 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
     transition: all 0.2s ease;
     margin-bottom: 0.5rem;
     position: relative;  /* 设置为相对定位，以便根据不同的布局调整位置 */
-    left: 0;
+    left: 17.6rem;
     right: 0;
 }
 
@@ -223,15 +223,16 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
 }
 
 /* 媒体查询调整移动端样式 */
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .footer {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex: 1;
         flex-direction: column;
         padding: 2rem 1rem;
         align-items: center;
-        width: 100%;  /* 移动端宽度占满全屏 */
+        width: 100% !important;  /* 确保宽度占满屏幕 */
+        left: 0 !important;      /* 重置左边距 */
+        box-sizing: border-box;  /* 确保padding不会导致超出屏幕 */
     }
     
     .footer .icons {
@@ -244,7 +245,7 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
 }
 
 /* 媒体查询调整PC端样式 */
-@media (min-width: 720px) {
+@media (min-width: 769px) and (max-width: 1190px) {
     /* 如果侧边栏打开，footer的left值需要根据sidebarWidth动态调整 */
     .sidebar-open:not(.have-rightmenu) .footer {
         width: ($contentWidth + 5rem) !important;
@@ -264,23 +265,52 @@ body .theme-vdoing-content pre code, body .theme-vdoing-content pre[class*="lang
         left: ($sidebarWidth + 1rem) !important; /* 保证footer的左边位置始终与内容区域对齐 */
     }
 
-    /* 没有侧边栏时，footer宽度为contentWidth，左对齐 */
+    /* 首页，footer宽度为contentWidth，左对齐 */
     .no-sidebar .footer {
-        width: $contentWidth !important;
-        left: $sidebarWidth !important; /* 没有侧边栏时，footer应该从0开始 */
+        width: ($contentWidth - 1.2rem) !important;
+        left: 1rem !important; /* 没有侧边栏时，footer应该从0开始 */
     }
     
-    /* 没有侧边栏且侧边栏被打开时，footer的宽度为contentWidth，左对齐 */
-    .no-sidebar.sidebar-open .footer {
-        width: $contentWidth !important;
-        left: $sidebarWidth !important;
-    }
 }
+
+@media (min-width: 1191px) and (max-width: 1519px) {
+
+     /* 如果侧边栏打开，footer的left值需要根据sidebarWidth动态调整 */
+    .sidebar-open:not(.have-rightmenu) .footer {
+        width: ($contentWidth + 5rem) !important;
+        padding: 3rem !important;
+        left: ($sidebarWidth + 8.5rem) !important; /* 动态设置left值，确保footer对齐内容区域 */
+    }
+
+    /* 如果右侧菜单打开，footer的left值需要根据rightMenuWidth调整 */
+    .have-rightmenu:not(.sidebar-open) .footer {
+        width: ($contentWidth + 5rem) !important;
+        left: ($sidebarWidth - 8rem) !important; /* 保证footer不被右侧菜单遮挡 */
+    }
+
+    /* 如果侧边栏和右侧菜单都打开，footer的left值需要根据sidebarWidth和rightMenuWidth同时调整 */
+    .sidebar-open.have-rightmenu .footer {
+        width: ($contentWidth + 5rem) !important;
+        left: ($sidebarWidth + 1rem) !important; /* 保证footer的左边位置始终与内容区域对齐 */
+    }
+   
+    /* 首页，footer宽度为contentWidth，左对齐 */
+    .no-sidebar .footer {
+        width: ($contentWidth - 1.2rem) !important;
+        left: 12rem !important; /* 没有侧边栏时，footer应该从0开始 */
+    }
+ 
+}
+
 
 /* 媒体查询调整大屏样式 */
 @media (min-width: 1520px) {
+    $contentWidth = 70rem
+    html,body {
+        font-size: 30px !important;
+    }
     .footer {
-        width: auto;
+        width: ($contentWidth - 1.2rem) !important;
         padding-right: ($rightMenuWidth + 1.5rem);
         justify-content: flex-start;
     }
