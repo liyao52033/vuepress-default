@@ -15,7 +15,9 @@
     "editFm": "node ./frontmatter/editFrontmatter.mjs",
     "sitemap": "./docs/generate_sitemap.sh",
     "postinstall": "patch-package",
-    "updateTheme": "./updateTheme.sh"
+    "updateTheme": "./updateTheme.sh",
+    "clean-urls": "node ./utils/cleanImageUrls.js",
+    "clean-urls:apply": "node ./utils/cleanImageUrls.js --apply"
   },
   "dependencies": {
     "chalk": "^5.3.0",
