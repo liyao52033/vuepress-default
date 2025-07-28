@@ -14,6 +14,10 @@
     {
       "text": "嵌入式",
       "link": "/pages/31c4d3/"
+    },
+    {
+      "text": "python",
+      "link": "/pages/cf83bf/"
     }
   ]
   },
@@ -32,29 +36,29 @@
   ]
   },
 
-  {
-    "text": "机器人",
-    "items": [
-      {
-        "text": "海康AGV",
-        "link": "/pages/a4f024/"
-      },
-      {
-        "text": "四向车",
-        "link": "/pages/bbd1d8/"
-      }
-    ]
-  },
+  // {
+  //   "text": "机器人",
+  //   "items": [
+  //     {
+  //       "text": "海康AGV",
+  //       "link": "/pages/a4f024/"
+  //     },
+  //     {
+  //       "text": "四向车",
+  //       "link": "/pages/bbd1d8/"
+  //     }
+  //   ]
+  // },
 
   {
     "text": "工具类",
-     link: '/archives/',
-    "items": [
-    {
-      "text": "工具类",
-      "link": "/pages/a5da02/"
-    }
-  ]
+    "link": "/pages/a5da02/"
+  //   "items": [
+  //   {
+  //     "text": "工具类",
+  //     "link": "/pages/a5da02/"
+  //   }
+  // ]
   },
 
 
