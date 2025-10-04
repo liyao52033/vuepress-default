@@ -13,7 +13,7 @@ yarn run sitemap
 yarn run docs:build
 
 ## 代码推送到github
-yarn run push
+# yarn run push
 
 # 进入生成的文件夹
 cd docs/.vuepress/dist

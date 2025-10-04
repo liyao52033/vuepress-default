@@ -1,3 +1,4 @@
+const { lang } = require("moment");
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
 const { readEachFileWords } = require('./webSiteInfo/readFile.js');
@@ -5,6 +6,7 @@ const { readEachFileWords } = require('./webSiteInfo/readFile.js');
 module.exports = {
   title: '编程随笔',
   description: '编程随笔',
+  lang: 'zh-CN',
   head: [
     ['link', { rel: 'icon', href: '/img/logo.png' }],
     ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
@@ -14,15 +16,10 @@ module.exports = {
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1' }],
     ['meta', { name: 'referrer', content: 'no-referrer-when-downgrade' }],
     ['meta', { name: 'keywords', content: '编程随笔' }],
-    ['meta', { content: '编程随笔', property: 'og:title' }],
+    ["meta", { name: "google", content: "notranslate",}],
+    ['meta', { content: '编程随笔', property: 'og:title' }]
   ],
-
-  locales: {
-    '/': {
-      lang: 'zh-CN',
-    }
-  },
-
+  
   extraWatchFiles: [
     '../*.js', // 使用相对路径
   ],
