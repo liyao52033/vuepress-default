@@ -7,7 +7,7 @@
 //      Vue.config.devtools = true; //谷歌无痕模式下生效，或者用Edge
 // }
 
-import { checkAuth, storage } from './login/helper';
+import { checkAuth, storage, isServer } from './login/helper';
 
 export default ({ Vue, router, siteData }) => {
 
@@ -20,6 +20,7 @@ export default ({ Vue, router, siteData }) => {
 
       // 如果是登录页，且URL中有access_token，直接存token并跳转
       if (to.path === '/login/') {
+        if (isServer()) return
         const hash = window.location.hash.slice(1);
         if (hash.includes('access_token')) {
           const params = {};

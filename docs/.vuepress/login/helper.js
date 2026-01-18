@@ -8,6 +8,14 @@ export function checkAuth() {
   return auth && auth.length > 0;
 }
 
+/**
+ * 判断当前是否在 Node.js 服务端环境运行
+ * @returns {Boolean} true=服务端，false=浏览器客户端
+ */
+export function isServer() {
+  return typeof window === 'undefined' && typeof process !== 'undefined';
+}
+
 // 兼容浏览器+Node环境的本地存储工具
 export const storage = {
   getItem(key) {
