@@ -7,21 +7,35 @@
 //      Vue.config.devtools = true; //谷歌无痕模式下生效，或者用Edge
 // }
 
-import { checkAuth } from './login/helper';
+import { checkAuth, storage } from './login/helper';
 
 export default ({ Vue, router, siteData }) => {
-
-  const dialog = require('v-dialogs')
-  Vue.use(dialog)
-
 
   const loginInfos = siteData.themeConfig?.loginInfo || {}
   const { isLogin, List } = loginInfos
   const whiteList = ['/', '/login/']
 
-  router.beforeEach(async (to, from, next) => {
+  if (isLogin) {
+    router.beforeEach(async (to, from, next) => {
 
-    if (isLogin) {
+      // 如果是登录页，且URL中有access_token，直接存token并跳转
+      if (to.path === '/login/') {
+        const hash = window.location.hash.slice(1);
+        if (hash.includes('access_token')) {
+          const params = {};
+          hash.split('&').forEach(item => {
+            const [key, value] = item.split('=');
+            params[key] = value;
+          });
+          if (params.access_token) {
+            localStorage.setItem('token', params.access_token);
+            const redirect = localStorage.getItem('redirect') || '/';
+            next(redirect);
+            localStorage.removeItem('redirect');
+            return;
+          }
+        }
+      }
 
       // 当前路由不需要鉴权（不在加密名单），直接放行（局部登录）
       if (List.indexOf(to.path) === -1) {
@@ -37,40 +51,51 @@ export default ({ Vue, router, siteData }) => {
 
       // 当前路由需要鉴权，先校验权限
       if (!checkAuth() && to.path !== '/login/') {
-          next('/login/')
-          localStorage.setItem('redirect', to.path)
-          return
+        next('/login/')
+        storage.setItem('redirect', to.path)
+        return
       }
 
       // 有权限，校验登录状态 & 请求用户信息
       const accesskey = localStorage.getItem('token')
 
       try {
-        // 请求用户信息接口，验证token有效性
+        // 使用自定义接口验证 token（密码验证或其他）
         const res = await fetch('https://ssl.xiaoying.org.cn/getUser', {
-          headers: { 'Authorization': 'Bearer ' + accesskey }
+          method: 'GET',
+          headers: { 'Authorization': 'Bearer ' + accesskey },
+          credentials: 'include'
         });
+
 
         // token有效 → 正常放行，页面跳转✅
         if (res.ok) {
           next()
         } else {
+
           // token过期/无效 → 提示+清除token+跳转登录页
+          const dialog = require('v-dialogs')
+          Vue.use(dialog)
           dialog.DialogAlert('登录已过期，请重新登录!', function () {
-            localStorage.removeItem('token')
-            localStorage.setItem('redirect', to.path)
+            storage.removeItem('token')
+            storage.setItem('redirect', to.path)
             next('/login/')
           }, { messageType: 'warning' })
         }
+
       } catch (error) {
-        localStorage.removeItem('token')
-        localStorage.setItem('redirect', to.path)
+        storage.removeItem('token')
+        storage.setItem('redirect', to.path)
         next('/login/')
       }
-    } else {
-      next()
-    }
-  });
+    });
+  }
 
-  
+  Vue.mixin({
+    mounted() {
+      // 其他逻辑可以放在这里，如果需要
+    }
+  })
+
+
 };
