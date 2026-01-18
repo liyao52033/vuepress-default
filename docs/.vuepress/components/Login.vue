@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn" @click="login">
-          登录
+        <button class="btn" @click="login" :disabled="isLoading">
+          {{ isLoading ? '登录中...' : '登录' }}
         </button>
       </div>
 
@@ -55,8 +55,8 @@
           </div>  
         </div>  
       --->
-        
-     
+
+
     </div>
 
     <!-- 添加提示框组件 -->
@@ -92,6 +92,7 @@ export default {
     return {
       username: '',
       password: '',
+      isLoading: false,
       alert: {
         show: false,
         message: '',
@@ -165,6 +166,7 @@ export default {
 
     // 登录
     async login() {
+      this.isLoading = true;
       try {
         const res = await fetch('https://ssl.xiaoying.org.cn/login', {
           method: 'POST',
@@ -186,6 +188,8 @@ export default {
         }
       } catch (error) {
         this.showModal('登录错误:', error);
+      } finally {
+        this.isLoading = false;
       }
 
     },

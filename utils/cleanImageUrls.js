@@ -22,6 +22,8 @@ const colors = {
  * 清理图片URL中的查询参数
  * 将 https://img.xiaoying.org.cn/img/202401141510330.png?q-sign-algorithm=... 
  * 替换为 https://img.xiaoying.org.cn/img/202401141510330.png
+ * 同时将旧域名 https://xxx.cos.ap-shanghai.myqcloud.com/img/...
+ * 替换为新域名 https://img.xiaoying.org.cn/img/... 并移除查询参数
  */
 
 class ImageUrlCleaner {
@@ -56,11 +58,21 @@ class ImageUrlCleaner {
    */
   cleanUrls(content) {
     let replacements = 0;
-    
-    // 匹配 https://img.xiaoying.org.cn 域名下的图片URL，包含查询参数的
-    const urlPattern = /(https:\/\/img\.xiaoying\.org\.cn\/[^?\s)]*)\?[^)\s]*/g;
+    let cleanedContent = content;
 
-    const cleanedContent = content.replace(urlPattern, (match, baseUrl) => {
+    // 首先处理旧域名替换：将 aurora-1258839075.cos.ap-shanghai.myqcloud.com 替换为 img.xiaoying.org.cn，并移除查询参数
+    const oldDomainPattern = /https:\/\/aurora-1258839075\.cos\.ap-shanghai\.myqcloud\.com\/(img\/[^?\s)]*)\?[^)\s]*/g;
+    cleanedContent = cleanedContent.replace(oldDomainPattern, (match, path) => {
+      replacements++;
+      const newUrl = `https://img.xiaoying.org.cn/${path}`;
+      console.log(colors.yellow(`  替换: ${match}`));
+      console.log(colors.green(`  为:   ${newUrl}`));
+      return newUrl;
+    });
+
+    // 然后处理新域名下的查询参数移除
+    const urlPattern = /(https:\/\/img\.xiaoying\.org\.cn\/[^?\s)]*)\?[^)\s]*/g;
+    cleanedContent = cleanedContent.replace(urlPattern, (match, baseUrl) => {
       replacements++;
       console.log(colors.yellow(`  替换: ${match}`));
       console.log(colors.green(`  为:   ${baseUrl}`));
@@ -81,9 +93,9 @@ class ImageUrlCleaner {
     try {
       const content = await fs.readFile(filePath, 'utf8');
       const result = this.cleanUrls(content);
-      
+
       this.stats.filesProcessed++;
-      
+
       if (result.replacements > 0) {
         console.log(colors.blue(`\n处理文件: ${filePath}`));
         console.log(colors.cyan(`  发现 ${result.replacements} 个需要替换的URL`));
@@ -181,7 +193,7 @@ function parseArgs() {
 
 function showHelp() {
   console.log(colors.bold.blue('\n图片URL清理工具'));
-  console.log(colors.gray('清理Markdown文件中img.xiaoying.org.cn域名图片URL的查询参数\n'));
+  console.log(colors.gray('清理Markdown文件中图片URL的查询参数，并将旧域名替换为新域名\n'));
 
   console.log(colors.yellow('用法:'));
   console.log('  node utils/cleanImageUrls.js [选项]\n');
@@ -190,6 +202,10 @@ function showHelp() {
   console.log('  --apply     执行实际修改（默认为预览模式）');
   console.log('  --dir <路径> 指定要处理的目录（默认: ./docs）');
   console.log('  --help, -h  显示帮助信息\n');
+
+  console.log(colors.yellow('功能:'));
+  console.log('  - 移除 img.xiaoying.org.cn 域名图片URL的查询参数');
+  console.log('  - 将 aurora-1258839075.cos.ap-shanghai.myqcloud.com 域名替换为 img.xiaoying.org.cn 并移除查询参数\n');
 
   console.log(colors.yellow('示例:'));
   console.log('  node utils/cleanImageUrls.js              # 预览模式');
