@@ -10,17 +10,22 @@
 import { checkAuth, storage, isServer } from './login/helper';
 
 export default ({ Vue, router, siteData }) => {
-
-  const loginInfos = siteData.themeConfig?.loginInfo || {}
-  const { isLogin, List } = loginInfos
-  const whiteList = ['/', '/login/']
+  const loginInfos = siteData.themeConfig?.loginInfo || {};
+  const { isLogin, List } = loginInfos;
+  const whiteList = ['/', '/login/'];
+  // 防重复请求锁：解决刷新时多次调用 getUser 的问题
+  let isRequestingUserInfo = false;
+  // 全局loading实例：用于控制loading的开启和关闭
+  let loadingInstance = null;
 
   if (isLogin) {
     router.beforeEach(async (to, from, next) => {
 
-      // 如果是登录页，且URL中有access_token，直接存token并跳转
+      // 服务端环境直接放行，不执行任何浏览器端逻辑
+      if (isServer()) return next();
+
+      // ✅ 场景1：登录页回调，解析URL中的access_token并存储
       if (to.path === '/login/') {
-        if (isServer()) return
         const hash = window.location.hash.slice(1);
         if (hash.includes('access_token')) {
           const params = {};
@@ -29,74 +34,80 @@ export default ({ Vue, router, siteData }) => {
             params[key] = value;
           });
           if (params.access_token) {
-            localStorage.setItem('token', params.access_token);
-            const redirect = localStorage.getItem('redirect') || '/';
-            next(redirect);
-            localStorage.removeItem('redirect');
-            return;
+            storage.setItem('token', params.access_token); // 统一用封装的storage
+            const redirect = storage.getItem('redirect') || '/';
+            storage.removeItem('redirect');
+            return next(redirect);
           }
         }
+        return next(); // 无token参数，正常放行到登录页
       }
 
-      // 当前路由不需要鉴权（不在加密名单），直接放行（局部登录）
+      // ✅ 场景2：当前路由不需要鉴权（不在加密名单），直接放行（局部登录逻辑）
       if (List.indexOf(to.path) === -1) {
-        next()
-        return
+        return next();
       }
 
-      // 当前路由在白名单中，直接放行（全局登录）
-      // if (whiteList.indexOf(to.path) !== -1) {
-      //   next()
-      //   return
+      // ✅ 场景3：白名单路由，直接放行（全局登录逻辑）
+      // if (whiteList.includes(to.path)) {
+      //   return next();
       // }
 
-      // 当前路由需要鉴权，先校验权限
-      if (!checkAuth() && to.path !== '/login/') {
-        next('/login/')
-        storage.setItem('redirect', to.path)
-        return
+      // ✅ 场景4：无token，直接跳转登录页并存储回跳地址
+      if (!checkAuth()) {
+        storage.setItem('redirect', to.path);
+        return next('/login/');
       }
 
-      // 有权限，校验登录状态 & 请求用户信息
-      const accesskey = localStorage.getItem('token')
+      // ✅ 核心鉴权逻辑：有token，校验有效性 + 获取用户信息
+      const accesskey = storage.getItem('token');
+      // 加锁：防止重复请求
+      if (isRequestingUserInfo) return;
+      isRequestingUserInfo = true;
+
+      const dialog = require('v-dialogs');
 
       try {
-        // 使用自定义接口验证 token（密码验证或其他）
+
+        // 打开全局loading，提示用户「验证登录中」，页面遮罩，禁止操作
+        loadingInstance = dialog.DialogMask('验证登录状态中，请稍候...', () => { }, {
+          closeTime: false
+        });
+
         const res = await fetch('https://ssl.xiaoying.org.cn/getUser', {
           method: 'GET',
           headers: { 'Authorization': 'Bearer ' + accesskey },
           credentials: 'include'
         });
 
-
-        // token有效 → 正常放行，页面跳转✅
+        // ✅ 关键修复：fetch的正确异常处理！fetch只抛网络错误，HTTP错误(401/403)不会进入catch，必须手动判断res.ok
         if (res.ok) {
-          next()
+          // token有效，正常放行路由 ✅ 核心：此时调用next，路由立即跳转，不会出现404
+          dialog.DialogHelper.close(loadingInstance);
+          next();
         } else {
-
-          // token过期/无效 → 提示+清除token+跳转登录页
-          const dialog = require('v-dialogs')
-          Vue.use(dialog)
-          dialog.DialogAlert('登录已过期，请重新登录!', function () {
-            storage.removeItem('token')
-            storage.setItem('redirect', to.path)
-            next('/login/')
-          }, { messageType: 'warning' })
+          // token过期/无效/无权限，统一走登出逻辑
+          dialog.DialogHelper.close(loadingInstance);
+          dialog.DialogAlert('登录已过期，请重新登录!', () => {
+            storage.removeItem('token');
+            storage.setItem('redirect', to.path);
+            next('/login/');
+          }, { messageType: 'warning' });
         }
-
       } catch (error) {
-        storage.removeItem('token')
-        storage.setItem('redirect', to.path)
-        next('/login/')
+        // 捕获网络错误/请求超时等异常
+        console.error('用户信息请求失败：', error);
+        dialog.DialogHelper.close(loadingInstance);
+        storage.removeItem('token');
+        storage.setItem('redirect', to.path);
+        next('/login/');
+      } finally {
+        // ✅ 无论成功/失败/异常，最终都解锁 + 兜底关闭loading，防止loading卡死页面
+        isRequestingUserInfo = false;
+        dialog.DialogHelper.close(loadingInstance);
+        loadingInstance = null; // 清空实例，避免内存占用
       }
     });
   }
-
-  Vue.mixin({
-    mounted() {
-      // 其他逻辑可以放在这里，如果需要
-    }
-  })
-
-
 };
+

@@ -1,8 +1,8 @@
 diff --git a/node_modules/@vuepress/theme-default/layouts/404.vue b/node_modules/@vuepress/theme-default/layouts/404.vue
-index 2cbfa0f..1baa985 100644
+index 2cbfa0f..b853919 100644
 --- a/node_modules/@vuepress/theme-default/layouts/404.vue
 +++ b/node_modules/@vuepress/theme-default/layouts/404.vue
-@@ -1,30 +1,254 @@
+@@ -1,30 +1,256 @@
 -<template>
 -  <div class="theme-container">
 -    <div class="theme-default-content">
@@ -29,22 +29,24 @@ index 2cbfa0f..1baa985 100644
 +	  <div class="pic-404">
 +		<img
 +		  class="pic-404__parent"
-+		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012125958.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166720;8999999999&q-key-time=1696166720;8999999999&q-header-list=host&q-url-param-list=&q-signature=791e6846a407484343215b7a4e4d79efb426d72b"
++		  src="https://img.xiaoying.org.cn/img/202310012125958.png"
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child left"
-+		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  src="https://img.xiaoying.org.cn/img/202310012126428.png"
++		  alt="404"
++		/>
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child mid"
-+		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  src="https://img.xiaoying.org.cn/img/202310012126428.png"
 +		  alt="404"
 +		/>
 +		<img
 +		  class="pic-404__child right"
-+		  src="https://aurora-1258839075.cos.ap-shanghai.myqcloud.com/img/202310012126428.png?q-sign-algorithm=sha1&q-ak=AKIDlOsIWjolbMzQrQyRwNfoovASl088zhGh&q-sign-time=1696166763;9000000000&q-key-time=1696166763;9000000000&q-header-list=host&q-url-param-list=&q-signature=039803999cc8d4c6353799bf8d0b5ca93dd43682"
++		  src="https://img.xiaoying.org.cn/img/202310012126428.png"
 +		  alt="404"
 +		/>
 +	  </div>
