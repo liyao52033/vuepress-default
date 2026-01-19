@@ -182,13 +182,13 @@ export default {
             let search = document.getElementsByClassName("search-box")[0];
             let nav = document.getElementsByClassName("nav-links")[0];
             if (navColor == 1) {
-                if (title.className) {
+                if (title?.className) {
                     title.className = "site-name can-hide";
                 }
                 nav.className = "nav-links can-hide";
                 search.className = "search-box";
             } else if (navColor == 2) {
-                if (title.className) {
+                if (title?.className) {
                     title.className = "site-name site-name1 can-hide";
                 }
                 nav.className = "nav-links nav-links1 can-hide";

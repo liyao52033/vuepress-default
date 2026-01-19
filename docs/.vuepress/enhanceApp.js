@@ -59,6 +59,9 @@ export default ({ Vue, router, siteData }) => {
         return next('/login/');
       }
 
+      // ✅ 场景5：同一路由hash跳转，直接放行
+      if (to.path === from.path) return next();
+
       // ✅ 核心鉴权逻辑：有token，校验有效性 + 获取用户信息
       const accesskey = storage.getItem('token');
       // 加锁：防止重复请求
@@ -76,6 +79,7 @@ export default ({ Vue, router, siteData }) => {
 
         const res = await fetch('https://ssl.xiaoying.org.cn/getUser', {
           method: 'GET',
+          credentials: 'include',
           headers: { 'Authorization': 'Bearer ' + accesskey },
           credentials: 'include'
         });
@@ -86,13 +90,53 @@ export default ({ Vue, router, siteData }) => {
           dialog.DialogHelper.close(loadingInstance);
           next();
         } else {
-          // token过期/无效/无权限，统一走登出逻辑
+          // token过期/无效/无权限
           dialog.DialogHelper.close(loadingInstance);
+
+          try {
+            // ✅ 核心改造：刷新接口无需传refreshToken，浏览器自动带HttpOnly Cookie
+            const refreshRes = await fetch('https://ssl.xiaoying.org.cn/refresh', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include', // 关键：自动携带Cookie
+            });
+            const refreshData = await refreshRes.json();
+            
+            if (refreshRes.ok && refreshData?.token) {
+              // 刷新成功：拿到新的accessToken，更新localStorage
+              const newAccessToken = refreshData.token;
+              storage.setItem('token', newAccessToken);
+              // 自动重试原接口，用新token
+              const retryRes = await fetch('https://ssl.xiaoying.org.cn/getUser', {
+                method: 'GET',
+                headers: { 'Authorization': 'Bearer ' + newAccessToken },
+                credentials: 'include'
+              });
+              if (retryRes.ok) {
+                next();
+                return; // 放行后结束，不执行登出
+              } else {
+                dialog.DialogAlert('登录已过期，请重新登录!', () => {
+                  storage.removeItem('token');
+                  storage.setItem('redirect', to.path);
+                  next('/login/');
+                }, { messageType: 'warning' });
+              }
+            }
+          } catch (refreshError) {
+            dialog.DialogAlert('登录已过期，请重新登录!', () => {
+              storage.removeItem('token');
+              storage.setItem('redirect', to.path);
+              next('/login/');
+            }, { messageType: 'warning' });
+          }
+
           dialog.DialogAlert('登录已过期，请重新登录!', () => {
             storage.removeItem('token');
             storage.setItem('redirect', to.path);
             next('/login/');
           }, { messageType: 'warning' });
+
         }
       } catch (error) {
         // 捕获网络错误/请求超时等异常

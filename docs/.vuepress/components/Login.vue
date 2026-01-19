@@ -8,13 +8,13 @@
       <div class="form-row">
         <div class="input-group">
           <span class="input-icon">👤</span>
-          <input type="text" name="username" class="form-control" v-model="username" placeholder="请输入账号">
+          <input type="text" name="username" autocomplete="off" class="form-control" v-model="username" placeholder="请输入账号">
         </div>
       </div>
       <div class="form-row">
         <div class="input-group">
           <span class="input-icon">🔒</span>
-          <input type="password" name="password" class="form-control" v-model="password" placeholder="请输入密码">
+          <input type="password" name="password" autocomplete="off" class="form-control" v-model="password" placeholder="请输入密码">
         </div>
       </div>
       <div class="btn-row">
@@ -171,13 +171,14 @@ export default {
         const res = await fetch('https://ssl.xiaoying.org.cn/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ email: this.username, password: this.password })
         });
         const data = await res.json();
 
         if (res.ok && data.session) {
           localStorage.setItem('token', data.session.access_token);
-          this.showAlert('登录成功', 'success')
+         // this.showAlert('登录成功', 'success')
 
           const redirect = localStorage.getItem('redirect') || '/'
           this.$router.push(redirect)
@@ -198,6 +199,7 @@ export default {
       try {
         const res = await fetch('https://ssl.xiaoying.org.cn/socialLogin', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             provider
