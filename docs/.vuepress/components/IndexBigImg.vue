@@ -169,11 +169,13 @@ export default {
         // 导航栏恢复原主题样式
         bgBlur() {
             let navbar = document.getElementsByClassName("navbar")[0];
+            if(!navbar) return;
             navbar.className = "navbar blur";
         },
         // 导航栏透明
         noBgBlur() {
             let navbar = document.getElementsByClassName("navbar")[0];
+            if(!navbar) return;
             navbar.className = "navbar navbar1 blur";
         },
         // 导航栏的字体颜色
@@ -182,15 +184,13 @@ export default {
             let search = document.getElementsByClassName("search-box")[0];
             let nav = document.getElementsByClassName("nav-links")[0];
             if (navColor == 1) {
-                if (title?.className) {
-                    title.className = "site-name can-hide";
-                }
+                if(!title || !search || !nav) return;
+                title.className = "site-name can-hide";
                 nav.className = "nav-links can-hide";
                 search.className = "search-box";
             } else if (navColor == 2) {
-                if (title?.className) {
-                    title.className = "site-name site-name1 can-hide";
-                }
+                if(!title || !search || !nav) return;
+                title.className = "site-name site-name1 can-hide";
                 nav.className = "nav-links nav-links1 can-hide";
                 search.className = "search-box search-box1";
             }

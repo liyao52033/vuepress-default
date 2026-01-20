@@ -34,7 +34,7 @@ export default ({ Vue, router, siteData }) => {
             params[key] = value;
           });
           if (params.access_token) {
-            storage.setItem('token', params.access_token); // 统一用封装的storage
+          //  storage.setItem('token', params.access_token); // 统一用封装的storage
             const redirect = storage.getItem('redirect') || '/';
             storage.removeItem('redirect');
             return next(redirect);
@@ -54,16 +54,15 @@ export default ({ Vue, router, siteData }) => {
       // }
 
       // ✅ 场景4：无token，直接跳转登录页并存储回跳地址
-      if (!checkAuth()) {
-        storage.setItem('redirect', to.path);
-        return next('/login/');
-      }
+      // if (!checkAuth()) {
+      //   storage.setItem('redirect', to.path);
+      //   return next('/login/');
+      // }
 
       // ✅ 场景5：同一路由hash跳转，直接放行
       if (to.path === from.path) return next();
 
       // ✅ 核心鉴权逻辑：有token，校验有效性 + 获取用户信息
-      const accesskey = storage.getItem('token');
       // 加锁：防止重复请求
       if (isRequestingUserInfo) return;
       isRequestingUserInfo = true;
@@ -71,7 +70,6 @@ export default ({ Vue, router, siteData }) => {
       const dialog = require('v-dialogs');
 
       try {
-
         // 打开全局loading，提示用户「验证登录中」，页面遮罩，禁止操作
         loadingInstance = dialog.DialogMask('验证登录状态中，请稍候...', () => { }, {
           closeTime: false
@@ -79,77 +77,66 @@ export default ({ Vue, router, siteData }) => {
 
         const res = await fetch('https://ssl.xiaoying.org.cn/getUser', {
           method: 'GET',
-          credentials: 'include',
-          headers: { 'Authorization': 'Bearer ' + accesskey },
           credentials: 'include'
         });
 
-        // ✅ 关键修复：fetch的正确异常处理！fetch只抛网络错误，HTTP错误(401/403)不会进入catch，必须手动判断res.ok
+
         if (res.ok) {
-          // token有效，正常放行路由 ✅ 核心：此时调用next，路由立即跳转，不会出现404
+          // token有效，正常放行路由
           dialog.DialogHelper.close(loadingInstance);
           next();
         } else {
-          // token过期/无效/无权限
+          // token过期/无效/无权限，先关闭loading
           dialog.DialogHelper.close(loadingInstance);
 
-          try {
-            // ✅ 核心改造：刷新接口无需传refreshToken，浏览器自动带HttpOnly Cookie
-            const refreshRes = await fetch('https://ssl.xiaoying.org.cn/refresh', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              credentials: 'include', // 关键：自动携带Cookie
-            });
-            const refreshData = await refreshRes.json();
-            
-            if (refreshRes.ok && refreshData?.token) {
-              // 刷新成功：拿到新的accessToken，更新localStorage
-              const newAccessToken = refreshData.token;
-              storage.setItem('token', newAccessToken);
-              // 自动重试原接口，用新token
-              const retryRes = await fetch('https://ssl.xiaoying.org.cn/getUser', {
-                method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + newAccessToken },
-                credentials: 'include'
-              });
-              if (retryRes.ok) {
-                next();
-                return; // 放行后结束，不执行登出
-              } else {
-                dialog.DialogAlert('登录已过期，请重新登录!', () => {
-                  storage.removeItem('token');
-                  storage.setItem('redirect', to.path);
-                  next('/login/');
-                }, { messageType: 'warning' });
-              }
-            }
-          } catch (refreshError) {
+          // 提取登出逻辑为独立函数，避免重复代码
+          const handleLoginExpire = () => {
             dialog.DialogAlert('登录已过期，请重新登录!', () => {
-              storage.removeItem('token');
               storage.setItem('redirect', to.path);
               next('/login/');
             }, { messageType: 'warning' });
+          };
+
+          try {
+            // 刷新token接口
+            const refreshRes = await fetch('https://ssl.xiaoying.org.cn/refresh', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include', // 自动携带Cookie
+            });
+            const refreshData = await refreshRes.json();
+
+            if (refreshRes.ok && refreshData?.token) {
+              // 刷新成功，重试getUser接口
+              const retryRes = await fetch('https://ssl.xiaoying.org.cn/getUser', {
+                method: 'GET',
+                credentials: 'include'
+              });
+
+              if (retryRes.ok) {
+                // 重试成功：直接放行，不执行任何登出逻辑
+                next();
+                // 终止当前else分支的所有后续逻辑（关键修复）
+                return;
+              }
+            }
+
+            // 以下是refresh成功但重试getUser失败，或refresh返回ok但无token的情况
+            handleLoginExpire();
+          } catch (refreshError) {
+            // refresh接口请求失败（网络/服务器错误）
+            console.error('刷新token失败：', refreshError);
+            handleLoginExpire();
           }
-
-          dialog.DialogAlert('登录已过期，请重新登录!', () => {
-            storage.removeItem('token');
-            storage.setItem('redirect', to.path);
-            next('/login/');
-          }, { messageType: 'warning' });
-
         }
       } catch (error) {
-        // 捕获网络错误/请求超时等异常
-        console.error('用户信息请求失败：', error);
         dialog.DialogHelper.close(loadingInstance);
-        storage.removeItem('token');
         storage.setItem('redirect', to.path);
-        next('/login/');
       } finally {
-        // ✅ 无论成功/失败/异常，最终都解锁 + 兜底关闭loading，防止loading卡死页面
+        // 无论成功/失败/异常，最终解锁 + 兜底关闭loading
         isRequestingUserInfo = false;
         dialog.DialogHelper.close(loadingInstance);
-        loadingInstance = null; // 清空实例，避免内存占用
+        loadingInstance = null;
       }
     });
   }

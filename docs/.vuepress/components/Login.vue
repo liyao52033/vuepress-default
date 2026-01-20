@@ -177,9 +177,6 @@ export default {
         const data = await res.json();
 
         if (res.ok && data.session) {
-          localStorage.setItem('token', data.session.access_token);
-         // this.showAlert('登录成功', 'success')
-
           const redirect = localStorage.getItem('redirect') || '/'
           this.$router.push(redirect)
           localStorage.removeItem('redirect')
