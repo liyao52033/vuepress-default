@@ -7,7 +7,6 @@ require('dotenv').config()
 module.exports = {
   title: '编程随笔',
   description: '编程随笔',
-  // 本地化配置
   locales: {
     '/': {
       lang: 'zh-CN',
@@ -44,30 +43,6 @@ module.exports = {
   //    config.devtool = 'source-map';
   // },
 
-  // 优化Webpack配置
-  configureWebpack: {
-    cache: true, // 开启Webpack缓存，大幅提升二次构建速度
-    optimization: {
-      splitChunks: { chunks: 'all' } // 代码分割，减少打包体积
-    },
-    performance: { hints: false }, // 关闭性能提示,
-  },
-  // 链式修改Webpack配置（更精细的优化）
-  chainWebpack: (config) => {
-    // 开启babel-loader缓存
-    config.module
-      .rule('js')
-      .use('babel-loader')
-      .tap(options => {
-        options.cacheDirectory = true
-        return options
-      })
-    // 忽略不需要打包的依赖（按需添加）
-    config.externals({
-      jquery: 'jQuery'
-    })
-  },
-
   theme: 'vdoing',
   plugins: pluginConfig,
 
@@ -102,7 +77,7 @@ module.exports = {
       appId: process.env.ALGOLIA_APP_ID,
       apiKey: process.env.ALGOLIA_API_KEY,
       askAi: {
-        indexName: process.env.ALGOLIA_INDEX_NAME + '-md',
+        indexName: process.env.ALGOLIA_ASKAI_INDEX_NAME,
         assistantId: process.env.ALGOLIA_ASSISTANT_ID
       }
     },
