@@ -34,7 +34,7 @@ export default ({ Vue, router, siteData }) => {
             params[key] = value;
           });
           if (params.access_token) {
-          //  storage.setItem('token', params.access_token); // 统一用封装的storage
+            //  storage.setItem('token', params.access_token); // 统一用封装的storage
             const redirect = storage.getItem('redirect') || '/';
             storage.removeItem('redirect');
             return next(redirect);

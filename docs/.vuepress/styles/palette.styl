@@ -123,7 +123,12 @@ div[class*="language-"]
     background-color #0A62C9
   }
   // mark 标签配置
-  mark
+  mark:not(
+    [class^="DocSearch-Hit-"],          /* 排除自身前缀类 */
+    [class*=" DocSearch-Hit-"],         /* 排除自身多类名含前缀 */
+    [class^="DocSearch-Hit-"] > mark,   /* 排除父元素前缀类的mark */
+    [class*=" DocSearch-Hit-"] > mark   /* 排除父元素多类名含前缀的mark */
+  ) 
     color #d63200
     border .1em solid #d63200
     background-color transparent
@@ -169,7 +174,12 @@ div[class*="language-"]
   .card-box:hover
     box-shadow 2px 2px 15px 2px rgba(0,0,0,.40);
   // mark 标签配置
-  mark
+  mark:not(
+    [class^="DocSearch-Hit-"],          /* 排除自身前缀类 */
+    [class*=" DocSearch-Hit-"],         /* 排除自身多类名含前缀 */
+    [class^="DocSearch-Hit-"] > mark,   /* 排除父元素前缀类的mark */
+    [class*=" DocSearch-Hit-"] > mark   /* 排除父元素多类名含前缀的mark */
+  ) 
     color #b160ea
     border .1em solid #b160ea
     background-color transparent
@@ -263,7 +273,12 @@ div[class*="language-"]
   //     background-color #a556c9
   codeThemeDark()
   // mark 标签配置
-  mark
+  mark:not(
+    [class^="DocSearch-Hit-"],          /* 排除自身前缀类 */
+    [class*=" DocSearch-Hit-"],         /* 排除自身多类名含前缀 */
+    [class^="DocSearch-Hit-"] > mark,   /* 排除父元素前缀类的mark */
+    [class*=" DocSearch-Hit-"] > mark   /* 排除父元素多类名含前缀的mark */
+  ) 
     color #a556c9
     border .1em solid #a556c9
     background-color transparent

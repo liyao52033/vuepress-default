@@ -2,11 +2,17 @@ const { lang } = require("moment");
 const nav = require("./nav.js");
 const pluginConfig = require("./pluginConfig.js")
 const { readEachFileWords } = require('./webSiteInfo/readFile.js');
+require('dotenv').config()
 
 module.exports = {
   title: '编程随笔',
   description: '编程随笔',
-  lang: 'zh-CN',
+  // 本地化配置
+  locales: {
+    '/': {
+      lang: 'zh-CN',
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/img/logo.png' }],
     ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
@@ -38,6 +44,30 @@ module.exports = {
   //    config.devtool = 'source-map';
   // },
 
+  // 优化Webpack配置
+  configureWebpack: {
+    cache: true, // 开启Webpack缓存，大幅提升二次构建速度
+    optimization: {
+      splitChunks: { chunks: 'all' } // 代码分割，减少打包体积
+    },
+    performance: { hints: false }, // 关闭性能提示,
+  },
+  // 链式修改Webpack配置（更精细的优化）
+  chainWebpack: (config) => {
+    // 开启babel-loader缓存
+    config.module
+      .rule('js')
+      .use('babel-loader')
+      .tap(options => {
+        options.cacheDirectory = true
+        return options
+      })
+    // 忽略不需要打包的依赖（按需添加）
+    config.externals({
+      jquery: 'jQuery'
+    })
+  },
+
   theme: 'vdoing',
   plugins: pluginConfig,
 
@@ -66,6 +96,17 @@ module.exports = {
     sidebar: 'structuring',
     subSidebar: 'auto',
     pageButton: true,
+
+    docsearch: {
+      indexName: process.env.ALGOLIA_INDEX_NAME,
+      appId: process.env.ALGOLIA_APP_ID,
+      apiKey: process.env.ALGOLIA_API_KEY,
+      askAi: {
+        indexName: process.env.ALGOLIA_INDEX_NAME + '-md',
+        assistantId: process.env.ALGOLIA_ASSISTANT_ID
+      }
+    },
+
     loginInfo: {
       isLogin: true, // 是否开启登录
       List: [
