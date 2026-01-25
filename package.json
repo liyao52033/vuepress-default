@@ -46,10 +46,10 @@
     "sass-loader": "^13.3.2",
     "v-dialogs": "^2.2.0",
     "vuepress-plugin-blocktoggle": "^1.1.5",
-    "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-plugin-copycodeblock": "^1.0.1",
     "vuepress-plugin-element-ui": "^1.1.0",
+    "vuepress-plugin-twikoo": "^1.0.11",
     "vuepress-theme-vdoing": "^1.12.9"
   }
 }

@@ -64,14 +64,14 @@ index 0000000..7d75c4b
 @@ -0,0 +1 @@
 +export { default } from "D:\\1.WebProjects\\vuepress-starter\\node_modules\\vuepress-plugin-img-lazy\\enhanceAppFile.js"
 \ No newline at end of file
-diff --git a/node_modules/@vuepress/core/.temp/app-enhancers/8.js b/node_modules/@vuepress/core/.temp/app-enhancers/8.js
-new file mode 100644
-index 0000000..9557ef4
---- /dev/null
-+++ b/node_modules/@vuepress/core/.temp/app-enhancers/8.js
-@@ -0,0 +1 @@
-+export { default } from "D:\\1.WebProjects\\vuepress-starter\\node_modules\\vuepress-plugin-comment\\comment.js"
-\ No newline at end of file
+# diff --git a/node_modules/@vuepress/core/.temp/app-enhancers/8.js b/node_modules/@vuepress/core/.temp/app-enhancers/8.js
+# new file mode 100644
+# index 0000000..9557ef4
+# --- /dev/null
+# +++ b/node_modules/@vuepress/core/.temp/app-enhancers/8.js
+# @@ -0,0 +1 @@
+# +export { default } from "D:\\1.WebProjects\\vuepress-starter\\node_modules\\vuepress-plugin-comment\\comment.js"
+# \ No newline at end of file
 diff --git a/node_modules/@vuepress/core/.temp/app-enhancers/data-block.js b/node_modules/@vuepress/core/.temp/app-enhancers/data-block.js
 new file mode 100644
 index 0000000..08e2885
