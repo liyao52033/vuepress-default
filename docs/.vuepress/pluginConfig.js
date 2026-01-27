@@ -32,7 +32,8 @@ module.exports = [
     'vuepress-plugin-twikoo',
     {
       options: {
-        envId: 'https://twikoo.xiaoying.org.cn', 
+        envId: 'https://twikoo.xiaoying.org.cn',
+    //    pathPrefix: ['/pages/'],
       }
     }
   ]

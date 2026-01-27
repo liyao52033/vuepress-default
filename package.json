@@ -49,7 +49,7 @@
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-plugin-copycodeblock": "^1.0.1",
     "vuepress-plugin-element-ui": "^1.1.0",
-    "vuepress-plugin-twikoo": "^1.0.11",
+    "vuepress-plugin-twikoo": "^1.0.20",
     "vuepress-theme-vdoing": "^1.12.9"
   }
 }
