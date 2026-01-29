@@ -86,9 +86,7 @@ export default ({ Vue, router, siteData }) => {
           dialog.DialogHelper.close(loadingInstance);
           next();
         } else {
-          // token过期/无效/无权限，先关闭loading
-          dialog.DialogHelper.close(loadingInstance);
-
+         
           // 提取登出逻辑为独立函数，避免重复代码
           const handleLoginExpire = () => {
             dialog.DialogAlert('登录已过期，请重新登录!', () => {
@@ -114,6 +112,8 @@ export default ({ Vue, router, siteData }) => {
               });
 
               if (retryRes.ok) {
+                // 先关闭loading
+                dialog.DialogHelper.close(loadingInstance);
                 // 重试成功：直接放行，不执行任何登出逻辑
                 next();
                 // 终止当前else分支的所有后续逻辑（关键修复）
@@ -122,10 +122,12 @@ export default ({ Vue, router, siteData }) => {
             }
 
             // 以下是refresh成功但重试getUser失败，或refresh返回ok但无token的情况
+            dialog.DialogHelper.close(loadingInstance);
             handleLoginExpire();
           } catch (refreshError) {
             // refresh接口请求失败（网络/服务器错误）
             console.error('刷新token失败：', refreshError);
+            dialog.DialogHelper.close(loadingInstance);
             handleLoginExpire();
           }
         }
