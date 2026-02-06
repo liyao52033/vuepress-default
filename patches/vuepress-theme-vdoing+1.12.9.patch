@@ -422,7 +422,7 @@ index 1b5e5c0..4ef6e84 100644
 +//   padding-left 1.5rem
  </style>
 diff --git a/node_modules/vuepress-theme-vdoing/components/Navbar.vue b/node_modules/vuepress-theme-vdoing/components/Navbar.vue
-index 2fb8bda..c8285ef 100644
+index 2fb8bda..5fc5077 100644
 --- a/node_modules/vuepress-theme-vdoing/components/Navbar.vue
 +++ b/node_modules/vuepress-theme-vdoing/components/Navbar.vue
 @@ -20,21 +20,28 @@
@@ -451,7 +451,7 @@ index 2fb8bda..c8285ef 100644
 +          :options="algolia"
 +        />
 +        <SearchBox
-+          v-else="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
++          v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
 +        />
 +      </div>
 +

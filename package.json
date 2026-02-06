@@ -10,7 +10,7 @@
     "docs:build": "set NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=102400 ./node_modules/vuepress/cli.js build docs",
     "docs:nav": "vuepress nav docs -f",
     "deploy": "./docs/.vuepress/deploy.sh",
-    "deploy:eop": "yarn run docs:build && edgeone pages deploy ./docs/.vuepress/dist -n vuepress-vdoing",
+    "deploy:eop": "yarn run deploy && edgeone pages deploy ./docs/.vuepress/dist -n vuepress-vdoing",
     "build": "./docs/.vuepress/build.sh",
     "push": "./docs/push.sh",
     "editFm": "node ./frontmatter/editFrontmatter.mjs",
