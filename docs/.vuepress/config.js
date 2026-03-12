@@ -22,7 +22,8 @@ module.exports = {
     ['meta', { name: 'referrer', content: 'no-referrer-when-downgrade' }],
     ['meta', { name: 'keywords', content: '编程随笔' }],
     ["meta", { name: "google", content: "notranslate", }],
-    ['meta', { content: '编程随笔', property: 'og:title' }]
+    ['meta', { content: '编程随笔', property: 'og:title' }],
+    ['meta', { name: "algolia-site-verification", content: "CA4B71628D467FFC" }]
   ],
 
   extraWatchFiles: [
